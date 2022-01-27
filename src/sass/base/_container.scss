@@ -1,0 +1,19 @@
+.container {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    @media screen and (min-width: 768px) {
+      max-width: 768px;
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+  
+    @media screen and (min-width: 1024px) {
+      max-width: 1024px;
+    }
+  
+    // outline: 1px solid green;
+}
