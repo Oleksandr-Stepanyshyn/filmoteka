@@ -1,6 +1,5 @@
 .film-card {
-  max-width: 280px;
-  height: 440px;
+  max-width: 100%;
 
   @media screen and (min-width: 768px) {
     width: 294px;
@@ -25,16 +24,14 @@
 }
 
 .film-card__info {
-  font-style: normal;
-  font-weight: 500;
+  @include textstyle;
   font-size: 12px;
   line-height: 1.33;
   color: $accent-color;
 }
 
 .film-card__title {
-  font-style: normal;
-  font-weight: 500;
+  @include textstyle;
   font-size: 12px;
   line-height: 1.16;
   text-transform: uppercase;
