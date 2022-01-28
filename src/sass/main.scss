@@ -4,12 +4,7 @@
  */
 
 // Стили для файла с примером HTML-фрагмента
-@import './utils/veriables';
-@import './utils/mixins';
-@import './base/reset';
-@import './base/container';
-@import './components/modal-card-film';
-@import './components/modal-team';
-@import './layout/header';
-@import './layout/main';
-@import './layout/footer';
+@import './utils/main-utils';
+@import './base/main-base';
+@import './components/main-components';
+@import './layout/main-layout';
