@@ -38,18 +38,78 @@
   margin-bottom: 30px;
 }
 
-.modal-film__title {
+.modal-film__film-title {
   margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.15;
 }
 
 .modal-film__details-table {
   margin-bottom: 20px;
+  width: 100%;
+  outline: 1px solid red;
+}
+tr {
+  outline: 1px solid red;
+}
+td {
+  outline: 1px solid red;
 }
 
-.modal-film__title-about {
+.modal-film__details-table--heading {
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
+
+  color: $light-grey-text-color;
+}
+
+.modal-film__about-title {
   margin-bottom: 10px;
+  font-weight: 500;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.33;
 }
 
 .modal-film__description {
   margin-bottom: 21px;
+
+  font-style: normal;
+  line-height: 1.67;
+}
+
+.modal-film__buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+.modal-film__button-watched {
+  padding: 7px 8px 5px;
+  cursor: pointer;
+  border-color: transparent;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: $accent-color;
+  color: #fff;
+  width: 113px;
+  height: 44px;
+
+  margin-right: 15px;
+}
+
+.modal-film__button-queue {
+  padding: 14px 7px 12px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  text-transform: uppercase;
+  width: 113px;
+  height: 44px;
 }
