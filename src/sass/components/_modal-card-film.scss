@@ -1,0 +1,55 @@
+.backdrop {
+  position: fixed;
+  z-index: 105;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-film__button-close {
+  border: none;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.modal-film {
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+  //   top: 50%;
+  //   left: 50%;
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+  background-color: #fff;
+
+  padding: 48px 20px 41px;
+}
+
+.modal-film__poster {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.modal-film__title {
+  margin-bottom: 20px;
+}
+
+.modal-film__details-table {
+  margin-bottom: 20px;
+}
+
+.modal-film__title-about {
+  margin-bottom: 10px;
+}
+
+.modal-film__description {
+  margin-bottom: 21px;
+}
