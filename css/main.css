@@ -3,7 +3,6 @@
  * Главный файл стилей.
  * Все паршалы подключаются сюда.
  */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 ul {
   list-style: none;
   padding: 0;
@@ -33,28 +32,26 @@ img {
 }
 
 .container {
-  width: 100%;
+  max-width: 480px;
   padding-left: 20px;
   padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
 }
 
-@media screen and (min-width: 320px) {
-  .container {
-    width: 320px;
-  }
-}
-
 @media screen and (min-width: 768px) {
   .container {
-    width: 768px;
+    min-width: 768px;
+    padding-left: 75px;
+    padding-right: 75px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .container {
-    width: 1024px;
+    max-width: 1024px;
+    padding-left: 70px;
+    padding-right: 70px;
   }
 }
 
@@ -65,12 +62,14 @@ img {
       grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 20px;
+  justify-items: center;
 }
 
 @media screen and (min-width: 768px) {
   .gallery {
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 30px;
     grid-row-gap: 30px;
   }
 }
@@ -83,18 +82,14 @@ img {
 }
 
 .gallery__container {
-  padding: 20px 20px 120px;
+  padding-top: 20px;
+  padding-bottom: 120px;
 }
 
 @media screen and (min-width: 768px) {
   .gallery__container {
-    padding: 60px 75px 150px;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .gallery__container {
-    padding: 60px 71px 150px;
+    padding-top: 60px;
+    padding-bottom: 150px;
   }
 }
 
