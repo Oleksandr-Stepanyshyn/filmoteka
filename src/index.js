@@ -1,3 +1,4 @@
+import './js/localeStorageServices';
 import './sass/main.scss';
 import './js/galleryFetch';
 
