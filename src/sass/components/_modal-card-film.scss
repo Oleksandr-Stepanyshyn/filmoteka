@@ -1,12 +1,19 @@
 .backdrop {
-  // background-color: yellow;
+  background-color: rgba(0, 0, 0, 0.25);
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 20px;
+  opacity: 1;
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+body.modal-open {
+  overflow: hidden;
 }
 
 .modal-film__button-close {
@@ -30,8 +37,10 @@
   position: absolute;
   z-index: 2;
   margin: auto;
-  // top: 50%;
-  // left: 50%;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   max-width: 280px;
   max-height: 95%;
   overflow-y: auto;
@@ -40,10 +49,12 @@
 
   @media screen and (min-width: 768px) {
     max-width: 618px;
+    max-height: 562px;
     padding: 42px 30px 40px 28px;
   }
   @media screen and (min-width: 1024px) {
     max-width: 882px;
+    max-height: 568px;
     padding: 50px 30px 40px 30px;
   }
 }
@@ -57,6 +68,7 @@
 .modal-film__poster {
   width: 100%;
   margin-bottom: 30px;
+
   @media screen and (min-width: 768px) {
     width: 264px;
     height: 373px;
@@ -75,6 +87,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.15;
+
   @media screen and (min-width: 1024px) {
     font-size: 30px;
     line-height: 1.67;
@@ -85,9 +98,9 @@
   margin-bottom: 20px;
   width: 100%;
 }
-.modal-film__details-table-row {
+
+.modal-film__details-table--row {
   height: 25px;
-  // margin-bottom: 0px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
@@ -127,6 +140,7 @@
   padding: 1px 10px;
   border-radius: 5px;
 }
+
 .modal-film__details-table--popularity .modal-film__details-table--genre {
   font-size: 12px;
   font-style: normal;
@@ -180,7 +194,7 @@
 }
 
 .modal-film__button-queue {
-  padding: 14px 7px 12px;
+  padding: 7px 8px 5px;
   cursor: pointer;
   border: 1px solid black;
   border-radius: 5px;

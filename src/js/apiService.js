@@ -1,7 +1,7 @@
 const API_KEY = 'c01f14dcdb58e9cec669b1017a4d540c';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
-export class FilmsApiService {
+export default class FilmsApiService {
   constructor() {
     this.searchQueryFilms = '';
     this.page = 1;
@@ -40,7 +40,12 @@ export class FilmsApiService {
         }
         return response.json();
       })
-      .then(data => data.results);
+      .then((data) => {
+        if (data.total_results === 0) {
+          return this.errorFilmSearch();
+        }
+        return data.results
+      });
   }
 
   // Метод Геттер для получения текущего значения строки поиска (нам не нужен:)).
