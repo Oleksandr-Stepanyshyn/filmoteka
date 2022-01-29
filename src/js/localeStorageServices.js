@@ -32,21 +32,20 @@ const refs = {
   queneBtn: document.querySelector('.btn-quene'),
 };
 
-refs.watchedBtn.addEventListener('click', () => {
-  console.log('add to watched');
-  addToWatched();
-});
-refs.queneBtn.addEventListener('click', () => {
-  console.log('add to quene');
-  addToQuene();
-});
+refs.watchedBtn.addEventListener('click', addToWatched);
 
+refs.queneBtn.addEventListener('click', addToQuene);
+
+// refs.queneBtn.removeEventListener('click', addToQuene);
+// console.log('add to quene');
 //____________________
 function addToWatched() {
   if (refs.watchedBtn.textContent === 'ADD TO WATCHED') {
     save(WATCHED_KEY, 'filmId');
     refs.watchedBtn.textContent = 'REMOVE TO WATCHED';
   }
+  refs.watchedBtn.removeEventListener('click', addToWatched);
+  console.log('click1');
 }
 
 function addToQuene() {
@@ -54,4 +53,6 @@ function addToQuene() {
     save(QUENE_KEY, 'filmId');
     refs.queneBtn.textContent = 'REMOVE TO QUENE';
   }
+  refs.queneBtn.removeEventListener('click', addToQuene);
+  console.log('click2');
 }
