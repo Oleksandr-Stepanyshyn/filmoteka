@@ -41,7 +41,7 @@ export default class FilmsApiService {
         return response.json();
       })
       .then(data => {
-        return data.results
+        return data.results;
       });
   }
 
