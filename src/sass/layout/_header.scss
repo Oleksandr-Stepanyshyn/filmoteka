@@ -117,7 +117,6 @@
   margin-left: 10px;
 
   color: #ffffff;
-  font-weight: 500;
   font-size: 30px;
   line-height: calc(35 / 30);
 
@@ -137,7 +136,6 @@
 .nav__btn,
 .library__btn {
   color: #ffffff;
-  font-weight: 500;
   font-size: 12px;
   line-height: calc(14 / 12);
   text-transform: uppercase;
@@ -169,7 +167,7 @@
   height: 3px;
   width: 100%;
 
-  background-color: #ff6b08;
+  background-color: $accent-text-color;
 }
 
 // =========================== form =========================
@@ -221,7 +219,7 @@
   margin-top: 22px;
 
   color: #ff001b;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 14px;
   line-height: calc(16 / 14);
 }
@@ -256,7 +254,7 @@
 
 .library__btn--currenly {
   border: 0;
-  background-color: #ff6b08;
+  background-color: $accent-text-color;
 
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
 }
