@@ -40,10 +40,7 @@ export default class FilmsApiService {
         }
         return response.json();
       })
-      .then((data) => {
-        if (data.total_results === 0) {
-          return this.errorFilmSearch();
-        }
+      .then(data => {
         return data.results
       });
   }
