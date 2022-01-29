@@ -51,7 +51,7 @@ function addToWatched() {
 
 function addToQuene() {
   if (refs.queneBtn.textContent === 'ADD TO QUENE') {
-    save(WATCHED_KEY, 'filmId');
+    save(QUENE_KEY, 'filmId');
     refs.queneBtn.textContent = 'REMOVE TO QUENE';
   }
 }
