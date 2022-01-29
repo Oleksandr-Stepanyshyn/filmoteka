@@ -45,7 +45,7 @@ function addToWatched() {
     refs.watchedBtn.textContent = 'REMOVE TO WATCHED';
   }
   refs.watchedBtn.removeEventListener('click', addToWatched);
-  console.log('click1');
+  console.log('clickW');
 }
 
 function addToQuene() {
@@ -54,5 +54,5 @@ function addToQuene() {
     refs.queneBtn.textContent = 'REMOVE TO QUENE';
   }
   refs.queneBtn.removeEventListener('click', addToQuene);
-  console.log('click2');
+  console.log('clickQ');
 }
