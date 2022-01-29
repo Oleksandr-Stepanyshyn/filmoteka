@@ -1,10 +1,12 @@
 .backdrop {
+  // background-color: yellow;
   position: fixed;
-  z-index: 105;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 20px;
 }
 
 .modal-film__button-close {
@@ -17,25 +19,53 @@
   position: absolute;
   right: 10px;
   top: 10px;
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    fill: $accent-color;
+  }
 }
 
 .modal-film {
   position: absolute;
-  margin-right: auto;
-  margin-left: auto;
-  //   top: 50%;
-  //   left: 50%;
-  width: 100%;
-  max-height: 100vh;
+  z-index: 2;
+  margin: auto;
+  // top: 50%;
+  // left: 50%;
+  max-width: 280px;
+  max-height: 95%;
   overflow-y: auto;
   background-color: #fff;
-
   padding: 48px 20px 41px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 618px;
+    padding: 42px 30px 40px 28px;
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 882px;
+    padding: 50px 30px 40px 30px;
+  }
+}
+
+.modal-film__content-wrapper {
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 }
 
 .modal-film__poster {
   width: 100%;
   margin-bottom: 30px;
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    height: 373px;
+    margin-right: 30px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 396px;
+    height: 478px;
+  }
 }
 
 .modal-film__film-title {
@@ -45,18 +75,21 @@
   font-style: normal;
   font-weight: 500;
   line-height: 1.15;
+  @media screen and (min-width: 1024px) {
+    font-size: 30px;
+    line-height: 1.67;
+  }
 }
 
 .modal-film__details-table {
   margin-bottom: 20px;
   width: 100%;
-  outline: 1px solid red;
 }
-tr {
-  outline: 1px solid red;
-}
-td {
-  outline: 1px solid red;
+.modal-film__details-table-row {
+  height: 25px;
+  // margin-bottom: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .modal-film__details-table--heading {
@@ -66,10 +99,43 @@ td {
   line-height: 1.33;
 
   color: $light-grey-text-color;
+
+  @media screen and (min-width: 1024px) {
+    width: 30%;
+  }
+}
+.modal-film__details-table--votes-orange {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.67;
+  text-align: center;
+  color: white;
+  background-color: $accent-color;
+  padding: 1px 10px;
+  border-radius: 5px;
 }
 
-.modal-film__about-title {
-  margin-bottom: 10px;
+.modal-film__details-table--votes-slash {
+  color: $light-grey-text-color;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.modal-film__details-table--votes-grey {
+  background-color: #f7f7f7;
+  padding: 1px 10px;
+  border-radius: 5px;
+}
+.modal-film__details-table--popularity .modal-film__details-table--genre {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.67;
+}
+
+.modal-film__about-title,
+.modal-film__details-table--original-title {
   font-weight: 500;
   font-style: normal;
   text-transform: uppercase;
@@ -78,6 +144,7 @@ td {
 }
 
 .modal-film__description {
+  margin-top: 10px;
   margin-bottom: 21px;
 
   font-style: normal;
@@ -100,8 +167,16 @@ td {
   color: #fff;
   width: 113px;
   height: 44px;
+  transition-property: transform;
+  transition-duration: 500ms;
 
   margin-right: 15px;
+  @media screen and (min-width: 768px) {
+    width: 125px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 136px;
+  }
 }
 
 .modal-film__button-queue {
@@ -113,4 +188,18 @@ td {
   text-transform: uppercase;
   width: 113px;
   height: 44px;
+  transition-property: transform;
+  transition-duration: 500ms;
+
+  @media screen and (min-width: 768px) {
+    width: 125px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 136px;
+  }
+}
+
+.modal-film__button-watched:hover,
+.modal-film__button-queue:hover {
+  transform: scale(1.15);
 }
