@@ -4,6 +4,7 @@ import FilmsApiService from './apiService';
 const refs = {
     formEl: document.querySelector(".form"),
     galleryEl: document.querySelector(".gallery__container"),
+    errorEl: document.querySelector(".search-error")
 }
 
 const newFilmsBandle = new FilmsApiService();
@@ -29,26 +30,37 @@ function onFormElSubmit(e) {
     newFilmsBandle.query = e.target.elements.searchQuery.value.trim();
 
     if (!newFilmsBandle.query) { 
-        return newFilmsBandle.emptySearchQueryFilm();
+        return onFilmsSearchError();
     }
 
     galleryReset();
     
     newFilmsBandle.onFetchKeyWordFilms()
         .then((films) => {
+            if (films.length === 0) {
+                return onFilmsSearchError();
+            }
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films)
         })
         .catch(console.log);
 }
- 
+
+//рендер разметки галлереи фильмов
 function renderMarkup(films){
  refs.galleryEl.insertAdjacentHTML('beforeend', cardMarkup(films));
 }
 
+// перезагрузка галлереи
 function galleryReset() {
     newFilmsBandle.resetPageNumber();
     refs.galleryEl.innerHTML = '';
+    refs.errorEl.classList.add('visually-hidden');
+}
+
+// функция-ошибка, если поисковый запрос пустой, или фильма с таким названием не найдено
+function onFilmsSearchError() {
+    refs.errorEl.classList.remove('visually-hidden')
 }
 
 export default {};
