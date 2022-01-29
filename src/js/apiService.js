@@ -85,4 +85,15 @@ export default class FilmsApiService {
   errorFilmSearch() {
     console.log('Search result not successful. Enter the correct movie name and try again');
   }
+  // витянує дані для фільма по айдішці
+  async onfetchMoviesDetails(id) {
+    try {
+      const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
+      const response = await fetch(url);
+      const data = response.json();
+      return data;
+    } catch (error) {
+      console.error('Get state error: ', error.message);
+    }
+  }
 }
