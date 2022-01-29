@@ -1,5 +1,5 @@
 import './sass/main.scss';
-import './js/temporaryFetch';
+import './js/galleryFetch';
 
 // import { FilmsApiService } from './js/apiService'; Импорт класса.
 
