@@ -1,4 +1,6 @@
 import './sass/main.scss';
+import './js/openCloseModalFilm'
+
 // import { FilmsApiService } from './js/apiService'; Импорт класса.
 
 // const filmsApiService = new FilmsApiService(); Создание экземпляра класса.
