@@ -1,12 +1,11 @@
-// метод який записує в локалсторедж
+import FilmsApiService from './apiService';
+// функція яка записує в локалсторедж
 const save = (key, value) => {
   const data = JSON.stringify(value);
   localStorage.setItem(key, data);
-  console.log(data);
-
-
+  // console.log(data);
 };
-// метод який грузить з локалстореджу
+// функція яка грузить з локалстореджу
 const load = key => {
   try {
     const data = localStorage.getItem(key);
@@ -15,7 +14,7 @@ const load = key => {
     console.error('Get state error: ', error.message);
   }
 };
-//метод який видаляє з локалстореджу
+//функція яка видаляє з локалстореджу
 const remove = key => {
   return localStorage.removeItem(key);
 };
@@ -25,39 +24,25 @@ export default {
   load,
   remove,
 };
+//--------------------------------------------//
+const filmsDetails = new FilmsApiService();
 
-const WATCHED_KEY = 'Watched';
-const QUENE_KEY = 'Quene';
-
-//________________________________________
-const refs = {
-  watchedBtn: document.querySelector('.btn-watched'),
-  queneBtn: document.querySelector('.btn-quene'),
-};
-
-refs.watchedBtn.addEventListener('click', addToWatched);
-
-refs.queneBtn.addEventListener('click', addToQuene);
-
-
-
-// refs.queneBtn.removeEventListener('click', addToQuene);
-// console.log('add to quene');
-//____________________
-function addToWatched() {
-  if (refs.watchedBtn.textContent === 'ADD TO WATCHED') {
-    save(WATCHED_KEY, 'filmId');
-    refs.watchedBtn.textContent = 'REMOVE TO WATCHED';
-  }
-  refs.watchedBtn.removeEventListener('click', addToWatched);
-  console.log('clickW');
+function addTolocaleStorageFilmsOnPage() {
+  filmsDetails
+    .onFetchTopDayFilms()
+    .then(filmsDetails => {
+      save('DetailsFilmsCurrentPage', filmsDetails);
+    })
+    .catch(error => console.log(error));
 }
+addTolocaleStorageFilmsOnPage();
 
-function addToQuene() {
-  if (refs.queneBtn.textContent === 'ADD TO QUENE') {
-    save(QUENE_KEY, 'filmId');
-    refs.queneBtn.textContent = 'REMOVE TO QUENE';
-  }
-  refs.queneBtn.removeEventListener('click', addToQuene);
-  console.log('clickQ');
-}
+// const refs = { form: document.querySelector('.form') };
+// refs.form.addEventListener('submit', qwer);
+// function qwer(event) {
+//   console.log(event);
+//   filmsDetails
+//     .onFetchKeyWordFilms()
+//     .then(films => {})
+//     .catch(error => console.log(error));
+// }
