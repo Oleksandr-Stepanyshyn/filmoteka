@@ -1,0 +1,259 @@
+.btn {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+// ===================== header =======================
+
+.header {
+  min-height: 230px;
+  padding-top: 46px;
+
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('../images/header/mob-background-home-1x.jpg');
+
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/tab-background-home-1x.jpg');
+  }
+
+  @media screen and (min-width: 1024px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/desk-background-home-1x.jpg');
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/mob-background-home-2x.jpg');
+  }
+}
+
+@media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/tab-background-home-2x.jpg');
+  }
+}
+
+@media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/desk-background-home-2x.jpg');
+  }
+}
+
+// ======= клас, який буде динамічно підставлятись в header,
+//         після кліку на кнопку my library ========
+
+.header--library {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('../images/header/mob-background-library-1x.jpg');
+
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/tab-background-library-1x.jpg');
+  }
+
+  @media screen and (min-width: 1024px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/desk-background-library-1x.jpg');
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .header--library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/mob-background-library-2x.jpg');
+  }
+}
+
+@media screen and (min-width: 768px) and (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .header--library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/tab-background-library-2x.jpg');
+  }
+}
+
+@media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .header--library {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('../images/header/desk-background-library-2x.jpg');
+  }
+}
+
+// ============================= nav ============================
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.logo-text {
+  margin-left: 10px;
+
+  color: #ffffff;
+  font-size: 30px;
+  line-height: calc(35 / 30);
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.nav__list {
+  display: flex;
+}
+
+.nav__item:last-child {
+  margin-left: 39px;
+}
+
+.nav__btn,
+.library__btn {
+  color: #ffffff;
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  text-transform: uppercase;
+}
+
+.logo-btn,
+.nav__btn,
+.form__btn {
+  padding: 0;
+
+  border: 0;
+}
+
+.nav__item {
+  position: relative;
+}
+
+// ===== клас, який буде динамічно підставлятись
+//         на кнопки home і me library після напискання =======
+
+.nav__btn--currently::after {
+  content: '';
+
+  position: absolute;
+  bottom: -3px;
+
+  display: block;
+
+  height: 3px;
+  width: 100%;
+
+  background-color: $accent-color;
+}
+
+// =========================== form =========================
+
+.form {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+}
+
+.form__inner {
+  position: relative;
+}
+
+.form__input {
+  width: 100%;
+
+  background: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 0.5px solid #ffffff;
+  outline: 0;
+}
+
+.form__input,
+.form__input::placeholder {
+  padding-bottom: 4px;
+
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+}
+
+.form__btn {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+
+// ======================== message erorr ======================
+
+.search-error {
+  margin-top: 22px;
+
+  color: #ff001b;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  text-align: center;
+}
+
+// ====================== library =====================
+
+.library {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 50px;
+}
+
+.library__btn {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  width: 130px;
+
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+
+  @media screen and (min-width: 768px) {
+    width: 136px;
+  }
+}
+
+.library__btn:last-child {
+  margin-left: 20px;
+}
+
+// ==== клас добавляти динамічно, після кліку по кнопці watched та queue ====
+
+.library__btn--currenly {
+  border: 0;
+  background-color: $accent-text-color;
+
+  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+}

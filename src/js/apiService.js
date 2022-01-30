@@ -1,7 +1,7 @@
 const API_KEY = 'c01f14dcdb58e9cec669b1017a4d540c';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
-export class FilmsApiService {
+export default class FilmsApiService {
   constructor() {
     this.searchQueryFilms = '';
     this.page = 1;
@@ -40,7 +40,9 @@ export class FilmsApiService {
         }
         return response.json();
       })
-      .then(data => data.results);
+      .then(data => {
+        return data.results;
+      });
   }
 
   // Метод Геттер для получения текущего значения строки поиска (нам не нужен:)).
@@ -82,5 +84,16 @@ export class FilmsApiService {
   // Пример для вывода информации, если введено некорректное слово для поиска фильма.
   errorFilmSearch() {
     console.log('Search result not successful. Enter the correct movie name and try again');
+  }
+  // витянує дані для фільма по айдішці
+  async onfetchMoviesDetails(id) {
+    try {
+      const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
+      const response = await fetch(url);
+      const data = response.json();
+      return data;
+    } catch (error) {
+      console.error('Get state error: ', error.message);
+    }
   }
 }
