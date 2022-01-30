@@ -42,3 +42,4 @@ function toggleClassWatched() {
   refs.watched.classList.toggle('library__btn--currenly');
   refs.queue.classList.remove('library__btn--currenly');
 }
+
