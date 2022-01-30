@@ -1,10 +1,11 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 
+
 const refs = {
     formEl: document.querySelector(".form"),
     galleryEl: document.querySelector(".gallery__container"),
-    errorEl: document.querySelector(".search-error")
+    errorEl: document.querySelector(".search-error"),
 }
 
 const newFilmsBandle = new FilmsApiService();
@@ -37,6 +38,7 @@ function onFormElSubmit(e) {
     
     newFilmsBandle.onFetchKeyWordFilms()
         .then((films) => {
+            
             if (films.length === 0) {
                 return onFilmsSearchError();
             }
@@ -45,6 +47,7 @@ function onFormElSubmit(e) {
         })
         .catch(console.log);
 }
+
 
 //рендер разметки галлереи фильмов
 function renderMarkup(films){
