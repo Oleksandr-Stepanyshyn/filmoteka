@@ -1,5 +1,9 @@
 .film-card {
-  max-width: 100%;
+  width: 100%;
+
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
 
   @media screen and (min-width: 768px) {
     width: 294px;
@@ -13,10 +17,8 @@
 .poster {
   display: block;
   width: 100%;
-  height: 402px;
-  object-fit: cover;
-  border-radius: 5px;
   margin-bottom: 10px;
+  border-radius: 5px;
 
   @media screen and (min-width: 768px) {
     height: 398px;
