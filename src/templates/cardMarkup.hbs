@@ -11,12 +11,15 @@
         <img src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{title}}" loading="lazy" class="poster"/>
     </picture>
     {{else}}
-        <img src="/images/template-poster.jpg" alt="{{title}}" loading="lazy" class="poster"/>
+        <img src={{posterTmpl}} alt="{{title}}" loading="lazy" class="poster"/>
     {{/if}}
+    <h2 class="film-card__title">{{title}}</h2>
         <div class="info">
-            <h2 class="film-card__title">{{title}}</h2>
             <p class="film-card__info">
-                <span>{{genre_ids}}<span> | {{release_date}}
+                {{genre_ids}} | {{year}} 
+            </p>
+            <p class="vote visually-hidden">
+                {{vote}}
             </p>
         </div>
 </li>
