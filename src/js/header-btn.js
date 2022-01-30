@@ -29,6 +29,7 @@ function onLibraryBtnClick() {
   refs.librarySection.classList.remove('visually-hidden');
   refs.form.classList.add('visually-hidden');
   refs.watched.classList.add('library__btn--currenly');
+   refs.queue.classList.remove('library__btn--currenly');
 }
 
 refs.watched.addEventListener('click', toggleClassWatched);
@@ -39,6 +40,7 @@ function toggleClassQueue() {
   refs.watched.classList.remove('library__btn--currenly');
 }
 function toggleClassWatched() {
-  refs.watched.classList.toggle('library__btn--currenly');
+  refs.watched.classList.add('library__btn--currenly');
   refs.queue.classList.remove('library__btn--currenly');
 }
+
