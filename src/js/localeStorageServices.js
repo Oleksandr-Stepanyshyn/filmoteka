@@ -2,6 +2,9 @@
 const save = (key, value) => {
   const data = JSON.stringify(value);
   localStorage.setItem(key, data);
+  console.log(data);
+
+
 };
 // метод який грузить з локалстореджу
 const load = key => {
@@ -35,6 +38,8 @@ const refs = {
 refs.watchedBtn.addEventListener('click', addToWatched);
 
 refs.queneBtn.addEventListener('click', addToQuene);
+
+
 
 // refs.queneBtn.removeEventListener('click', addToQuene);
 // console.log('add to quene');
