@@ -41,7 +41,7 @@ export default class FilmsApiService {
         return response.json();
       })
       .then(data => {
-        return data.results
+        return data.results;
       });
   }
 
@@ -84,5 +84,16 @@ export default class FilmsApiService {
   // Пример для вывода информации, если введено некорректное слово для поиска фильма.
   errorFilmSearch() {
     console.log('Search result not successful. Enter the correct movie name and try again');
+  }
+  // витянує дані для фільма по айдішці
+  async onfetchMoviesDetails(id) {
+    try {
+      const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
+      const response = await fetch(url);
+      const data = response.json();
+      return data;
+    } catch (error) {
+      console.error('Get state error: ', error.message);
+    }
   }
 }
