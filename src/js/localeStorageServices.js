@@ -2,6 +2,9 @@
 const save = (key, value) => {
   const data = JSON.stringify(value);
   localStorage.setItem(key, data);
+  console.log(data);
+
+
 };
 // метод який грузить з локалстореджу
 const load = key => {
