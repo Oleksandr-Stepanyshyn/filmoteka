@@ -1,6 +1,6 @@
 const refs = {
   openModal: document.querySelector('.gallery__container'),
-  backdrop: document.querySelector('.backdrop')
+  // backdrop: document.querySelector('.backdrop')
 }
 refs.openModal.addEventListener("click", onOpenModal)
 refs.backdrop.addEventListener("click", onBackdrop);
