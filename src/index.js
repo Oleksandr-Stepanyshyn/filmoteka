@@ -1,6 +1,7 @@
 import './js/localeStorageServices';
 import './sass/main.scss';
 import './js/galleryFetch';
+import './js/header-btn'
 
 // import { FilmsApiService } from './js/apiService'; Импорт класса.
 
