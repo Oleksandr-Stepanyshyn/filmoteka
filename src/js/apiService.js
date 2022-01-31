@@ -33,7 +33,11 @@ export default class FilmsApiService {
     });
 
     const response = await axios.get(
+<<<<<<< HEAD
       `${BASE_URL}/search/movie/?api_key=${API_KEY}&language=en-US&${searchParams}`,
+=======
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&${searchParams}`,
+>>>>>>> ce5e046a1559bee09c6ba07bcedf85e592cee400
     );
     const data = await response.data;
     this.totalPage = data.total_pages;
