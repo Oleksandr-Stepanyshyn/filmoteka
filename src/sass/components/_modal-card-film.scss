@@ -1,3 +1,9 @@
+body.modal-open .backdrop {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: initial;
+}
+
 .backdrop {
   background-color: rgba(0, 0, 0, 0.25);
   position: fixed;
@@ -6,15 +12,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 1;
-}
 
-.backdrop.is-hidden {
-  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+
   pointer-events: none;
-}
-body.modal-open {
-  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease -in -out, visibillity 200ms ease -in -out;
 }
 
 .modal-film__button-close {
