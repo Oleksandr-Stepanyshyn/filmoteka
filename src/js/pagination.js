@@ -10,8 +10,7 @@ const refs= {
     container: document.getElementById('tui-pagination-container'),
 }
 const options =  { 
-        totalItems:2000,
-        itemsPerPage: 20,
+        // itemsPerPage: 20,
         visiblePages: 5,
         centerAlign: true,
         
@@ -35,16 +34,17 @@ const options =  {
         }
     }
 
-const instance = new Pagination(refs.container,options);
+// const instance = new Pagination(refs.container,options);
 // refs.btnForward.textContent = '<svg class="pagination__icon" width="16" height="16"><use href="./images/sprite.svg#icon-arrow-next"></use></svg>'
-instance.on('afterMove', (event) => {
-    newFilmsBandle.page = event.page;
-    refs.gallery.innerHTML = "";
-    return newFilmsBandle.onFetchTopDayFilms()
-        .then((films) => {
-            renderMarkup(films);
-        })
-        .catch(console.log);
+// instance.on('afterMove', (event) => {
+//     newFilmsBandle.page = event.page;
+//     refs.gallery.innerHTML = "";
+//     return newFilmsBandle.onFetchTopDayFilms()
+//         .then((films) => {
+//             renderMarkup(films);
+//         })
+//         .catch(console.log);
 
-});
+// });
 
+// export {instance,options}
