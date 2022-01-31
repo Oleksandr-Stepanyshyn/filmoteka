@@ -44,6 +44,7 @@ export default class FilmsApiService {
         return response.json();
       })
       .then(data => {
+        this.totalitems = data.total_results;
         return data.results;
       });
   }
