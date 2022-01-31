@@ -82,7 +82,7 @@ function renderMarkup(films) {
                 genres,
             }
 
-            console.log(filmsInfo);
+            // console.log(filmsInfo);
             return filmsInfo;
         }
     );

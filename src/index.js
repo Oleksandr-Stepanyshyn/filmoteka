@@ -1,6 +1,7 @@
 import './js/localeStorageServices';
 import './sass/main.scss';
-import './js/openCloseModalFilm'
+import './js/openCloseModalFilm';
+import './js/render-modal';
 import './js/galleryFetch';
 import './js/header-btn';
 
