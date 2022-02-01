@@ -119,4 +119,4 @@ function onEmptySearchError() {
     refs.errorEl.insertAdjacentHTML('beforeend', error);
 }
 
-export {renderMarkup};
+export { renderMarkup, renderDaylyTopFilms };
