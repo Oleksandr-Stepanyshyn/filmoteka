@@ -1,5 +1,5 @@
 {{#each this}}
-<li class="film-card">
+<li class="film-card" data-id="{{id}}">
     {{#if poster_path}}
     <picture class="poster">
         <source srcset="https://image.tmdb.org/t/p/original{{poster_path}} 1x, https://image.tmdb.org/t/p/original{{poster_path}} 2x"
