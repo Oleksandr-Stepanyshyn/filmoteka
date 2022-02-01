@@ -35,29 +35,29 @@ refs.closeBtn.addEventListener("click", onCloseModal);
 
 
 function onOpenModal(e) {
-  // console.log(e.target);
+  console.log(e.target);
   if (e.target.classList.contains('gallery__container'))
     return;
   window.addEventListener('keydown', onEscPress);
   document.body.classList.add('modal-open');
   
-  films.map(({ poster_path, vote_average, popularity, original_title, genre_ids, overview }) => {
-    const film = {
-      poster: poster_path,
-      title: original_title,
-      vote: vote_average,
+  // films.map(({ poster_path, vote_average, popularity, original_title, genre_ids, overview }) => {
+  //   const film = {
+  //     poster: poster_path,
+  //     title: original_title,
+  //     vote: vote_average,
       // votes: vote_count,
-      popularity: popularity,
-      genres: genre_ids,
-      overview: overview,
-    }
-  
-  bodyEl.insertAdjacentHTML('beforeend', modalMarkup(film));
-    console.log(film);
-    return film;
-});
+    //   popularity: popularity,
+    //   genres: genre_ids,
+    //   overview: overview,
+    // }
+  console.log(films[0].overview);
+  // bodyEl.insertAdjacentHTML('beforeend', modalMarkup(films[0].overview));
+    
+    // return film;
+// });
   // renderModal(films);
-  // bodyEl.insertAdjacentHTML('beforeend', modalMarkup(renderModal(films)));
+  bodyEl.insertAdjacentHTML('beforeend', modalMarkup(films[0]));
   
 }
 
@@ -75,4 +75,3 @@ function onEscPress(event) {
     onCloseModal();
   }
 }
-
