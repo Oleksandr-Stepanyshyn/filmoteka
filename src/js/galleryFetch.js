@@ -55,13 +55,13 @@ function onFormElSubmit(e) {
 //рендер разметки галлереи фильмов
 function renderMarkup(films) {
     const markup = films.map(
-        ({ poster_path, original_title, genre_ids, release_date, vote_average, original_name }) => {
+        ({ poster_path, original_title, genre_ids, release_date, vote_average, original_name, id }) => {
             const date = new Date(Date.parse(release_date));
             const year = date.getFullYear();
             const vote = Number(vote_average).toFixed(1);
             let filmName = original_title;
             let genres = [];
-            if (genre_ids.length > 2) {
+            if (genre_ids.length > 3) {
                 genres = `${genre_ids[0]}, ${genre_ids[1]}, other`
             } else if(genre_ids.length === 0){
                 genres = 'other';
@@ -80,6 +80,7 @@ function renderMarkup(films) {
                 year,
                 vote,
                 genres,
+                id,
             }
 
             console.log(filmsInfo);
