@@ -31,9 +31,15 @@
 }
 
 
-.tui-is-selected{
+.tui-is-selected,
+.tui-page-btn:hover,
+.tui-page-btn:focus{
     background-color: #FF6B08;
     color:#FFFFFF;
+}
+
+.pagination__icon{
+    fill: #000000;
 }
 // .arrow-forward{
 //     background-image: url(../images/arrow-forward.jpg);

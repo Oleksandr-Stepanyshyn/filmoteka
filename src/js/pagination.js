@@ -8,6 +8,7 @@ const refs= {
 
 function makePaginationDay(options,instance) {
             const pagination = new Pagination(refs.container,options);
+
             pagination.on('afterMove', (event) => {
             instance.page = event.page;
             refs.gallery.innerHTML = "";
@@ -24,6 +25,7 @@ function makePaginationSearch(options,instance) {
         
         pagination.on('afterMove', (event) => {
         instance.page = event.page;
+        
         refs.gallery.innerHTML = "";
         return instance.onFetchKeyWordFilms()
         .then((films) => {
@@ -32,4 +34,8 @@ function makePaginationSearch(options,instance) {
         .catch(console.log);})
 }
 
+
+// function hidefirstAndLastPages() {
+    
+// }
 export {makePaginationSearch,makePaginationDay}
