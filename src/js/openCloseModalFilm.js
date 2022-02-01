@@ -1,6 +1,3 @@
-
-
-
 const refs = {
   openModal: document.querySelector('.gallery__container'),
   backdrop: document.querySelector('.backdrop'),
@@ -10,11 +7,7 @@ refs.openModal.addEventListener("click", onOpenModal)
 refs.backdrop.addEventListener("click", onBackdrop);
 refs.closeBtn.addEventListener("click", onCloseModal)
 
-function onOpenModal(event) {
-  if (event.target.classList.contains('gallery__container')) {
-    return;
-  }
-
+function onOpenModal() {
   window.addEventListener('keydown', onEscPress);
   document.body.classList.add('modal-open')
 }
