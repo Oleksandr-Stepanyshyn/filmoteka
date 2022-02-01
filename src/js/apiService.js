@@ -84,6 +84,10 @@ export default class FilmsApiService {
     this.page = 1;
   }
 
+  resetTotalItems(){
+    this.totalItems = 0;
+  }
+
   // Пример для вывода информации, если поле поиска пустое и нажать поиск.
   emptySearchQueryFilm() {
     console.log('Field of search is empty, enter please keyword or words for begin search');
