@@ -1,4 +1,5 @@
 
+//________________________yulia
 import modalMarkup from '../templates/modalMarkup';
 import { load } from './localeStorageServices';
 
@@ -11,21 +12,21 @@ console.log(films);
 function renderModal(films) {
 
   console.log(films);
-  const filmMarkup = films.map(({ poster_path, vote_average, popularity, original_title, genre_ids, overview }) => {
-    const data = {
-      poster: poster_path,
-      title: original_title,
-      vote: vote_average,
-      votes: vote_count,
-      popularity: popularity,
-      genres: genre_ids,
-      overview: overview,
-    }
-    console.log(data.poster);
-    return data;
-  });
+  // const filmMarkup = films.map(({ poster_path, vote_average, popularity, original_title, genre_ids, overview }) => {
+  //   const data = {
+  //     poster: poster_path,
+  //     title: original_title,
+  //     vote: vote_average,
+  //     votes: vote_count,
+  //     popularity: popularity,
+  //     genres: genre_ids,
+  //     overview: overview,
+  //   }
+  //   console.log(data.poster);
+  //   return data;
+  // });
 
-  return filmMarkup;
+  // return filmMarkup;
 
   bodyEl.insertAdjacentHTML('beforeend', modalMarkup(filmMarkup));
 };
@@ -69,7 +70,6 @@ function onEscPress(event) {
     onCloseModal();
   }
 }
-
 const refs = {
   openModal: document.querySelector('.gallery__container'),
   backdrop: document.querySelector('.backdrop'),
