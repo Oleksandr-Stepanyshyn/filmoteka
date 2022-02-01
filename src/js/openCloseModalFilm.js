@@ -25,13 +25,12 @@ console.log(films);
 const refs = {
   openModal: document.querySelector('.gallery__container'),
   backdrop: document.querySelector('.backdrop'),
-  closeBtn: document.querySelector('[data-modal-close]'),
+  closeBtn: document.querySelector('[data-modal-close]')
 }
 
 refs.openModal.addEventListener("click", onOpenModal);
 refs.backdrop.addEventListener("click", onBackdrop);
-refs.closeBtn.addEventListener("click", onCloseModal);
-
+refs.closeBtn.addEventListener("click", onCloseModal)
 
 
 function onOpenModal(e) {
@@ -39,31 +38,12 @@ function onOpenModal(e) {
   if (e.target.classList.contains('gallery__container'))
     return;
   window.addEventListener('keydown', onEscPress);
-  document.body.classList.add('modal-open');
-  
-  // films.map(({ poster_path, vote_average, popularity, original_title, genre_ids, overview }) => {
-  //   const film = {
-  //     poster: poster_path,
-  //     title: original_title,
-  //     vote: vote_average,
-      // votes: vote_count,
-    //   popularity: popularity,
-    //   genres: genre_ids,
-    //   overview: overview,
-    // }
-  console.log(films[0].overview);
-  // bodyEl.insertAdjacentHTML('beforeend', modalMarkup(films[0].overview));
-    
-    // return film;
-// });
-  // renderModal(films);
-  bodyEl.insertAdjacentHTML('beforeend', modalMarkup(films[0]));
-  
+  document.body.classList.add('modal-open')
 }
 
 function onCloseModal() {
-  window.removeEventListener('keydown', onEscPress);
-  document.body.classList.remove('modal-open');
+  window.removeEventListener('keydown', onEscPress)
+  document.body.classList.remove('modal-open')
 }
 function onBackdrop(event) {
   if (event.currentTarget === event.target) {

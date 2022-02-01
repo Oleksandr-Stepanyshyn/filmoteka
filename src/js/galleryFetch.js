@@ -1,5 +1,7 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
+import {makePaginationSearch,makePaginationDay} from './pagination';
+import {options} from '../templates/options';
 
 
 const refs = {
@@ -17,7 +19,9 @@ function renderDaylyTopFilms() {
     return newFilmsBandle.onFetchTopDayFilms()
         .then((films) => {
             newFilmsBandle.incrementPageNumber();
-            renderMarkup(films)
+            renderMarkup(films);
+            options.totalItems = newFilmsBandle.totalItems;
+            makePaginationDay(options,newFilmsBandle);
         })
         .catch(console.log);
 }
@@ -46,7 +50,9 @@ function onFormElSubmit(e) {
             }
             console.log(films);
             newFilmsBandle.incrementPageNumber();
-            renderMarkup(films)
+            renderMarkup(films);
+            options.totalItems = newFilmsBandle.totalItems;
+            makePaginationSearch(options,newFilmsBandle);
         })
         .catch(console.log);
 }
@@ -55,13 +61,13 @@ function onFormElSubmit(e) {
 //рендер разметки галлереи фильмов
 function renderMarkup(films) {
     const markup = films.map(
-        ({ poster_path, original_title, genre_ids, release_date, vote_average, original_name }) => {
+        ({ poster_path, original_title, genre_ids, release_date, vote_average, original_name, id }) => {
             const date = new Date(Date.parse(release_date));
             const year = date.getFullYear();
             const vote = Number(vote_average).toFixed(1);
             let filmName = original_title;
             let genres = [];
-            if (genre_ids.length > 2) {
+            if (genre_ids.length > 3) {
                 genres = `${genre_ids[0]}, ${genre_ids[1]}, other`
             } else if(genre_ids.length === 0){
                 genres = 'other';
@@ -80,6 +86,7 @@ function renderMarkup(films) {
                 year,
                 vote,
                 genres,
+                id,
             }
 
             // console.log(filmsInfo);
@@ -114,4 +121,4 @@ function onEmptySearchError() {
     refs.errorEl.insertAdjacentHTML('beforeend', error);
 }
 
-export default {};
+export {renderMarkup};
