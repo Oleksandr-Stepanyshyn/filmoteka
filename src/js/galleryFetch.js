@@ -7,6 +7,7 @@ const refs = {
     formEl: document.querySelector(".form"),
     galleryEl: document.querySelector(".gallery__container"),
     errorEl: document.querySelector(".search-error"),
+    paginationContainer: document.getElementById('tui-pagination-container'),
 }
 
 const newFilmsBandle = new FilmsApiService();
@@ -19,7 +20,6 @@ function renderDaylyTopFilms() {
         .then((films) => {
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films);
-            options.totalItems = newFilmsBandle.totalItems;
             makePaginationDay(options,newFilmsBandle);
         })
         .catch(console.log);
@@ -49,7 +49,6 @@ function onFormElSubmit(e) {
             }
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films);
-            options.totalItems = newFilmsBandle.totalItems;
             makePaginationSearch(options,newFilmsBandle);
         })
         .catch(console.log);
@@ -98,14 +97,16 @@ function renderMarkup(films) {
 // перезагрузка галлереи
 function galleryReset() {
     newFilmsBandle.resetPageNumber();
+    newFilmsBandle.resetTotalItems();
     refs.galleryEl.innerHTML = '';
     refs.errorEl.innerHTML = '';
+    refs.paginationContainer.innerHTML = '';
     refs.errorEl.classList.add('visually-hidden');
 }
 
 // функция-ошибка, если фильма с таким названием не найдено
 function onFilmsSearchError(name) {
-    galleryReset()
+    galleryReset();
     refs.errorEl.classList.remove('visually-hidden');
     const error = `<p>Search result <span class="film-name">"${name}"</span> not successful. Enter the correct movie name</p>`
     refs.errorEl.insertAdjacentHTML('beforeend', error);
@@ -117,6 +118,7 @@ function onEmptySearchError() {
     refs.errorEl.classList.remove('visually-hidden');
     const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`
     refs.errorEl.insertAdjacentHTML('beforeend', error);
+    
 }
 
 export {renderMarkup};
