@@ -8,27 +8,17 @@ const bodyEl = document.querySelector('body');
 const films = load(key);
 console.log(films);
 
-function renderModal(films) {
 
-  console.log(films);
-  // const filmMarkup = films.map(({ poster_path, vote_average, popularity, original_title, genre_ids, overview }) => {
-  //   const data = {
-  //     poster: poster_path,
-  //     title: original_title,
-  //     vote: vote_average,
-  //     votes: vote_count,
-  //     popularity: popularity,
-  //     genres: genre_ids,
-  //     overview: overview,
-  //   }
-  //   console.log(data.poster);
-  //   return data;
-  // });
+  // console.log(filmObj);
   
-  // return filmMarkup;
+
+// function renderModal(film) {
+
+  // console.log(film);
   
-  bodyEl.insertAdjacentHTML('beforeend', modalMarkup(filmMarkup));
-};
+  
+  // bodyEl.insertAdjacentHTML('beforeend', modalMarkup(filmMarkup));
+// };
 
 //________________________yulia
 
@@ -51,7 +41,23 @@ function onOpenModal(e) {
   window.addEventListener('keydown', onEscPress);
   document.body.classList.add('modal-open');
   
-  renderModal(films);
+  films.map(({ poster_path, vote_average, popularity, original_title, genre_ids, overview }) => {
+    const film = {
+      poster: poster_path,
+      title: original_title,
+      vote: vote_average,
+      // votes: vote_count,
+      popularity: popularity,
+      genres: genre_ids,
+      overview: overview,
+    }
+  
+  bodyEl.insertAdjacentHTML('beforeend', modalMarkup(film));
+    console.log(film);
+    return film;
+});
+  // renderModal(films);
+  // bodyEl.insertAdjacentHTML('beforeend', modalMarkup(renderModal(films)));
   
 }
 

@@ -1,3 +1,4 @@
+
 <div class="backdrop" data-modal>
 
 <div class="modal-film">
@@ -9,32 +10,32 @@
         </svg>
     </button>
     <div class="modal-film__content-wrapper">
-<img class="modal-film__poster" src={{films.poster_path}} {{!-- {{data.poster_path}} --}}>
+<img class="modal-film__poster" src={{film.poster_path}} {{!-- {{data.poster_path}} --}}>
 <div class="modal-film__info-wrapper">
-<h1 class="modal-film__film-title">{{films.original_title}} {{!-- {{data.original_title}} --}}</h1> 
+<h1 class="modal-film__film-title">{{film.original_title}} {{!-- {{data.original_title}} --}}</h1> 
 <table class="modal-film__details-table">
     <tr class="modal-film__details-table--row">
         <td class="modal-film__details-table--heading">Vote / Votes</td>
         <td>
-            <span class="modal-film__details-table--votes-orange">{{films.vote_average}} {{!-- {{data.vote_average}} --}}</span><span class="modal-film__details-table--votes-slash">/</span><span class="modal-film__details-table--votes-grey">{{vote_count}} {{!-- {{vote_count}} --}}</span>
+            <span class="modal-film__details-table--votes-orange">{{film.vote_average}} {{!-- {{data.vote_average}} --}}</span><span class="modal-film__details-table--votes-slash">/</span><span class="modal-film__details-table--votes-grey">{{vote_count}} {{!-- {{vote_count}} --}}</span>
         </td>
     </tr>
     <tr class="modal-film__details-table--row">
         <td class="modal-film__details-table--heading">Popularity</td>
-        <td class="modal-film__details-table--popularity">{{films.popularity}} {{!-- {{data.popularity}} --}}</td>
+        <td class="modal-film__details-table--popularity">{{film.popularity}} {{!-- {{data.popularity}} --}}</td>
     </tr>
     <tr class="modal-film__details-table--row">
         <td class="modal-film__details-table--heading">Original Title</td>
-        <td class="modal-film__details-table--original-title">{{films.original_title}} {{!-- {{data.original_title}} --}}</td>
+        <td class="modal-film__details-table--original-title">{{film.original_title}} {{!-- {{data.original_title}} --}}</td>
     </tr>
     <tr class="modal-film__details-table--row">
         <td class="modal-film__details-table--heading">Genre</td>
-        <td class="modal-film__details-table--genre">{{films.genre_ids}}{{!-- {{data.genre_ids??????}} --}}</td>
+        <td class="modal-film__details-table--genre">{{film.genre_ids}}{{!-- {{data.genre_ids??????}} --}}</td>
     </tr>
 </table>
 <h2 class="modal-film__about-title">About</h2>
 <p class="modal-film__description">
-    {{films.overview}}
+    {{film.overview}}
     {{!-- Four of the Wests most infamous outlaws assemble to steal a huge stash of gold from
     the most corrupt settlement of the
     gold rush towns. But not all goes to plan one is killed and the other three escapes with bags of gold hide out in
@@ -56,6 +57,7 @@
 </div>
 
 </div>
+
 
 
 <!-- 
