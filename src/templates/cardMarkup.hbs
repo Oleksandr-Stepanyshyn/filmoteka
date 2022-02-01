@@ -4,26 +4,19 @@
     <picture class="poster">
         <source srcset="https://image.tmdb.org/t/p/original{{poster_path}} 1x, https://image.tmdb.org/t/p/original{{poster_path}} 2x"
             media="(min-width: 1024px)">
-<<<<<<< HEAD
-        <img src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{filmName}}" loading="lazy" class="poster"/>
-    </picture>
-    {{else}}
-        <img src="/template-poster.jpg" alt="{{filmName}}" loading="lazy" class="poster"/>
-=======
         <source srcset="https://image.tmdb.org/t/p/w780{{poster_path}} 1x, https://image.tmdb.org/t/p/w780{{poster_path}} 2x"
             media="(min-width: 768px)">
         <source srcset="https://image.tmdb.org/t/p/w342{{poster_path}} 1x, https://image.tmdb.org/t/p/w342{{poster_path}} 2x"
             media="(min-width: 320px)">
         
-        <img src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{filmName}}" loading="lazy" class="poster"/>
+        <img data-id="{{id}}" src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{filmName}}" loading="lazy" class="poster"/>
     </picture>
     {{else}}
-        <img src="https://cdn.pixabay.com/photo/2017/10/14/23/54/girl-2852252_960_720.jpg" alt="{{filmName}}" loading="lazy" class="poster"/>
->>>>>>> ab360d77a37a03985efc2f097c00d3c20435b4b7
+        <img data-id="{{id}}"  src="https://cdn.pixabay.com/photo/2017/10/14/23/54/girl-2852252_960_720.jpg" alt="{{filmName}}" loading="lazy" class="poster"/>
     {{/if}}
-    <h2 class="film-card__title">{{filmName}}</h2>
+    <h2 data-id="{{id}}" class="film-card__title">{{filmName}}</h2>
         <div class="info">
-            <p class="film-card__info">
+            <p data-id="{{id}}" class="film-card__info">
                 {{genres}} | {{year}} 
             </p>
             <p class="vote visually-hidden">
