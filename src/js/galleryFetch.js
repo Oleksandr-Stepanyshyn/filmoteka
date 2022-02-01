@@ -3,6 +3,7 @@ import FilmsApiService from './apiService';
 import {makePaginationSearch,makePaginationDay} from './pagination';
 import {options} from '../templates/options';
 
+
 const refs = {
     formEl: document.querySelector(".form"),
     galleryEl: document.querySelector(".gallery__container"),
@@ -47,6 +48,7 @@ function onFormElSubmit(e) {
             if (films.length === 0) {
                 return onFilmsSearchError(name);
             }
+            console.log(films);
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films);
             makePaginationSearch(options,newFilmsBandle);
