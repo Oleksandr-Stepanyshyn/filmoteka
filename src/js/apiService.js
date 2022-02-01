@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const API_KEY = 'c01f14dcdb58e9cec669b1017a4d540c';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
@@ -6,47 +8,39 @@ export default class FilmsApiService {
     this.searchQueryFilms = '';
     this.page = 1;
     this.totalItems= '';
+    this.pages = 0;
   }
 
   // Метод для получения популярных фильмов дня.
-  onFetchTopDayFilms() {
+  async onFetchTopDayFilms() {
     const searchParams = new URLSearchParams({
       page: this.page,
     });
 
-    return fetch(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}&${searchParams}`)
-      .then(response => {
-        if (response.status !== 200) {
-          throw Error(response.statusText);
-        }
-        return response.json();
-        
-      })
-      .then(data => {
-        this.totalitems = data.total_results;
-        return data.results;
-      });
+    const response = await axios.get(
+      `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&${searchParams}`,
+    );
+    const data = await response.data;
+    this.totalitems = data.total_results;
+    this.totalPage = data.total_pages;
+    return data.results;
   }
 
   // Метод для получения фильма/фильмов по строке запроса (через метод Сеттер).
-  onFetchKeyWordFilms() {
+  async onFetchKeyWordFilms() {
     const searchParams = new URLSearchParams({
       query: this.searchQueryFilms,
       include_adult: false,
       page: this.page,
     });
-
-    return fetch(`${BASE_URL}/search/movie/?api_key=${API_KEY}&${searchParams}`)
-      .then(response => {
-        if (response.status !== 200) {
-          throw Error(response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        this.totalitems = data.total_results;
-        return data.results;
-      });
+    
+    const response = await axios.get(
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&${searchParams}`,
+    );
+    const data = await response.data;
+    this.totalitems = data.total_results;
+    this.totalPage = data.total_pages;
+    return data.results;
   }
 
   // Метод Геттер для получения текущего значения строки поиска (нам не нужен:)).
@@ -64,10 +58,20 @@ export default class FilmsApiService {
     return this.page;
   }
 
-  // Метод Сеттер для установки произвольеого номера страницы (скоре всего нужен для цифровой пагинации:)).
+  // Метод Сеттер для установки произвольного номера страницы (скоре всего нужен для цифровой пагинации:)).
   // К примеру можно его вызвать, если надо сразу с 1 на 4 или 10 или ... страницу сходить.
   set pageNumber(newPageNumber) {
     this.page = newPageNumber;
+  }
+
+  // Метод Геттер для получения максимального кол-ва страниц от бэкэнда.
+  get totalPage() {
+    return this.pages;
+  }
+
+  // Метод Сеттер для записи в свойство pages значения приходящего с бэкэнда.
+  set totalPage(newTotalPage) {
+    this.pages = newTotalPage;
   }
 
   // Метод для увеличения номера страницы.
@@ -89,6 +93,7 @@ export default class FilmsApiService {
   errorFilmSearch() {
     console.log('Search result not successful. Enter the correct movie name and try again');
   }
+
   // витянує дані для фільма по айдішці
   async onfetchMoviesDetails(id) {
     try {
