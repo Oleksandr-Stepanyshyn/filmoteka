@@ -3,7 +3,9 @@ body.modal-open .backdrop {
   visibility: visible;
   pointer-events: initial;
 }
-
+.modal-open {
+  overflow: hidden;
+}
 .backdrop {
   background-color: rgba(0, 0, 0, 0.25);
   position: fixed;
