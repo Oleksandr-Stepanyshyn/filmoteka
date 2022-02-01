@@ -1,6 +1,7 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
-
+import {makePaginationSearch,makePaginationDay} from './pagination';
+import {options} from '../templates/options';
 
 const refs = {
     formEl: document.querySelector(".form"),
@@ -17,7 +18,9 @@ function renderDaylyTopFilms() {
     return newFilmsBandle.onFetchTopDayFilms()
         .then((films) => {
             newFilmsBandle.incrementPageNumber();
-            renderMarkup(films)
+            renderMarkup(films);
+            options.totalItems = newFilmsBandle.totalItems;
+            makePaginationDay(options,newFilmsBandle);
         })
         .catch(console.log);
 }
@@ -46,7 +49,9 @@ function onFormElSubmit(e) {
             }
             console.log(films);
             newFilmsBandle.incrementPageNumber();
-            renderMarkup(films)
+            renderMarkup(films);
+            options.totalItems = newFilmsBandle.totalItems;
+            makePaginationSearch(options,newFilmsBandle);
         })
         .catch(console.log);
 }
@@ -83,7 +88,7 @@ function renderMarkup(films) {
                 id,
             }
 
-            console.log(filmsInfo);
+            // console.log(filmsInfo);
             return filmsInfo;
         }
     );
@@ -115,4 +120,4 @@ function onEmptySearchError() {
     refs.errorEl.insertAdjacentHTML('beforeend', error);
 }
 
-export default {};
+export {renderMarkup};
