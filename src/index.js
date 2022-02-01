@@ -3,6 +3,7 @@ import './sass/main.scss';
 import './js/openCloseModalFilm'
 import './js/galleryFetch';
 import './js/header-btn';
+import './js/pagination'
 
 // import { FilmsApiService } from './js/apiService'; Импорт класса.
 

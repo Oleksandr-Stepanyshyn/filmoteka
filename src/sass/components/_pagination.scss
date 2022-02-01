@@ -1,0 +1,46 @@
+.pagination-container{
+    display: flex;
+    justify-content: center;
+    
+}
+.tui-pagination{
+    display: flex;
+    padding-bottom: 60px;
+    justify-content: center;
+}
+
+.pagination-item,
+.tui-page-btn{
+    display: flex;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    align-items:center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.tui-next,
+.tui-prev{
+    background-color: #F7F7F7;
+    cursor: pointer;
+    border: none;
+}
+
+
+.tui-is-selected,
+.tui-page-btn:hover,
+.tui-page-btn:focus{
+    background-color: #FF6B08;
+    color:#FFFFFF;
+}
+
+.pagination__icon{
+    fill: #000000;
+}
+// .arrow-forward{
+//     background-image: url(../images/arrow-forward.jpg);
+// }

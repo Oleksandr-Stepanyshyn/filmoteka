@@ -8,6 +8,7 @@ export default class FilmsApiService {
     this.searchQueryFilms = '';
     this.page = 1;
     this.pages = 0;
+    this.totalItems = 0;
   }
 
   // Метод для получения популярных фильмов дня.
@@ -21,6 +22,7 @@ export default class FilmsApiService {
     );
     const data = await response.data;
     this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
     return data.results;
   }
 
@@ -37,6 +39,7 @@ export default class FilmsApiService {
     );
     const data = await response.data;
     this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
     return data.results;
   }
 
