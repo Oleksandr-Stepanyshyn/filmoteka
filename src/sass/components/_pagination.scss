@@ -44,3 +44,12 @@
 // .arrow-forward{
 //     background-image: url(../images/arrow-forward.jpg);
 // }
+@media screen and (max-width: 768px) {
+    .tui-next-is-ellip,
+    .tui-prev-is-ellip,
+    .tui-first,
+    .tui-last{
+        display: none;
+    }
+
+  }

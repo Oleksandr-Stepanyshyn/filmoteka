@@ -7,6 +7,10 @@ const refs= {
 }
 
 function makePaginationDay(options,instance) {
+            
+            options.totalPages = instance.totalPage;
+            options.totalItems = instance.totalItems;
+            // if(!instance.totalItems){return}
             const pagination = new Pagination(refs.container,options);
             
             pagination.on('afterMove', (event) => {
@@ -21,6 +25,8 @@ function makePaginationDay(options,instance) {
 
 
 function makePaginationSearch(options,instance) {
+    options.totalPages = instance.totalPage;
+    options.totalItems = instance.totalItems;
         const pagination = new Pagination(refs.container,options);
         
         pagination.on('afterMove', (event) => {
