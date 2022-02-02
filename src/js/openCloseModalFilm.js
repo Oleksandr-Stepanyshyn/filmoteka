@@ -22,14 +22,14 @@ function onOpenModal(e) {
 
   if (e.target.classList.contains('gallery__container'))
     return;
- 
+
   const currentFilmId = Number(e.target.dataset.id);
   const clickedFilm = films.find((film) => film.id === currentFilmId);
 
   window.addEventListener('keydown', onEscPress);
-  document.body.classList.add('modal-open');  
+  document.body.classList.add('modal-open');
   bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilm));
-  
+
 }
 
 function onCloseModal() {
