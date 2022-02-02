@@ -10,4 +10,8 @@ export const refs = {
   btnOpenModalTeam: document.querySelector('.js-open-modal-team'),
   modalTeam: document.querySelector('.js-modal-team'),
   btnCloseModalTeam: document.querySelector('.js-close-modal-team'),
+  formEl: document.querySelector(".form"),
+  galleryEl: document.querySelector(".gallery__container"),
+  errorEl: document.querySelector(".search-error"),
+  paginationContainer: document.getElementById('tui-pagination-container'),
 };
