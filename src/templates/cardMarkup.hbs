@@ -1,22 +1,26 @@
 {{#each this}}
-<li class="film-card">
+<li class="film-card" data-id="{{id}}">
     {{#if poster_path}}
     <picture class="poster">
-        <source srcset="https://image.tmdb.org/t/p/w342{{poster_path}} 1x, https://image.tmdb.org/t/p/w342{{poster_path}} 2x"
-            media="(min-width: 320px)">
-        <source srcset="https://image.tmdb.org/t/p/w780{{poster_path}} 1x, https://image.tmdb.org/t/p/w780{{poster_path}} 2x"
-            media="(min-width: 768px)">
         <source srcset="https://image.tmdb.org/t/p/original{{poster_path}} 1x, https://image.tmdb.org/t/p/original{{poster_path}} 2x"
             media="(min-width: 1024px)">
-        <img src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{title}}" loading="lazy" class="poster"/>
+        <source srcset="https://image.tmdb.org/t/p/w780{{poster_path}} 1x, https://image.tmdb.org/t/p/w780{{poster_path}} 2x"
+            media="(min-width: 768px)">
+        <source srcset="https://image.tmdb.org/t/p/w342{{poster_path}} 1x, https://image.tmdb.org/t/p/w342{{poster_path}} 2x"
+            media="(min-width: 320px)">
+        
+        <img data-id="{{id}}" src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{filmName}}" loading="lazy" class="poster"/>
     </picture>
     {{else}}
-        <img src="/images/template-poster.jpg" alt="{{title}}" loading="lazy" class="poster"/>
+        <img data-id="{{id}}"  src="https://cdn.pixabay.com/photo/2017/10/14/23/54/girl-2852252_960_720.jpg" alt="{{filmName}}" loading="lazy" class="poster"/>
     {{/if}}
+    <h2 data-id="{{id}}" class="film-card__title">{{filmName}}</h2>
         <div class="info">
-            <h2 class="film-card__title">{{title}}</h2>
-            <p class="film-card__info">
-                <span>{{genre_ids}}<span> | {{release_date}}
+            <p data-id="{{id}}" class="film-card__info">
+                {{genres}} | {{year}} 
+            </p>
+            <p class="vote visually-hidden">
+                {{vote}}
             </p>
         </div>
 </li>

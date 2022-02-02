@@ -1,13 +1,9 @@
 <header class="header">
   <div class="container">
-    <!-- For test localeStorage dont remove -->
-    <button class="btn-watched">ADD TO WATCHED</button>
-    <button class="btn-quene">ADD TO QUENE</button>
-    <!-- ---------------------------------- -->
     <nav class="nav">
       <button class="logo-btn btn js-logo-btn">
         <svg width="24" height="24">
-          <use href="/images/header/header-sprite.svg#logo-icon"></use>
+          <use href="/images/sprite.svg#icon-logo"></use>
         </svg>
         <span class="logo-text">Filmoteka</span>
       </button>
@@ -15,7 +11,7 @@
         <!-- на home і me library при події click 
           добавляти динамічно клас nav__btn--currently -->
         <li class="nav__item">
-          <button class="nav__btn btn js-nav-home-btn">Home</button>
+          <button class="nav__btn btn nav__btn--currently  js-nav-home-btn">Home</button>
         </li>
         <li class="nav__item">
           <button class="nav__btn btn js-nav-library-btn">My library</button>
@@ -28,16 +24,20 @@
         <input class="form__input" type="text" name="searchQuery" placeholder="Search movies" />
         <button class="form__btn btn js-form-btn" type="submit">
           <svg class="search-icon" width="12" height="12">
-            <use href="./images/header/header-sprite.svg#search-icon"></use>
+            <use href="./images/sprite.svg#icon-search"></use>
           </svg>
         </button>
       </div>
     </form>
 
     <!-- при невдалому пошуку знімати клас visually-hidden-->
+<<<<<<< HEAD
     <div class="search-error visually-hidden">
-      Search result not successful. Enter the correct movie name
+      
     </div>
+=======
+    <div class="search-error visually-hidden"></div>
+>>>>>>> ab360d77a37a03985efc2f097c00d3c20435b4b7
 
     <!-- після кліку по me library знімати динамічно клас visually-hidden -->
     <div class="library visually-hidden">

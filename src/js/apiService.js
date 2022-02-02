@@ -8,6 +8,7 @@ export default class FilmsApiService {
     this.searchQueryFilms = '';
     this.page = 1;
     this.pages = 0;
+    this.totalItems = 0;
   }
 
   // Метод для получения популярных фильмов дня.
@@ -21,6 +22,7 @@ export default class FilmsApiService {
     );
     const data = await response.data;
     this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
     return data.results;
   }
 
@@ -33,10 +35,11 @@ export default class FilmsApiService {
     });
 
     const response = await axios.get(
-      `${BASE_URL}/search/movie/?api_key=${API_KEY}&language=en-US&${searchParams}`,
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&${searchParams}`,
     );
     const data = await response.data;
     this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
     return data.results;
   }
 
@@ -79,6 +82,10 @@ export default class FilmsApiService {
   // Метод для сброса страницы в начальное значение (page=1).
   resetPageNumber() {
     this.page = 1;
+  }
+
+  resetTotalItems(){
+    this.totalItems = 0;
   }
 
   // Пример для вывода информации, если поле поиска пустое и нажать поиск.
