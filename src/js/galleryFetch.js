@@ -123,4 +123,4 @@ function onEmptySearchError() {
     
 }
 
-export {renderMarkup};
+export { renderMarkup, renderDaylyTopFilms };
