@@ -63,7 +63,6 @@ function onFormElSubmit(e) {
         .catch(console.log);
 }
 
-
 //рендер разметки галлереи фильмов
 function renderMarkup(films) {
     const markup = films.map(
