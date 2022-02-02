@@ -109,4 +109,14 @@ export default class FilmsApiService {
       console.error('Get state error: ', error.message);
     }
   }
+
+// метод для получения id жанров фильмов
+  async onFetchId() { 
+    const response = await axios.get(
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+    );
+  const data = await response.data;
+  const genres = await data.genres;
+  return  genres;
+  }
 }
