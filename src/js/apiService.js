@@ -15,10 +15,11 @@ export default class FilmsApiService {
     const searchParams = new URLSearchParams({
       page: this.page,
     });
-
+  
     const response = await axios.get(
       `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&${searchParams}`,
     );
+    console.log(response);
     const data = await response.data;
     this.totalPage = data.total_pages;
     return data.results;

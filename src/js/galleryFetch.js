@@ -1,6 +1,7 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 
+import Notiflix from 'notiflix';
 
 const refs = {
     formEl: document.querySelector(".form"),
@@ -14,10 +15,13 @@ refs.formEl.addEventListener("submit", onFormElSubmit);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
 function renderDaylyTopFilms() {
+      Notiflix.Loading.dots();
+    Notiflix.Loading.change('Loading...')
     return newFilmsBandle.onFetchTopDayFilms()
         .then((films) => {
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films)
+            Notiflix.Loading.remove();
         })
         .catch(console.log);
 }
@@ -27,7 +31,8 @@ renderDaylyTopFilms();
 // Функция для отрисовки страницы с фильмами по запросу из формы
 function onFormElSubmit(e) { 
     e.preventDefault();
-
+     Notiflix.Loading.dots();
+    Notiflix.Loading.change('Loading...')
     const name = e.target.elements.searchQuery.value.trim();
 
     newFilmsBandle.query = name;
@@ -46,18 +51,20 @@ function onFormElSubmit(e) {
             }
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films)
+            Notiflix.Loading.remove(250);
         })
         .catch(console.log);
 }
 
 
 //рендер разметки галлереи фильмов
-function renderMarkup(films) {
+ function renderMarkup(films) {
     const markup = films.map(
         ({ poster_path, original_title, genre_ids, release_date, vote_average, original_name }) => {
             const date = new Date(Date.parse(release_date));
             const year = date.getFullYear();
             const vote = Number(vote_average).toFixed(1);
+
             let filmName = original_title;
             let genres = [];
             if (genre_ids.length > 3) {
@@ -99,6 +106,7 @@ function galleryReset() {
 
 // функция-ошибка, если фильма с таким названием не найдено
 function onFilmsSearchError(name) {
+    Notiflix.Loading.remove(250);
     galleryReset()
     refs.errorEl.classList.remove('visually-hidden');
     const error = `<p>Search result <span class="film-name">"${name}"</span> not successful. Enter the correct movie name</p>`
@@ -107,10 +115,11 @@ function onFilmsSearchError(name) {
 
 // функция-ошибка, если поисковый запрос пустой
 function onEmptySearchError() {
+    Notiflix.Loading.remove(250);
     galleryReset()
     refs.errorEl.classList.remove('visually-hidden');
     const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`
     refs.errorEl.insertAdjacentHTML('beforeend', error);
 }
 
-export default {};
+// export default {};
