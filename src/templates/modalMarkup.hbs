@@ -1,6 +1,7 @@
-<div class='backdrop' data-modal>
+
+<div class='backdrop'>
   <div class='modal-film'>
-    <button type='button' class='modal-film__button-close' data-modal-close>
+    <button type='button' class='modal-film__button-close' data-id="close">
       <svg
         class='modal-film__icon-close'
         width='30'
@@ -13,6 +14,8 @@
         ></path>
       </svg>
     </button>
+
+
     <div class='modal-film__content-wrapper'>
       {{#if poster_path}}
         <picture class='modal-film__poster'>
@@ -76,8 +79,8 @@
           {{overview}}
         </p>
         <div class='modal-film__buttons-container'>
-          <button type='submit' class='modal-film__button-watched'>Add to Watched</button>
-          <button type='submit' class='modal-film__button-queue'>Add to Queue</button>
+          <button type='button' class='modal-film__button-watched'>Add to Watched</button>
+          <button type='button' class='modal-film__button-queue'>Add to Queue</button>
         </div>
       </div>
 

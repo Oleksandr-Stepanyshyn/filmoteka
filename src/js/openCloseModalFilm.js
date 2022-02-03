@@ -10,7 +10,7 @@ console.log(films);
 const refs = {
   openModal: document.querySelector('.gallery__container'),
   backdrop: document.querySelector('.backdrop'),
-  closeBtn: document.querySelector('[data-modal-close]'),
+  closeBtn: document.querySelector('.modal-film__button-close'),
 }
 
 refs.openModal.addEventListener("click", onOpenModal);
