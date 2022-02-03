@@ -21,14 +21,14 @@ export const options =  {
             }
             if (type.type === 'prev') {
                 template =
-                '<a href="#" class=" tui-page-btn tui-prev custom-class-prev tui-first-child">' +'<span class="material-icons">arrow_back</span>' 
+                '<a href="#" class="arrow tui-page-btn tui-prev custom-class-prev tui-first-child">' +'<span class="material-icons">arrow_back</span>' 
                 +
             '</a>';
               }
 
               if (type.type === 'next') {
                 template =
-                '<a href="#" class=" tui-page-btn tui-next custom-class-next">' +
+                '<a href="#" class="arrow tui-page-btn tui-next custom-class-next">' +
                 '<span class="material-icons">arrow_forward</span>' +
             '</a>';
               }
