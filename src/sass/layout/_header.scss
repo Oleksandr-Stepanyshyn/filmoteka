@@ -95,6 +95,10 @@
   align-items: flex-end;
 }
 
+.logo-btn {
+  --animate-duration: 1.25s;
+}
+
 .logo-text {
   margin-left: 10px;
 
@@ -135,10 +139,15 @@
   position: relative;
 }
 
+.nav__btn {
+  transform: scale(1);
+  transition: transform linear 250ms;
+}
+
 // ===== клас, який буде динамічно підставлятись
 //         на кнопки home і me library після напискання =======
 
-.nav__btn--currently::after {
+.nav__btn::after {
   content: '';
 
   position: absolute;
@@ -150,6 +159,24 @@
   width: 100%;
 
   background-color: $accent-color;
+
+  transform: scale(0);
+  opacity: 0;
+  transition: transform linear 350ms, opacity linear 250ms;
+}
+
+.nav__btn:hover::after {
+  transform: scale(1);
+  opacity: 0.5;
+}
+
+.nav__btn--currently::after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.nav__btn--currently:hover::after {
+  opacity: 1;
 }
 
 // =========================== form =========================
@@ -193,6 +220,12 @@
   position: absolute;
   right: 0;
   height: 100%;
+
+  transition: transform linear 200ms;
+}
+
+.form__btn:hover {
+  transform: scale(1.15);
 }
 
 // ======================== message erorr ======================
@@ -229,6 +262,8 @@
   border: 1px solid #ffffff;
   border-radius: 5px;
 
+  transition: transform linear 250ms;
+
   @media screen and (min-width: 768px) {
     width: 136px;
   }
@@ -238,6 +273,10 @@
   margin-left: 20px;
 }
 
+.library__btn:hover {
+  transform: scale(1.025);
+}
+
 // ==== клас добавляти динамічно, після кліку по кнопці watched та queue ====
 
 .library__btn--currenly {
@@ -245,4 +284,6 @@
   background-color: $accent-text-color;
 
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+
+  transition: background-color linear 250ms, box-shadow linear 250ms, transform linear 250ms;
 }

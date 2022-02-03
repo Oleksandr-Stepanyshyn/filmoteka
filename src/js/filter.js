@@ -20,11 +20,13 @@
     
 // };
 
+
 // const filmsApiServise = new FilmsApiService();
 // console.log(filmsApiServise);
 // //
 // markupFilterBtn();
 // filmsFilter();
+
 //фільтруєм по рейтингу
 // function filmsFilter() {
 //     return filmsApiServise.onFetchTopDayFilms()
