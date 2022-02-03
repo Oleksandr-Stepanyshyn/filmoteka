@@ -2,18 +2,23 @@
     display: flex;
     justify-content: center;
     
+    
+    
 }
 .tui-pagination{
     display: flex;
-    padding-bottom: 60px;
+    
     justify-content: center;
+    padding-bottom: 40px;
+    @media screen and (min-width: 768px){
+        padding-bottom: 60px;
+    }
 }
 
 .pagination-item,
 .tui-page-btn{
     display: flex;
-    height: 40px;
-    width: 40px;
+    padding: 10px;
     text-align: center;
     font-weight: 500;
     font-size: 12px;
@@ -21,6 +26,7 @@
     align-items:center;
     justify-content: center;
     border-radius: 3px;
+    transition: all 0.2s ease;
 }
 
 .tui-next,
@@ -28,14 +34,23 @@
     background-color: #F7F7F7;
     cursor: pointer;
     border: none;
+    height: 40px;
+    width: 40px;
+}
+
+.arrow:hover,
+.arrow:focus{
+    background-color: #FF6B08;
+    color:#FFFFFF;
 }
 
 
-.tui-is-selected,
-.tui-page-btn:hover,
-.tui-page-btn:focus{
+.tui-is-selected{
     background-color: #FF6B08;
     color:#FFFFFF;
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
 }
 
 .pagination__icon{
@@ -52,4 +67,8 @@
         display: none;
     }
 
-  }
+}
+
+.material-icons{
+    font-size: 16px;
+}

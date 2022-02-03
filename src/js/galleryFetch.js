@@ -1,7 +1,7 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
-import {makePaginationSearch,makePaginationDay} from './pagination';
+import {renderNewSearchPage,makePagination} from './pagination';
 import {options} from '../templates/options';
 import { refs } from './refs';
 
@@ -16,10 +16,12 @@ function renderDaylyTopFilms() {
     Notiflix.Loading.change('Loading...')
     return newFilmsBandle.onFetchTopDayFilms()
         .then((films) => {
-            newFilmsBandle.incrementPageNumber();
             renderMarkup(films);
             Notiflix.Loading.remove();
-            makePaginationDay(options,newFilmsBandle);
+            if(newFilmsBandle.page===1){
+                makePagination(options, renderDaylyTopFilms)
+            }
+            newFilmsBandle.incrementPageNumber();
         })
         .catch(console.log);
 }
@@ -60,11 +62,11 @@ function onFormElSubmit(e) {
             if (films.length === 0) {
                 return onFilmsSearchError(name);
             }
-            console.log(films);
+            // console.log(films);
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films);
             Notiflix.Loading.remove(250);
-            makePaginationSearch(options,newFilmsBandle);
+            makePagination(options, renderDaylyTopFilms);
         })
         .catch(console.log);
 }
@@ -149,4 +151,4 @@ function onEmptySearchError() {
     
 }
 
-export { renderMarkup, renderDaylyTopFilms };
+export { renderMarkup, newFilmsBandle };

@@ -1,4 +1,4 @@
-import {renderMarkup} from './galleryFetch';
+import {renderMarkup,newFilmsBandle} from './galleryFetch';
 import Pagination from 'tui-pagination';
 
 const refs= {
@@ -6,42 +6,34 @@ const refs= {
     container: document.getElementById('tui-pagination-container'),
 }
 
-function makePaginationDay(options,instance) {
-            
-            options.totalPages = instance.totalPage;
-            options.totalItems = instance.totalItems;
-            // if(!instance.totalItems){return}
-            const pagination = new Pagination(refs.container,options);
-            
-            pagination.on('afterMove', (event) => {
-            instance.page = event.page;
-            refs.gallery.innerHTML = "";
-            return instance.onFetchTopDayFilms()
-            .then((films) => {
-                renderMarkup(films);
-            })
-            .catch(console.log);})
-    }
-
-
-function makePaginationSearch(options,instance) {
-    options.totalPages = instance.totalPage;
-    options.totalItems = instance.totalItems;
-        const pagination = new Pagination(refs.container,options);
-        
-        pagination.on('afterMove', (event) => {
-        instance.page = event.page;
-        refs.gallery.innerHTML = "";
-        return instance.onFetchKeyWordFilms()
-        .then((films) => {
-            renderMarkup(films);
-        })
-        .catch(console.log);})
+function makePagination(options,func) {
+    options.totalPages = newFilmsBandle.totalPage;
+    options.totalItems = newFilmsBandle.totalItems;
+    const pagination = new Pagination(refs.container,options);
+    
+    pagination.on('afterMove', (event) => {
+    newFilmsBandle.page = event.page;
+    refs.gallery.innerHTML = "";
+    hidefirstAndLastPages(newFilmsBandle);
+    func()})
 }
 
+function renderNewSearchPage(){
+    return newFilmsBandle.onFetchKeyWordFilms()
+    .then((films) => {
+        renderMarkup(films);
+    })
+    .catch(console.log);
+}
 
-
-// function hidefirstAndLastPages() {
-    
-// }
-export {makePaginationSearch,makePaginationDay}
+function hidefirstAndLastPages(instance) {
+    document.querySelector('.tui-first').classList.remove('visually-hidden')
+    document.querySelector('.tui-last').classList.remove('visually-hidden')
+    if(instance.page<4){
+        document.querySelector('.tui-first').classList.add('visually-hidden')
+    }
+    if(instance.page>instance.totalPage-3){
+        document.querySelector('.tui-last').classList.add('visually-hidden')
+    }
+}
+export {renderNewSearchPage,makePagination}
