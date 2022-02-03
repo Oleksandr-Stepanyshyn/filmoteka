@@ -26,6 +26,12 @@ function onOpenModal(e) {
   const currentFilmId = Number(e.target.dataset.id);
   const clickedFilm = films.find((film) => film.id === currentFilmId);
 
+openModal
+function onOpenModal(event) {
+  if (event.target.classList.contains('gallery__container')) {
+    return
+  }
+ dev
   window.addEventListener('keydown', onEscPress);
   document.body.classList.add('modal-open');
   bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilm));
