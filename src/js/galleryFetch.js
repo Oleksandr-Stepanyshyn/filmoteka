@@ -125,6 +125,9 @@ function parsGenres(genresId, genresList) {
 function galleryReset() {
   newFilmsBandle.resetPageNumber();
   newFilmsBandle.resetTotalItems();
+  refs.galleryEl.innerHTML = '';
+  refs.errorEl.innerHTML = '';
+  refs.paginationContainer.innerHTML = '';
   refs.errorEl.classList.add('visually-hidden');
   refs.errorImgEl.classList.add('visually-hidden');
   refs.galleryEl.classList.remove('visually-hidden');
@@ -145,7 +148,6 @@ function onEmptySearchError() {
 
 function onErrors(error) {
   galleryReset();
-  refs.errorEl.innerHTML = '';
   Notiflix.Loading.remove(250);
   refs.errorEl.classList.remove('visually-hidden');
   refs.errorImgEl.classList.remove('visually-hidden');
