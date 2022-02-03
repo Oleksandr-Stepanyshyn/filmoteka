@@ -21,12 +21,9 @@ body.modal-open {
   left: 0;
   width: 100%;
   height: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -82,19 +79,20 @@ body.modal-open {
   }
 }
 
+
 .modal-film__poster {
   width: 100%;
   margin-bottom: 30px;
 
-  // @media screen and (min-width: 768px) {
-  //   width: 264px;
-  //   height: 373px;
-  //   margin-right: 30px;
-  // }
-  // @media screen and (min-width: 1024px) {
-  //   width: 396px;
-  //   height: 478px;
-  // }
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    height: 373px;
+    margin-right: 30px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 396px;
+    height: 478px;
+  }
 }
 
 .modal-film__film-title {
@@ -104,6 +102,7 @@ body.modal-open {
   font-style: normal;
   font-weight: 500;
   line-height: 1.15;
+  vertical-align: top;
 
   @media screen and (min-width: 1024px) {
     font-size: 30px;

@@ -10,7 +10,7 @@ console.log(films);
 const refs = {
   openModal: document.querySelector('.gallery__container'),
   backdrop: document.querySelector('.backdrop'),
-  closeBtn: document.querySelector('[data-modal-close]'),
+  closeBtn: document.querySelector('.modal-film__button-close'),
 }
 
 refs.openModal.addEventListener("click", onOpenModal);
@@ -22,7 +22,7 @@ function onOpenModal(e) {
 
   if (e.target.classList.contains('gallery__container'))
     return;
- 
+
   const currentFilmId = Number(e.target.dataset.id);
   const clickedFilm = films.find((film) => film.id === currentFilmId);
 
@@ -33,9 +33,9 @@ function onOpenModal(event) {
   }
  dev
   window.addEventListener('keydown', onEscPress);
-  document.body.classList.add('modal-open');  
+  document.body.classList.add('modal-open');
   bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilm));
-  
+
 }
 
 function onCloseModal() {
