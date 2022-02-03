@@ -26,9 +26,9 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
-    "axios": "^0.25.0",
-    "notiflix": "^3.2.4"
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "axios": "^0.25.0",
+    "notiflix": "^3.2.4",
     "tui-pagination": "^3.4.1"
   }
 }
