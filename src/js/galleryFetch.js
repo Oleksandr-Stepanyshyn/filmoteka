@@ -151,4 +151,4 @@ function onEmptySearchError() {
     
 }
 
-export { renderMarkup, newFilmsBandle };
+export { renderMarkup, renderDaylyTopFilms,newFilmsBandle };
