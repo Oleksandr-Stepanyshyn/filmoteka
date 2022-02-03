@@ -4,6 +4,7 @@ refs.btnOpenModalTeam.addEventListener('click', openModalTeam);
 refs.btnCloseModalTeam.addEventListener('click', closeModalTeam);
 
 function openModalTeam() {
+    console.log('hello');
     refs.modalTeam.classList.remove('is-hidden')
 
     document.addEventListener('keydown', onKeyboardPush);
