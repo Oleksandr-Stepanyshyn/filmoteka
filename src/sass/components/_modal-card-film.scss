@@ -9,6 +9,7 @@
   width: 100vw;
   height: 100vh;
   top: 0;
+  left: 0;
   opacity: 1;
 }
 
@@ -29,6 +30,7 @@
   position: absolute;
   right: 10px;
   top: 10px;
+  z-index: 3;
 
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
@@ -39,55 +41,65 @@
 .modal-film {
   border-radius: 5px;
   position: absolute;
-  z-index: 2;
-  margin: auto;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  max-width: 280px;
-  max-height: 95%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  min-width: 280px;
+  height: 95%;
+
   background-color: #fff;
-  padding: 48px 20px 41px;
 
   @media screen and (min-width: 768px) {
-    max-width: 618px;
-    max-height: 562px;
-    padding: 42px 30px 40px 28px;
+    max-height: 100%;
+    width: 618px;
+    height: 562px;
   }
   @media screen and (min-width: 1024px) {
-    max-width: 882px;
-    max-height: 568px;
-    padding: 50px 30px 40px 30px;
+    width: 882px;
+    height: 568px;
   }
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-film__content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 50px 20px 40px 20px;
+  overflow: auto;
+
   display: grid;
   grid-template-columns: repeat(1, 1fr);
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 32px;
+    padding: 40px 30px 40px 30px;
   }
 
   @media screen and (min-width: 320px) {
     grid-column-gap: 30px;
+    padding-top: 50px;
   }
 }
 
 .modal-film__poster {
-  width: 100%;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: 240px;
+  height: 357px;
+  object-fit: cover;
   margin-bottom: 30px;
-
-  @media screen and (min-width: 320px) {
-    height: 357px;
-  }
 
   @media screen and (min-width: 768px) {
     width: 264px;
-    height: 373px;
+    height: 374px;
   }
+
   @media screen and (min-width: 1024px) {
     width: 396px;
     height: 478px;
