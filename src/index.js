@@ -1,9 +1,12 @@
+import './js/refs';
 import './js/localeStorageServices';
 import './sass/main.scss';
-import './js/openCloseModalFilm'
 import './js/galleryFetch';
+import './js/openCloseModalFilm';
 import './js/header-btn';
 import './js/filter';
+import './js/pagination';
+import './js/teamModal';
 
 // import { FilmsApiService } from './js/apiService'; Импорт класса.
 

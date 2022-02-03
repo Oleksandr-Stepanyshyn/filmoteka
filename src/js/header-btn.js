@@ -1,12 +1,6 @@
-const refs = {
-  home: document.querySelector('.js-nav-home-btn'),
-  library: document.querySelector('.js-nav-library-btn'),
-  logo: document.querySelector('.js-logo-btn'),
-  watched: document.querySelector('.js-btn-watched'),
-  queue: document.querySelector('.js-btn-queue'),
-  librarySection: document.querySelector('.library'),
-  form: document.querySelector('.form'),
-};
+import 'animate.css';
+import { refs } from './refs';
+import { renderDaylyTopFilms, newFilmsBandle } from './galleryFetch';
 
 const header = document.querySelector('.header');
 
@@ -15,11 +9,16 @@ refs.library.addEventListener('click', onLibraryBtnClick);
 refs.logo.addEventListener('click', onHomeBtnClick);
 
 function onHomeBtnClick() {
+  refs.galleryEl.innerHTML = '';
+  newFilmsBandle.resetPageNumber();
+
   refs.home.classList.add('nav__btn--currently');
   refs.library.classList.remove('nav__btn--currently');
-  header.classList.remove('header--library');
+  refs.header.classList.remove('header--library');
   refs.form.classList.remove('visually-hidden');
   refs.librarySection.classList.add('visually-hidden');
+
+  renderDaylyTopFilms();
 }
 
 function onLibraryBtnClick() {
@@ -29,7 +28,7 @@ function onLibraryBtnClick() {
   refs.librarySection.classList.remove('visually-hidden');
   refs.form.classList.add('visually-hidden');
   refs.watched.classList.add('library__btn--currenly');
-   refs.queue.classList.remove('library__btn--currenly');
+  refs.queue.classList.remove('library__btn--currenly');
 }
 
 refs.watched.addEventListener('click', toggleClassWatched);
@@ -43,4 +42,3 @@ function toggleClassWatched() {
   refs.watched.classList.add('library__btn--currenly');
   refs.queue.classList.remove('library__btn--currenly');
 }
-

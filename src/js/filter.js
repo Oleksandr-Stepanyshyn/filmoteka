@@ -2,8 +2,7 @@
 import FilmsApiService from './apiService';
 import {renderMarkup, renderDaylyTopFilms } from './galleryFetch';
 
-
-const addFilterBtn = document.querySelector('.header .container');
+// const addFilterBtn = document.querySelector('.header .container');
 
 //функція розмітка кнопок фільтру(без функціоналу тому закоментував)
 
@@ -65,10 +64,3 @@ function descendingSortFilms() {
 //         .catch(err => {
 //             console.log(err);
 //         })
-// };
-       
-     
-
-
-            
-    

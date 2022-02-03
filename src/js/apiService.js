@@ -8,6 +8,7 @@ export default class FilmsApiService {
     this.searchQueryFilms = '';
     this.page = 1;
     this.pages = 0;
+    this.totalItems = 0;
   }
 
   // Метод для получения популярных фильмов дня.
@@ -19,9 +20,9 @@ export default class FilmsApiService {
     const response = await axios.get(
       `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&${searchParams}`,
     );
-    console.log(response);
     const data = await response.data;
     this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
     return data.results;
   }
 
@@ -38,6 +39,7 @@ export default class FilmsApiService {
     );
     const data = await response.data;
     this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
     return data.results;
   }
 
@@ -82,6 +84,10 @@ export default class FilmsApiService {
     this.page = 1;
   }
 
+  resetTotalItems(){
+    this.totalItems = 0;
+  }
+
   // Пример для вывода информации, если поле поиска пустое и нажать поиск.
   emptySearchQueryFilm() {
     console.log('Field of search is empty, enter please keyword or words for begin search');
@@ -102,5 +108,15 @@ export default class FilmsApiService {
     } catch (error) {
       console.error('Get state error: ', error.message);
     }
+  }
+
+// метод для получения id жанров фильмов
+  async onFetchId() { 
+    const response = await axios.get(
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+    );
+  const data = await response.data;
+    const genres = await data.genres;
+  return  genres;
   }
 }
