@@ -1,8 +1,8 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
-import { makePaginationSearch, makePaginationDay } from './pagination';
-import { options } from '../templates/options';
+import {renderNewSearchPage,makePagination} from './pagination';
+import {options} from '../templates/options';
 import { refs } from './refs';
 
 const newFilmsBandle = new FilmsApiService();
@@ -12,17 +12,19 @@ refs.formEl.addEventListener('submit', onFormElSubmit);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
 function renderDaylyTopFilms() {
-  Notiflix.Loading.dots();
-  Notiflix.Loading.change('Loading...');
-  return newFilmsBandle
-    .onFetchTopDayFilms()
-    .then(films => {
-      newFilmsBandle.incrementPageNumber();
-      renderMarkup(films);
-      Notiflix.Loading.remove();
-      makePaginationDay(options, newFilmsBandle);
-    })
-    .catch(onEmptySearchError);
+
+    Notiflix.Loading.dots();
+    Notiflix.Loading.change('Loading...')
+    return newFilmsBandle.onFetchTopDayFilms()
+        .then((films) => {
+            renderMarkup(films);
+            Notiflix.Loading.remove();
+            if(newFilmsBandle.page===1){
+                makePagination(options, renderDaylyTopFilms)
+            }
+            newFilmsBandle.incrementPageNumber();
+        })
+        .catch(console.log);
 }
 
 // Функция, которая запрашивает жанры
@@ -40,33 +42,32 @@ fetchIDFilms();
 renderDaylyTopFilms();
 
 // Функция для отрисовки страницы с фильмами по запросу из формы
-function onFormElSubmit(e) {
-  e.preventDefault();
-  Notiflix.Loading.dots();
-  Notiflix.Loading.change('Loading...');
-  const name = e.target.elements.searchQuery.value.trim();
+function onFormElSubmit(e) { 
+    e.preventDefault();
+     Notiflix.Loading.dots();
+    Notiflix.Loading.change('Loading...')
+    const name = e.target.elements.searchQuery.value.trim();
 
-  newFilmsBandle.query = name;
+    newFilmsBandle.query = name;
 
-  if (!newFilmsBandle.query) {
-    return onEmptySearchError();
-  }
+    if (!newFilmsBandle.query) { 
+        return onEmptySearchError();
+    }
 
-  galleryReset();
-
-  newFilmsBandle
-    .onFetchKeyWordFilms()
-    .then(films => {
-      if (films.length === 0) {
-        return onFilmsSearchError(name);
-      }
-      console.log(films);
-      newFilmsBandle.incrementPageNumber();
-      renderMarkup(films);
-      Notiflix.Loading.remove(250);
-      makePaginationSearch(options, newFilmsBandle);
-    })
-    .catch(onEmptySearchError);
+    galleryReset();
+    
+    newFilmsBandle.onFetchKeyWordFilms()
+        .then((films) => {
+            
+            if (films.length === 0) {
+                return onFilmsSearchError(name);
+            }
+            newFilmsBandle.incrementPageNumber();
+            renderMarkup(films);
+            Notiflix.Loading.remove(250);
+            makePagination(options, renderNewSearchPage);
+        })
+        .catch(console.log);
 }
 
 //рендер разметки галлереи фильмов

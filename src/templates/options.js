@@ -10,13 +10,7 @@ export const options =  {
     template: {
         page: '<a href="#" class="tui-page-btn">{{page}}</a>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-        moveButton:
-        //  '<a href="#" class=" tui-page-btn tui-{{type}} custom-class-{{type}}">' +
-        //     '<span class="tui-ico-{{type}}">{{type}}</span>' +
-        // '</a>', 
-        
-        
-        type => {
+        moveButton: type => {
             let template = '';
         
             if (type.type === 'first') {
@@ -27,18 +21,15 @@ export const options =  {
             }
             if (type.type === 'prev') {
                 template =
-                '<a href="#" class=" tui-page-btn tui-prev custom-class-prev tui-first-child">' +'<span class="tui-ico-first"><i class="fas fa-arrow-left"></span>'
-                // '<svg class="tui-ico-prev" width="16" height="16">'+
-                //     '<use href="http://www.w3.org/2000/svg"></use>'+
-                // '</svg>' 
+                '<a href="#" class="arrow tui-page-btn tui-prev custom-class-prev tui-first-child">' +'<span class="material-icons">arrow_back</span>' 
                 +
             '</a>';
               }
 
               if (type.type === 'next') {
                 template =
-                '<a href="#" class=" tui-page-btn tui-next custom-class-next">' +
-                '<span class="tui-ico-next"><i class="fas fa-arrow-right"></i></span>' +
+                '<a href="#" class="arrow tui-page-btn tui-next custom-class-next">' +
+                '<span class="material-icons">arrow_forward</span>' +
             '</a>';
               }
 
