@@ -19,7 +19,6 @@ function renderDaylyTopFilms() {
     .then(films => {
       newFilmsBandle.incrementPageNumber();
       renderMarkup(films);
-      console.log(films);
       Notiflix.Loading.remove();
       makePaginationDay(options, newFilmsBandle);
     })
