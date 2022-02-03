@@ -1,6 +1,6 @@
 import 'animate.css';
 import { refs } from './refs';
-import { renderDaylyTopFilms } from './galleryFetch';
+import { renderDaylyTopFilms, newFilmsBandle } from './galleryFetch';
 
 const header = document.querySelector('.header');
 
@@ -9,6 +9,9 @@ refs.library.addEventListener('click', onLibraryBtnClick);
 refs.logo.addEventListener('click', onHomeBtnClick);
 
 function onHomeBtnClick() {
+  refs.galleryEl.innerHTML = '';
+  newFilmsBandle.resetPageNumber();
+
   refs.home.classList.add('nav__btn--currently');
   refs.library.classList.remove('nav__btn--currently');
   refs.header.classList.remove('header--library');

@@ -13,5 +13,9 @@ export const refs = {
   formEl: document.querySelector(".form"),
   galleryEl: document.querySelector(".gallery__container"),
   errorEl: document.querySelector(".search-error"),
+  errorImgEl: document.querySelector(".errorImg__container"),
   paginationContainer: document.getElementById('tui-pagination-container'),
+  // filmCard: document.querySelector('.film-card'), 
+  // btnCloseModalFilm: document.querySelector('.modal-film__button-close'),
 };
+
