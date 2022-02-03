@@ -23,7 +23,7 @@ const addFilterBtn = document.querySelector('.header .container');
 const filmsApiServise = new FilmsApiService();
 console.log(filmsApiServise);
 //
-markupFilterBtn();
+// markupFilterBtn();
 filmsFilter();
 //фільтруєм по рейтингу
 function filmsFilter() {
