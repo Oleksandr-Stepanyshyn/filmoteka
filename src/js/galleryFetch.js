@@ -14,9 +14,10 @@ const newFilmsBandle = new FilmsApiService();
 refs.formEl.addEventListener("submit", onFormElSubmit);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
-function renderDaylyTopFilms() {
-      Notiflix.Loading.dots();
-    Notiflix.Loading.change('Loading...')
+export function renderDaylyTopFilms() {
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
+
     return newFilmsBandle.onFetchTopDayFilms()
         .then((films) => {
             newFilmsBandle.incrementPageNumber();
@@ -31,8 +32,8 @@ renderDaylyTopFilms();
 // Функция для отрисовки страницы с фильмами по запросу из формы
 function onFormElSubmit(e) { 
     e.preventDefault();
-     Notiflix.Loading.dots();
-    Notiflix.Loading.change('Loading...')
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
     const name = e.target.elements.searchQuery.value.trim();
 
     newFilmsBandle.query = name;
@@ -51,14 +52,14 @@ function onFormElSubmit(e) {
             }
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films)
-            Notiflix.Loading.remove(250);
+            Notiflix.Loading.remove(350);
         })
         .catch(console.log);
 }
 
 
 //рендер разметки галлереи фильмов
- function renderMarkup(films) {
+ export function renderMarkup(films) {
     const markup = films.map(
         ({ poster_path, original_title, genre_ids, release_date, vote_average, original_name }) => {
             const date = new Date(Date.parse(release_date));
@@ -106,7 +107,7 @@ function galleryReset() {
 
 // функция-ошибка, если фильма с таким названием не найдено
 function onFilmsSearchError(name) {
-    Notiflix.Loading.remove(250);
+    Notiflix.Loading.remove(350);
     galleryReset()
     refs.errorEl.classList.remove('visually-hidden');
     const error = `<p>Search result <span class="film-name">"${name}"</span> not successful. Enter the correct movie name</p>`
@@ -115,7 +116,7 @@ function onFilmsSearchError(name) {
 
 // функция-ошибка, если поисковый запрос пустой
 function onEmptySearchError() {
-    Notiflix.Loading.remove(250);
+    Notiflix.Loading.remove(350);
     galleryReset()
     refs.errorEl.classList.remove('visually-hidden');
     const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`
