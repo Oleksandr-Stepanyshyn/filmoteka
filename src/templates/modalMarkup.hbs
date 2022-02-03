@@ -1,79 +1,86 @@
-<div class="backdrop" data-modal>
-
-<div class="modal-film">
-    <button type="button" class="modal-film__button-close" data-modal-close>
-        <svg class="modal-film__icon-close" width="30" height="30"
-        viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" 
-        >
-        <path d="M23.733 10.304l-1.504-1.504-5.963 5.963-5.963-5.963-1.504 1.504 5.963 5.963-5.963 5.963 1.504 1.504 5.963-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.963z"></path>
-        </svg>
+<div class='backdrop'>
+  <div class='modal-film'>
+    <button type='button' class='modal-film__button-close' data-id="close">
+      <svg
+        class='modal-film__icon-close'
+        width='30'
+        height='30'
+        viewBox='0 0 32 32'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <path
+          d='M23.733 10.304l-1.504-1.504-5.963 5.963-5.963-5.963-1.504 1.504 5.963 5.963-5.963 5.963 1.504 1.504 5.963-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.963z'
+        ></path>
+      </svg>
     </button>
-    <div class="modal-film__content-wrapper">
-<img class="modal-film__poster" src="/images/dummy-card.jpg" {{!-- {{data.poster_path}} --}}>
-<div class="modal-film__info-wrapper">
-<h1 class="modal-film__film-title">A FISTFUL OF LEAD {{!-- {{data.original_title}} --}}</h1> 
-<table class="modal-film__details-table">
-    <tr class="modal-film__details-table--row">
-        <td class="modal-film__details-table--heading">Vote / Votes</td>
-        <td>
-            <span class="modal-film__details-table--votes-orange">7.3 {{!-- {{data.vote_average}} --}}</span><span class="modal-film__details-table--votes-slash">/</span><span class="modal-film__details-table--votes-grey">1260 {{!-- {{film.vote_count}} --}}</span>
-        </td>
-    </tr>
-    <tr class="modal-film__details-table--row">
-        <td class="modal-film__details-table--heading">Popularity</td>
-        <td class="modal-film__details-table--popularity">100.2 {{!-- {{data.popularity}} --}}</td>
-    </tr>
-    <tr class="modal-film__details-table--row">
-        <td class="modal-film__details-table--heading">Original Title</td>
-        <td class="modal-film__details-table--original-title">A FISTFUL OF LEAD {{!-- {{data.original_title}} --}}</td>
-    </tr>
-    <tr class="modal-film__details-table--row">
-        <td class="modal-film__details-table--heading">Genre</td>
-        <td class="modal-film__details-table--genre">Western{{!-- {{data.genre_ids??????}} --}}</td>
-    </tr>
-</table>
-<h2 class="modal-film__about-title">About</h2>
-<p class="modal-film__description">Four of the Wests most infamous outlaws assemble to steal a huge stash of gold from
-    the most corrupt settlement of the
-    gold rush towns. But not all goes to plan one is killed and the other three escapes with bags of gold hide out in
-    the
-    abandoned gold mine where they happen across another gang of three  who themselves were planning to hit the very
-    same
-    bank! As tensions rise, things go from bad to worse as they realise the bags of gold are filled with lead... theyve
-    been double crossed  but by who and how?
-{{!-- {{data.overview}} --}}
-</p>
+    <div class='modal-film__content-wrapper'>
+      {{#if poster_path}}
+        <picture class='modal-film__poster'>
+          <source
+            srcset='https://image.tmdb.org/t/p/original{{poster_path}} 1x, https://image.tmdb.org/t/p/original{{poster_path}} 2x'
+            media='(min-width: 1024px)'
+          />
+          <source
+            srcset='https://image.tmdb.org/t/p/w780{{poster_path}} 1x, https://image.tmdb.org/t/p/w780{{poster_path}} 2x'
+            media='(min-width: 768px)'
+          />
+          <source
+            srcset='https://image.tmdb.org/t/p/w342{{poster_path}} 1x, https://image.tmdb.org/t/p/w342{{poster_path}} 2x'
+            media='(min-width: 320px)'
+          />
 
-    <div class="modal-film__buttons-container">
-        <button type="submit" class="modal-film__button-watched">Add to Watched</button>
-        <button type="submit" class="modal-film__button-queue">Add to Queue</button>
+          <img
+            data-id='{{id}}'
+            src='https://image.tmdb.org/t/p/w342{{poster_path}}'
+            alt='{{filmName}}'
+            loading='lazy'
+            class='poster'
+          />
+        </picture>
+      {{else}}
+        <img
+          data-id='{{id}}'
+          src='https://cdn.pixabay.com/photo/2017/10/14/23/54/girl-2852252_960_720.jpg'
+          alt='{{filmName}}'
+          loading='lazy'
+          class='poster'
+        />
+      {{/if}}
+
+      <div class='modal-film__info-wrapper'>
+        <h1 class='modal-film__film-title'>{{original_title}}</h1>
+        <table class='modal-film__details-table'>
+          <tr class='modal-film__details-table--row'>
+            <td class='modal-film__details-table--heading'>Vote / Votes</td>
+            <td>
+              <span class='modal-film__details-table--votes-orange'>{{vote_average}}</span><span
+                class='modal-film__details-table--votes-slash'
+              >/</span><span class='modal-film__details-table--votes-grey'>{{vote_count}}</span>
+            </td>
+          </tr>
+          <tr class='modal-film__details-table--row'>
+            <td class='modal-film__details-table--heading'>Popularity</td>
+            <td class='modal-film__details-table--popularity'>{{popularity}}</td>
+          </tr>
+          <tr class='modal-film__details-table--row'>
+            <td class='modal-film__details-table--heading'>Original Title</td>
+            <td class='modal-film__details-table--original-title'>{{original_title}}</td>
+          </tr>
+          <tr class='modal-film__details-table--row'>
+            <td class='modal-film__details-table--heading'>Genre</td>
+            <td class='modal-film__details-table--genre'>{{genre_ids}}</td>
+          </tr>
+        </table>
+        <h2 class='modal-film__about-title'>About</h2>
+        <p class='modal-film__description'>
+          {{overview}}
+        </p>
+        <div class='modal-film__buttons-container'>
+          <button type='button' class='modal-film__button-watched'>Add to Watched</button>
+          <button type='button' class='modal-film__button-queue'>Add to Queue</button>
+        </div>
+      </div>
+
     </div>
-    </div>
-
+  </div>
 </div>
-</div>
-
-</div>
-
-
-<!-- 
-    1. зробити import modalMarkup from '../templates/modalMarkup';
-    2. по кліку на карточку фільму буде викликатись метод 
-який грузить з локалстореджу (load - написав Сергій) і функція renderModal(). 
-Щось типу такого:
-
-function onOpenModal() {
-    window.addEventListener('keydown', onEscPress);
-    document.body.classList.add('modal-open');
-    const data = load(key); в цьому рядку не впевнена, треба пробувати, коли вже Сергій доробить цю частину;
-    renderModal(data) {
-         refs.body.insertAdjacentHTML('beforeend', modalMarkup(data));
-    }
-}
-
-3. для закриття модалки:
- на backdrop вішати клас .is-hidden;
- document.body.classList.remove('modal-open');
-
--->
-

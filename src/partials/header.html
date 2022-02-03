@@ -3,7 +3,7 @@
     <nav class="nav">
       <button class="logo-btn btn js-logo-btn">
         <svg width="24" height="24">
-          <use href="/images/header/header-sprite.svg#logo-icon"></use>
+          <use href="/images/sprite.svg#icon-logo"></use>
         </svg>
         <span class="logo-text">Filmoteka</span>
       </button>
@@ -11,7 +11,7 @@
         <!-- на home і me library при події click 
           добавляти динамічно клас nav__btn--currently -->
         <li class="nav__item">
-          <button class="nav__btn btn js-nav-home-btn">Home</button>
+          <button class="nav__btn btn nav__btn--currently  js-nav-home-btn">Home</button>
         </li>
         <li class="nav__item">
           <button class="nav__btn btn js-nav-library-btn">My library</button>
@@ -24,7 +24,7 @@
         <input class="form__input" type="text" name="searchQuery" placeholder="Search movies" />
         <button class="form__btn btn js-form-btn" type="submit">
           <svg class="search-icon" width="12" height="12">
-            <use href="./images/header/header-sprite.svg#search-icon"></use>
+            <use href="./images/sprite.svg#icon-search"></use>
           </svg>
         </button>
       </div>
