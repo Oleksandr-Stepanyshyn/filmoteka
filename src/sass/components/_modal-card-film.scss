@@ -4,6 +4,15 @@ body.modal-open .backdrop {
   pointer-events: initial;
 }
 
+.modal-open {
+  overflow: hidden;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+ dev
 .backdrop {
   background-color: rgba(0, 0, 0, 0.25);
   position: fixed;
@@ -12,12 +21,18 @@ body.modal-open .backdrop {
   left: 0;
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
 
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
 
+=======
+  display: flex;
+  justify-content: center;
+  align-items: center;
+>>>>>>> eae04aad2254e1b42349bf70aeecef964ee77777
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -73,6 +88,7 @@ body.modal-open .backdrop {
   }
 }
 
+
 .modal-film__poster {
   width: 100%;
   margin-bottom: 30px;
@@ -95,6 +111,7 @@ body.modal-open .backdrop {
   font-style: normal;
   font-weight: 500;
   line-height: 1.15;
+  vertical-align: top;
 
   @media screen and (min-width: 1024px) {
     font-size: 30px;

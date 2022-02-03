@@ -11,7 +11,7 @@
         <!-- на home і me library при події click 
           добавляти динамічно клас nav__btn--currently -->
         <li class="nav__item">
-          <button class="nav__btn btn js-nav-home-btn">Home</button>
+          <button class="nav__btn btn nav__btn--currently  js-nav-home-btn">Home</button>
         </li>
         <li class="nav__item">
           <button class="nav__btn btn js-nav-library-btn">My library</button>
@@ -31,7 +31,9 @@
     </form>
 
     <!-- при невдалому пошуку знімати клас visually-hidden-->
-    <div class="search-error visually-hidden"></div>
+    <div class="search-error visually-hidden">
+      
+    </div>
 
     <!-- після кліку по me library знімати динамічно клас visually-hidden -->
     <div class="library visually-hidden">

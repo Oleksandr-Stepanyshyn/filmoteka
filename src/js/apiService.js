@@ -16,10 +16,11 @@ export default class FilmsApiService {
     const searchParams = new URLSearchParams({
       page: this.page,
     });
-
+  
     const response = await axios.get(
       `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&${searchParams}`,
     );
+    console.log(response);
     const data = await response.data;
     this.totalPage = data.total_pages;
     this.totalItems = data.total_results;
@@ -108,5 +109,15 @@ export default class FilmsApiService {
     } catch (error) {
       console.error('Get state error: ', error.message);
     }
+  }
+
+// метод для получения id жанров фильмов
+  async onFetchId() { 
+    const response = await axios.get(
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+    );
+  const data = await response.data;
+  const genres = await data.genres;
+  return  genres;
   }
 }

@@ -1,5 +1,6 @@
 .film-card {
   width: 100%;
+  border-radius: 5px;
 
   @media screen and (min-width: 320px) {
     width: 280px;
@@ -11,6 +12,14 @@
 
   @media screen and (min-width: 1024px) {
     width: 274px;
+  }
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    box-shadow: $box-shadow-film-card;
   }
 }
 

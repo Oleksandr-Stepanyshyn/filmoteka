@@ -23,8 +23,11 @@
     margin: 0px 10px;
 }
 
-.footer__link {
-    display: inline;
+.footer__btn {
     text-decoration: underline;
     text-align: center;
+    border: none;
+    color: inherit;
+    background-color: inherit;
+    cursor: pointer;
 }

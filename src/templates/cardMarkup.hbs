@@ -9,15 +9,15 @@
         <source srcset="https://image.tmdb.org/t/p/w342{{poster_path}} 1x, https://image.tmdb.org/t/p/w342{{poster_path}} 2x"
             media="(min-width: 320px)">
         
-        <img src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{filmName}}" loading="lazy" class="poster"/>
+        <img data-id="{{id}}" src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{filmName}}" loading="lazy" class="poster"/>
     </picture>
     {{else}}
-        <img src="https://cdn.pixabay.com/photo/2017/10/14/23/54/girl-2852252_960_720.jpg" alt="{{filmName}}" loading="lazy" class="poster"/>
+        <img data-id="{{id}}"  src="https://cdn.pixabay.com/photo/2014/03/25/16/27/movie-297135_960_720.png" alt="{{filmName}}" loading="lazy" class="poster"/>
     {{/if}}
-    <h2 class="film-card__title">{{filmName}}</h2>
+    <h2 data-id="{{id}}" class="film-card__title">{{filmName}}</h2>
         <div class="info">
-            <p class="film-card__info">
-                {{genres}} | {{year}} 
+            <p data-id="{{id}}" class="film-card__info">
+                {{genresFilm}} | {{year}} 
             </p>
             <p class="vote visually-hidden">
                 {{vote}}
