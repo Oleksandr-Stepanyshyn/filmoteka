@@ -13,5 +13,6 @@ export const refs = {
   formEl: document.querySelector(".form"),
   galleryEl: document.querySelector(".gallery__container"),
   errorEl: document.querySelector(".search-error"),
+  errorImgEl: document.querySelector(".errorImg__container"),
   paginationContainer: document.getElementById('tui-pagination-container'),
 };
