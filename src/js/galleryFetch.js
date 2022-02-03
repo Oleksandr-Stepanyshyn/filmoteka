@@ -21,7 +21,7 @@ function renderDaylyTopFilms() {
             Notiflix.Loading.remove();
             makePaginationDay(options,newFilmsBandle);
         })
-        .catch(console.log);
+        .catch(onEmptySearchError);
 }
 
 // Функция, которая запрашивает жанры
@@ -66,7 +66,7 @@ function onFormElSubmit(e) {
             Notiflix.Loading.remove(250);
             makePaginationSearch(options,newFilmsBandle);
         })
-        .catch(console.log);
+        .catch(onEmptySearchError);
 }
 
 //рендер разметки галлереи фильмов
@@ -124,29 +124,33 @@ function parsGenres(genresId, genresList) {
 function galleryReset() {
     newFilmsBandle.resetPageNumber();
     newFilmsBandle.resetTotalItems();
-    refs.galleryEl.innerHTML = '';
-    refs.errorEl.innerHTML = '';
-    refs.paginationContainer.innerHTML = '';
     refs.errorEl.classList.add('visually-hidden');
+    refs.errorImgEl.classList.add('visually-hidden');
+    refs.galleryEl.classList.remove('visually-hidden');
+    refs.paginationContainer.classList.remove('visually-hidden')
 }
 
 // функция-ошибка, если фильма с таким названием не найдено
 function onFilmsSearchError(name) {
-    Notiflix.Loading.remove(250);
-    galleryReset()
-    refs.errorEl.classList.remove('visually-hidden');
     const error = `<p>Search result <span class="film-name">"${name}"</span> not successful. Enter the correct movie name</p>`
-    refs.errorEl.insertAdjacentHTML('beforeend', error);
+    onErrors(error);
 }
 
 // функция-ошибка, если поисковый запрос пустой
 function onEmptySearchError() {
-    Notiflix.Loading.remove(250);
-    galleryReset()
-    refs.errorEl.classList.remove('visually-hidden');
     const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`
+    onErrors(error);
+}
+
+function onErrors(error) {
+    galleryReset();
+    refs.errorEl.innerHTML = '';
+    Notiflix.Loading.remove(250);
+    refs.errorEl.classList.remove('visually-hidden');
+    refs.errorImgEl.classList.remove('visually-hidden');
+    refs.galleryEl.classList.add('visually-hidden');
+    refs.paginationContainer.classList.add('visually-hidden');
     refs.errorEl.insertAdjacentHTML('beforeend', error);
-    
 }
 
 export { renderMarkup, renderDaylyTopFilms };

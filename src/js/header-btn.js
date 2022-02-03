@@ -1,3 +1,4 @@
+import 'animate.css';
 import { refs } from './refs';
 import { renderDaylyTopFilms } from './galleryFetch';
 
