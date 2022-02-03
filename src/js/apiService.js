@@ -116,7 +116,7 @@ export default class FilmsApiService {
       `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
     );
   const data = await response.data;
-  const genres = await data.genres;
+    const genres = await data.genres;
   return  genres;
   }
 }
