@@ -1,9 +1,6 @@
 .pagination-container{
     display: flex;
-    justify-content: center;
-    
-    
-    
+    justify-content: center;  
 }
 .tui-pagination{
     display: flex;
@@ -38,11 +35,7 @@
     width: 40px;
 }
 
-.arrow:hover,
-.arrow:focus{
-    background-color: #FF6B08;
-    color:#FFFFFF;
-}
+
 
 
 .tui-is-selected{
@@ -53,12 +46,6 @@
     margin: 0 8px;
 }
 
-.pagination__icon{
-    fill: #000000;
-}
-// .arrow-forward{
-//     background-image: url(../images/arrow-forward.jpg);
-// }
 @media screen and (max-width: 768px) {
     .tui-next-is-ellip,
     .tui-prev-is-ellip,
@@ -71,4 +58,10 @@
 
 .material-icons{
     font-size: 16px;
+}
+
+.arrow:hover,
+.arrow:focus{
+    background-color: #FF6B08;
+    color:#FFFFFF;
 }
