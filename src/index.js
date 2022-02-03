@@ -4,6 +4,7 @@ import './sass/main.scss';
 // import './js/openCloseModalFilm';
 import './js/galleryFetch';
 import './js/header-btn';
+import './js/filter';
 import './js/pagination';
 import './js/teamModal';
 
