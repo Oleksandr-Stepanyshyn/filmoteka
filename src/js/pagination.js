@@ -1,19 +1,15 @@
 import {renderMarkup,newFilmsBandle} from './galleryFetch';
 import Pagination from 'tui-pagination';
-
-const refs= {
-    gallery: document.querySelector(".gallery__container"),
-    container: document.getElementById('tui-pagination-container'),
-}
+import { refs } from './refs';
 
 function makePagination(options,func) {
     options.totalPages = newFilmsBandle.totalPage;
     options.totalItems = newFilmsBandle.totalItems;
-    const pagination = new Pagination(refs.container,options);
+    const pagination = new Pagination(refs.paginationContainer,options);
     
     pagination.on('afterMove', (event) => {
     newFilmsBandle.page = event.page;
-    refs.gallery.innerHTML = "";
+    refs.galleryEl.innerHTML = "";
     hidefirstAndLastPages(newFilmsBandle);
     func()})
 }
