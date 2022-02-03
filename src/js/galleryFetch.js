@@ -65,7 +65,7 @@ function onFormElSubmit(e) {
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films);
             Notiflix.Loading.remove(250);
-            makePagination(options, renderDaylyTopFilms);
+            makePagination(options, renderNewSearchPage);
         })
         .catch(console.log);
 }
