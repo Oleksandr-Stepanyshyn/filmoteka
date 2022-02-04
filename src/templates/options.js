@@ -47,8 +47,8 @@ export const options =  {
                 '<span class="tui-ico-{{type}}">{{type}}</span>' +
             '</span>',
         moreButton:  
-         '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
-                '<span class="tui-ico-ellip">...</span>' +
+         '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip dots">' +
+                '<span class="material-icons">more_horiz</span>' +
             '</a>' 
         }
 }
