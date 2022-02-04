@@ -1,7 +1,7 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
-import { makePaginationSearch, makePaginationDay } from './pagination';
+import { renderNewSearchPage, makePagination } from './pagination';
 import { options } from '../templates/options';
 import { refs } from './refs';
 
@@ -17,12 +17,14 @@ function renderDaylyTopFilms() {
   return newFilmsBandle
     .onFetchTopDayFilms()
     .then(films => {
-      newFilmsBandle.incrementPageNumber();
       renderMarkup(films);
-      Notiflix.Loading.remove(350);
-      makePaginationDay(options, newFilmsBandle);
+      Notiflix.Loading.remove();
+      if (newFilmsBandle.page === 1) {
+        makePagination(options, renderDaylyTopFilms);
+      }
+      newFilmsBandle.incrementPageNumber();
     })
-    .catch(onEmptySearchError);
+    .catch(console.log);
 }
 
 // Функция, которая запрашивает жанры
@@ -60,13 +62,12 @@ function onFormElSubmit(e) {
       if (films.length === 0) {
         return onFilmsSearchError(name);
       }
-      console.log(films);
       newFilmsBandle.incrementPageNumber();
       renderMarkup(films);
-      Notiflix.Loading.remove(250);
-      makePaginationSearch(options, newFilmsBandle);
+      Notiflix.Loading.remove(350);
+      makePagination(options, renderNewSearchPage);
     })
-    .catch(onEmptySearchError);
+    .catch(console.log);
 }
 
 //рендер разметки галлереи фильмов
@@ -124,7 +125,10 @@ function parsGenres(genresId, genresList) {
 function galleryReset() {
   newFilmsBandle.resetPageNumber();
   newFilmsBandle.resetTotalItems();
-  refs.errorEl.classList.add('visually-hidden');
+  refs.galleryEl.innerHTML = '';
+  refs.errorEl.innerHTML = '';
+  refs.paginationContainer.innerHTML = '';
+  refs.errorEl.classList.add('search-error--hidden');
   refs.errorImgEl.classList.add('visually-hidden');
   refs.galleryEl.classList.remove('visually-hidden');
   refs.paginationContainer.classList.remove('visually-hidden');
@@ -132,25 +136,30 @@ function galleryReset() {
 
 // функция-ошибка, если фильма с таким названием не найдено
 function onFilmsSearchError(name) {
+  Notiflix.Loading.remove(350);
   const error = `<p>Search result <span class="film-name">"${name}"</span> not successful. Enter the correct movie name</p>`;
   onErrors(error);
 }
 
 // функция-ошибка, если поисковый запрос пустой
 function onEmptySearchError() {
+  Notiflix.Loading.remove(350);
   const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`;
   onErrors(error);
 }
 
 function onErrors(error) {
   galleryReset();
-  refs.errorEl.innerHTML = '';
   Notiflix.Loading.remove(250);
-  refs.errorEl.classList.remove('visually-hidden');
+  refs.errorEl.classList.remove('search-error--hidden');
   refs.errorImgEl.classList.remove('visually-hidden');
   refs.galleryEl.classList.add('visually-hidden');
   refs.paginationContainer.classList.add('visually-hidden');
   refs.errorEl.insertAdjacentHTML('beforeend', error);
+
+  setTimeout(() => {
+    refs.errorEl.classList.add('search-error--hidden');
+  }, 3000);
 }
 
-export { renderMarkup, renderDaylyTopFilms, newFilmsBandle };
+export { renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset };

@@ -61,9 +61,3 @@ function descendingSortFilms() {
 //             console.log(err);
 //         })
 // };
-       
-     
-
-
-            
-    
