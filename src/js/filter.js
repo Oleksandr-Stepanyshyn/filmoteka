@@ -2,7 +2,8 @@
 import FilmsApiService from './apiService';
 import {renderMarkup, renderDaylyTopFilms } from './galleryFetch';
 
-// const addFilterBtn = document.querySelector('.header .container');
+
+const addFilterBtn = document.querySelector('.header .container');
 
 //функція розмітка кнопок фільтру(без функціоналу тому закоментував)
 
@@ -25,25 +26,20 @@ const filmsApiServise = new FilmsApiService();
 // markupFilterBtn();
 ascendingSortFilms();
 descendingSortFilms();
-renderDaylyTopFilms();
+// renderDaylyTopFilms();
+
 //фільтруєм по рейтингу
 function ascendingSortFilms() {
     return filmsApiServise.onFetchTopDayFilms()
         .then(response => {
-            // console.log(response);
-            // const filter = response.map(film => film.vote_average);
-            // const descendingSort = filter.sort((a, b) => b - a);
-            // console.log(descendingSort);
-            // const ascendingSort = filter.sort((a, b) => a - b);
-            // console.log(ascendingSort);
             const ascendingSort = [...response].sort((firstFilm, secondFilm) => firstFilm.vote_average - secondFilm.vote_average);
             console.log(ascendingSort);
-            // renderAscendingFilms();
         })
         .catch(err => {
             console.log(err);
         });
 };
+
 function descendingSortFilms() {
     return filmsApiServise.onFetchTopDayFilms()
         .then(response => {
@@ -64,3 +60,4 @@ function descendingSortFilms() {
 //         .catch(err => {
 //             console.log(err);
 //         })
+// };
