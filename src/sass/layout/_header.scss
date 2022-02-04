@@ -47,9 +47,6 @@
   }
 }
 
-// ======= клас, який буде динамічно підставлятись в header,
-//         після кліку на кнопку my library ========
-
 .header--library {
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url('../images/header/mob-background-library-1x.jpg');
@@ -143,9 +140,6 @@
   transform: scale(1);
   transition: transform linear 250ms;
 }
-
-// ===== клас, який буде динамічно підставлятись
-//         на кнопки home і me library після напискання =======
 
 .nav__btn::after {
   content: '';
@@ -288,8 +282,6 @@
 .library__btn:hover {
   transform: scale(1.025);
 }
-
-// ==== клас добавляти динамічно, після кліку по кнопці watched та queue ====
 
 .library__btn--currenly {
   border: 0;
