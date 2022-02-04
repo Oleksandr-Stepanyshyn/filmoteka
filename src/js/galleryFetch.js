@@ -1,8 +1,8 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
-import { makePaginationSearch, makePaginationDay } from './pagination';
-import { options } from '../templates/options';
+import {renderNewSearchPage,makePagination} from './pagination';
+import {options} from '../templates/options';
 import { refs } from './refs';
 
 const newFilmsBandle = new FilmsApiService();
@@ -12,17 +12,18 @@ refs.formEl.addEventListener('submit', onFormElSubmit);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
 function renderDaylyTopFilms() {
-  Notiflix.Loading.dots();
-  Notiflix.Loading.change('Loading...');
-  return newFilmsBandle
-    .onFetchTopDayFilms()
-    .then(films => {
-      newFilmsBandle.incrementPageNumber();
-      renderMarkup(films);
-      Notiflix.Loading.remove();
-      makePaginationDay(options, newFilmsBandle);
-    })
-    .catch(onEmptySearchError);
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
+    return newFilmsBandle.onFetchTopDayFilms()
+        .then((films) => {
+            renderMarkup(films);
+            Notiflix.Loading.remove();
+            if(newFilmsBandle.page===1){
+                makePagination(options, renderDaylyTopFilms)
+            }
+            newFilmsBandle.incrementPageNumber();
+        })
+        .catch(console.log);
 }
 
 // Функция, которая запрашивает жанры
@@ -40,33 +41,32 @@ fetchIDFilms();
 renderDaylyTopFilms();
 
 // Функция для отрисовки страницы с фильмами по запросу из формы
-function onFormElSubmit(e) {
-  e.preventDefault();
-  Notiflix.Loading.dots();
-  Notiflix.Loading.change('Loading...');
-  const name = e.target.elements.searchQuery.value.trim();
+function onFormElSubmit(e) { 
+    e.preventDefault();
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
+    const name = e.target.elements.searchQuery.value.trim();
 
-  newFilmsBandle.query = name;
+    newFilmsBandle.query = name;
 
-  if (!newFilmsBandle.query) {
-    return onEmptySearchError();
-  }
+    if (!newFilmsBandle.query) { 
+        return onEmptySearchError();
+    }
 
-  galleryReset();
-
-  newFilmsBandle
-    .onFetchKeyWordFilms()
-    .then(films => {
-      if (films.length === 0) {
-        return onFilmsSearchError(name);
-      }
-      console.log(films);
-      newFilmsBandle.incrementPageNumber();
-      renderMarkup(films);
-      Notiflix.Loading.remove(250);
-      makePaginationSearch(options, newFilmsBandle);
-    })
-    .catch(onEmptySearchError);
+    galleryReset();
+    
+    newFilmsBandle.onFetchKeyWordFilms()
+        .then((films) => {
+            
+            if (films.length === 0) {
+                return onFilmsSearchError(name);
+            }
+            newFilmsBandle.incrementPageNumber();
+            renderMarkup(films);
+            Notiflix.Loading.remove(350);
+            makePagination(options, renderNewSearchPage);
+        })
+        .catch(console.log);
 }
 
 //рендер разметки галлереи фильмов
@@ -124,6 +124,9 @@ function parsGenres(genresId, genresList) {
 function galleryReset() {
   newFilmsBandle.resetPageNumber();
   newFilmsBandle.resetTotalItems();
+  refs.galleryEl.innerHTML = '';
+  refs.errorEl.innerHTML = '';
+  refs.paginationContainer.innerHTML = '';
   refs.errorEl.classList.add('visually-hidden');
   refs.errorImgEl.classList.add('visually-hidden');
   refs.galleryEl.classList.remove('visually-hidden');
@@ -132,19 +135,20 @@ function galleryReset() {
 
 // функция-ошибка, если фильма с таким названием не найдено
 function onFilmsSearchError(name) {
+  Notiflix.Loading.remove(350);
   const error = `<p>Search result <span class="film-name">"${name}"</span> not successful. Enter the correct movie name</p>`;
   onErrors(error);
 }
 
 // функция-ошибка, если поисковый запрос пустой
 function onEmptySearchError() {
+  Notiflix.Loading.remove(350);
   const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`;
   onErrors(error);
 }
 
 function onErrors(error) {
   galleryReset();
-  refs.errorEl.innerHTML = '';
   Notiflix.Loading.remove(250);
   refs.errorEl.classList.remove('visually-hidden');
   refs.errorImgEl.classList.remove('visually-hidden');
