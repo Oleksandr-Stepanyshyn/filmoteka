@@ -34,7 +34,13 @@
     width: 40px;
 }
 
+.tui-prev{
+    order:-1;
+}
 
+.tui-next{
+    order:1;
+}
 
 
 .tui-is-selected{
