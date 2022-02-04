@@ -11,7 +11,7 @@ let genresList = [];
 refs.formEl.addEventListener('submit', onFormElSubmit);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
-export function renderDaylyTopFilms() {
+function renderDaylyTopFilms() {
     Notiflix.Loading.init({ svgColor: '#ff6b08' });
     Notiflix.Loading.dots('Loading...');
     return newFilmsBandle.onFetchTopDayFilms()
