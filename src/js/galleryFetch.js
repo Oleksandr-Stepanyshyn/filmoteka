@@ -162,4 +162,4 @@ function onErrors(error) {
   }, 3000);
 }
 
-export { renderMarkup, renderDaylyTopFilms, newFilmsBandle };
+export { renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset };
