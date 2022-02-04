@@ -20,7 +20,6 @@ export default class FilmsApiService {
     const response = await axios.get(
       `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&${searchParams}`,
     );
-    console.log(response);
     const data = await response.data;
     this.totalPage = data.total_pages;
     this.totalItems = data.total_results;
@@ -120,4 +119,5 @@ export default class FilmsApiService {
     const genres = await data.genres;
   return  genres;
   }
+
 }
