@@ -12,14 +12,14 @@ refs.formEl.addEventListener('submit', onFormElSubmit);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
 function renderDaylyTopFilms() {
-  Notiflix.Loading.dots();
-  Notiflix.Loading.change('Loading...');
+  Notiflix.Loading.init({ svgColor: '#ff6b08' });
+  Notiflix.Loading.dots('Loading...');
   return newFilmsBandle
     .onFetchTopDayFilms()
     .then(films => {
       newFilmsBandle.incrementPageNumber();
       renderMarkup(films);
-      Notiflix.Loading.remove();
+      Notiflix.Loading.remove(350);
       makePaginationDay(options, newFilmsBandle);
     })
     .catch(onEmptySearchError);
@@ -42,8 +42,8 @@ renderDaylyTopFilms();
 // Функция для отрисовки страницы с фильмами по запросу из формы
 function onFormElSubmit(e) {
   e.preventDefault();
-  Notiflix.Loading.dots();
-  Notiflix.Loading.change('Loading...');
+  Notiflix.Loading.init({ svgColor: '#ff6b08' });
+  Notiflix.Loading.dots('Loading...');
   const name = e.target.elements.searchQuery.value.trim();
 
   newFilmsBandle.query = name;

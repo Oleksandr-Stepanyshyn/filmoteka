@@ -120,4 +120,5 @@ export default class FilmsApiService {
     const genres = await data.genres;
   return  genres;
   }
+
 }
