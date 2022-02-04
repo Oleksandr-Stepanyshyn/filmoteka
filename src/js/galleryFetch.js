@@ -4,6 +4,7 @@ import Notiflix from 'notiflix';
 import { renderNewSearchPage, makePagination } from './pagination';
 import { options } from '../templates/options';
 import { refs } from './refs';
+import localeStorageServices from './localeStorageServices';
 
 const newFilmsBandle = new FilmsApiService();
 let genresList = [];
@@ -18,6 +19,7 @@ function renderDaylyTopFilms() {
     .onFetchTopDayFilms()
     .then(films => {
       renderMarkup(films);
+      localeStorageServices.save('DetailsFilmsCurrentPage', films);
       Notiflix.Loading.remove();
       if (newFilmsBandle.page === 1) {
         makePagination(options, renderDaylyTopFilms);
@@ -66,6 +68,7 @@ function onFormElSubmit(e) {
       renderMarkup(films);
       Notiflix.Loading.remove(350);
       makePagination(options, renderNewSearchPage);
+      localeStorageServices.save('DetailsFilmsCurrentPage', films);
     })
     .catch(console.log);
 }

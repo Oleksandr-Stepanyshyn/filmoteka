@@ -26,30 +26,6 @@ const remove = key => {
   return localStorage.removeItem(key);
 };
 
-//------------------------------------------------------------//
-const filmsDetails = new FilmsApiService();
-//------------Підтягує в ЛС карент сторінку
-function addTolocaleStorageFilmsOnPage() {
-  filmsDetails
-    .onFetchTopDayFilms()
-    .then(filmsDetails => {
-      save('DetailsFilmsCurrentPage', filmsDetails);
-    })
-    .catch(error => console.log(error));
-}
-addTolocaleStorageFilmsOnPage();
-//-----------------запис даних в локалку після їх пошуку-------------Криво працює!--
-// const refs = { form: document.querySelector('.form') };
-// refs.form.addEventListener('submit', qwer);
-// function qwer(event) {
-//   console.log(event);
-//   filmsDetails
-//     .onFetchKeyWordFilms()
-//     .then(films => {})
-//     .catch(error => console.log(error));
-// }
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
 //______________Для роботи з ЛС_____________________________________________________
 let watchedKey = [];
 let queueKey = [];
