@@ -12,9 +12,8 @@ refs.formEl.addEventListener('submit', onFormElSubmit);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
 function renderDaylyTopFilms() {
-
-    Notiflix.Loading.dots();
-    Notiflix.Loading.change('Loading...')
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
     return newFilmsBandle.onFetchTopDayFilms()
         .then((films) => {
             renderMarkup(films);
@@ -44,8 +43,8 @@ renderDaylyTopFilms();
 // Функция для отрисовки страницы с фильмами по запросу из формы
 function onFormElSubmit(e) { 
     e.preventDefault();
-     Notiflix.Loading.dots();
-    Notiflix.Loading.change('Loading...')
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
     const name = e.target.elements.searchQuery.value.trim();
 
     newFilmsBandle.query = name;
@@ -64,7 +63,7 @@ function onFormElSubmit(e) {
             }
             newFilmsBandle.incrementPageNumber();
             renderMarkup(films);
-            Notiflix.Loading.remove(250);
+            Notiflix.Loading.remove(350);
             makePagination(options, renderNewSearchPage);
         })
         .catch(console.log);
@@ -133,12 +132,14 @@ function galleryReset() {
 
 // функция-ошибка, если фильма с таким названием не найдено
 function onFilmsSearchError(name) {
+  Notiflix.Loading.remove(350);
   const error = `<p>Search result <span class="film-name">"${name}"</span> not successful. Enter the correct movie name</p>`;
   onErrors(error);
 }
 
 // функция-ошибка, если поисковый запрос пустой
 function onEmptySearchError() {
+  Notiflix.Loading.remove(350);
   const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`;
   onErrors(error);
 }
