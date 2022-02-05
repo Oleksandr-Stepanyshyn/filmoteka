@@ -22,6 +22,14 @@ function renderNewSearchPage(){
     .catch(console.log);
 }
 
+function renderNewGenrePage(){
+    return newFilmsBandle.onFetchGenresFilms()
+    .then((films) => {
+        renderMarkup(films);
+    })
+    .catch(console.log);
+}
+
 function hidefirstAndLastPages(instance) {
     document.querySelector('.tui-first').classList.remove('visually-hidden')
     document.querySelector('.tui-last').classList.remove('visually-hidden')
@@ -32,4 +40,4 @@ function hidefirstAndLastPages(instance) {
         document.querySelector('.tui-last').classList.add('visually-hidden')
     }
 }
-export {renderNewSearchPage,makePagination}
+export {renderNewSearchPage,makePagination,renderNewGenrePage}
