@@ -47,9 +47,6 @@
   }
 }
 
-// ======= клас, який буде динамічно підставлятись в header,
-//         після кліку на кнопку my library ========
-
 .header--library {
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url('../images/header/mob-background-library-1x.jpg');
@@ -144,9 +141,6 @@
   transition: transform linear 250ms;
 }
 
-// ===== клас, який буде динамічно підставлятись
-//         на кнопки home і me library після напискання =======
-
 .nav__btn::after {
   content: '';
 
@@ -183,16 +177,18 @@
 
 .form {
   margin-top: 40px;
-  margin-left: auto;
-  margin-right: auto;
-
-  @media screen and (min-width: 768px) {
-    width: 336px;
-  }
 }
 
 .form__inner {
   position: relative;
+
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    max-width: 336px;
+  }
 }
 
 .form__input {
@@ -238,6 +234,16 @@
   font-size: 14px;
   line-height: calc(16 / 14);
   text-align: center;
+
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-error--hidden {
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity linear 350ms, visibility linear 350ms;
 }
 
 .film-name {
@@ -276,8 +282,6 @@
 .library__btn:hover {
   transform: scale(1.025);
 }
-
-// ==== клас добавляти динамічно, після кліку по кнопці watched та queue ====
 
 .library__btn--currenly {
   border: 0;

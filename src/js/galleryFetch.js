@@ -1,9 +1,10 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
-import {renderNewSearchPage,makePagination} from './pagination';
-import {options} from '../templates/options';
+import { renderNewSearchPage, makePagination } from './pagination';
+import { options } from '../templates/options';
 import { refs } from './refs';
+import localeStorageServices from './localeStorageServices';
 
 const newFilmsBandle = new FilmsApiService();
 let genresList = [];
@@ -12,18 +13,20 @@ refs.formEl.addEventListener('submit', onFormElSubmit);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
 function renderDaylyTopFilms() {
-    Notiflix.Loading.init({ svgColor: '#ff6b08' });
-    Notiflix.Loading.dots('Loading...');
-    return newFilmsBandle.onFetchTopDayFilms()
-        .then((films) => {
-            renderMarkup(films);
-            Notiflix.Loading.remove();
-            if(newFilmsBandle.page===1){
-                makePagination(options, renderDaylyTopFilms)
-            }
-            newFilmsBandle.incrementPageNumber();
-        })
-        .catch(console.log);
+  Notiflix.Loading.init({ svgColor: '#ff6b08' });
+  Notiflix.Loading.dots('Loading...');
+  return newFilmsBandle
+    .onFetchTopDayFilms()
+    .then(films => {
+      renderMarkup(films);
+      localeStorageServices.save('DetailsFilmsCurrentPage', films);
+      Notiflix.Loading.remove();
+      if (newFilmsBandle.page === 1) {
+        makePagination(options, renderDaylyTopFilms);
+      }
+      newFilmsBandle.incrementPageNumber();
+    })
+    .catch(console.log);
 }
 
 // Функция, которая запрашивает жанры
@@ -32,8 +35,9 @@ function fetchIDFilms() {
     .onFetchId()
     .then(genres => {
       genresList = genres;
+// console.log(genresList);    
       return genresList;
-    })
+    }).then((genresList) => localeStorageServices.save('FilmIDs', genresList))
     .catch(console.log);
 }
 
@@ -41,32 +45,33 @@ fetchIDFilms();
 renderDaylyTopFilms();
 
 // Функция для отрисовки страницы с фильмами по запросу из формы
-function onFormElSubmit(e) { 
-    e.preventDefault();
-    Notiflix.Loading.init({ svgColor: '#ff6b08' });
-    Notiflix.Loading.dots('Loading...');
-    const name = e.target.elements.searchQuery.value.trim();
+function onFormElSubmit(e) {
+  e.preventDefault();
+  Notiflix.Loading.init({ svgColor: '#ff6b08' });
+  Notiflix.Loading.dots('Loading...');
+  const name = e.target.elements.searchQuery.value.trim();
 
-    newFilmsBandle.query = name;
+  newFilmsBandle.query = name;
 
-    if (!newFilmsBandle.query) { 
-        return onEmptySearchError();
-    }
+  if (!newFilmsBandle.query) {
+    return onEmptySearchError();
+  }
 
-    galleryReset();
-    
-    newFilmsBandle.onFetchKeyWordFilms()
-        .then((films) => {
-            
-            if (films.length === 0) {
-                return onFilmsSearchError(name);
-            }
-            newFilmsBandle.incrementPageNumber();
-            renderMarkup(films);
-            Notiflix.Loading.remove(350);
-            makePagination(options, renderNewSearchPage);
-        })
-        .catch(console.log);
+  galleryReset();
+
+  newFilmsBandle
+    .onFetchKeyWordFilms()
+    .then(films => {
+      if (films.length === 0) {
+        return onFilmsSearchError(name);
+      }
+      newFilmsBandle.incrementPageNumber();
+      renderMarkup(films);
+      Notiflix.Loading.remove(350);
+      makePagination(options, renderNewSearchPage);
+      localeStorageServices.save('DetailsFilmsCurrentPage', films);
+    })
+    .catch(console.log);
 }
 
 //рендер разметки галлереи фильмов
@@ -108,7 +113,7 @@ function renderMarkup(films) {
 }
 
 // функция, которая парсит жанры из их айдишек
-function parsGenres(genresId, genresList) {
+export function parsGenres(genresId, genresList) {
   const nameGenres = [];
   for (let i = 0; i <= genresId.length; i += 1) {
     const genresFilm = genresList.map(({ id, name }) => {
@@ -127,7 +132,7 @@ function galleryReset() {
   refs.galleryEl.innerHTML = '';
   refs.errorEl.innerHTML = '';
   refs.paginationContainer.innerHTML = '';
-  refs.errorEl.classList.add('visually-hidden');
+  refs.errorEl.classList.add('search-error--hidden');
   refs.errorImgEl.classList.add('visually-hidden');
   refs.galleryEl.classList.remove('visually-hidden');
   refs.paginationContainer.classList.remove('visually-hidden');
@@ -150,11 +155,15 @@ function onEmptySearchError() {
 function onErrors(error) {
   galleryReset();
   Notiflix.Loading.remove(250);
-  refs.errorEl.classList.remove('visually-hidden');
+  refs.errorEl.classList.remove('search-error--hidden');
   refs.errorImgEl.classList.remove('visually-hidden');
   refs.galleryEl.classList.add('visually-hidden');
   refs.paginationContainer.classList.add('visually-hidden');
   refs.errorEl.insertAdjacentHTML('beforeend', error);
+
+  setTimeout(() => {
+    refs.errorEl.classList.add('search-error--hidden');
+  }, 3000);
 }
 
-export { renderMarkup, renderDaylyTopFilms, newFilmsBandle };
+export { renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset };

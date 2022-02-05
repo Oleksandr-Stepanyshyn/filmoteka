@@ -23,6 +23,7 @@ export default class FilmsApiService {
     const data = await response.data;
     this.totalPage = data.total_pages;
     this.totalItems = data.total_results;
+
     return data.results;
   }
 
@@ -117,6 +118,7 @@ export default class FilmsApiService {
     );
   const data = await response.data;
     const genres = await data.genres;
-  return  genres;
+    return  genres;
   }
+
 }
