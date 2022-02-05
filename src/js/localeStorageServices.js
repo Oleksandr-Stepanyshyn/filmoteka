@@ -26,30 +26,6 @@ const remove = key => {
   return localStorage.removeItem(key);
 };
 
-//------------------------------------------------------------//
-const filmsDetails = new FilmsApiService();
-//------------Підтягує в ЛС карент сторінку
-function addTolocaleStorageFilmsOnPage() {
-  filmsDetails
-    .onFetchTopDayFilms()
-    .then(filmsDetails => {
-      save('DetailsFilmsCurrentPage', filmsDetails);
-    })
-    .catch(error => console.log(error));
-}
-addTolocaleStorageFilmsOnPage();
-//-----------------запис даних в локалку після їх пошуку-------------Криво працює!--
-// const refs = { form: document.querySelector('.form') };
-// refs.form.addEventListener('submit', qwer);
-// function qwer(event) {
-//   console.log(event);
-//   filmsDetails
-//     .onFetchKeyWordFilms()
-//     .then(films => {})
-//     .catch(error => console.log(error));
-// }
-//---------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------
 //______________Для роботи з ЛС_____________________________________________________
 let watchedKey = [];
 let queueKey = [];
@@ -100,6 +76,7 @@ function addToWatched(e) {
     e.target.textContent = 'Remove from watched';
   } else if (watchedKey.includes(filmId) && e.target.textContent === 'Remove from watched') {
     const filteredDataArray = load('Watched').filter(element => element !== filmId);
+    watchedKey = filteredDataArray;
     save('Watched', filteredDataArray);
     e.target.textContent = 'Add to watched';
   }
@@ -116,6 +93,7 @@ function addToQueue(e) {
     e.target.textContent = 'Remove from queue';
   } else if (queueKey.includes(filmId) && e.target.textContent === 'Remove from queue') {
     const filteredDataArray = load('Queue').filter(element => element !== filmId);
+    queueKey = filteredDataArray;
     save('Queue', filteredDataArray);
     e.target.textContent = 'Add to queue';
   }

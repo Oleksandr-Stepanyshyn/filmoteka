@@ -7,7 +7,8 @@ import './js/header-btn';
 import './js/filter';
 import './js/pagination';
 import './js/teamModal';
-
+import './js/scrollToTop';
+import './js/checkFilmLibrary';
 // import { FilmsApiService } from './js/apiService'; Импорт класса.
 
 // const filmsApiService = new FilmsApiService(); Создание экземпляра класса.
