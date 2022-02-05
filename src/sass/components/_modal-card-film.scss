@@ -95,7 +95,6 @@
   max-height: 100%;
   width: 240px;
   height: 357px;
-  object-fit: cover;
 
   //_______________
   // @media screen and (min-width: 320px) {
@@ -103,10 +102,12 @@
   // }
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
     width: 264px;
     height: 373px;
   }
   @media screen and (min-width: 1024px) {
+    object-fit: contain;
     width: 396px;
     height: 478px;
   }
