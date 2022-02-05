@@ -113,7 +113,7 @@ function renderMarkup(films) {
 }
 
 // функция, которая парсит жанры из их айдишек
-export function parsGenres(genresId, genresList) {
+function parsGenres(genresId, genresList) {
   const nameGenres = [];
   for (let i = 0; i <= genresId.length; i += 1) {
     const genresFilm = genresList.map(({ id, name }) => {
@@ -166,4 +166,4 @@ function onErrors(error) {
   }, 3000);
 }
 
-export { renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset };
+export { parsGenres, renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset };
