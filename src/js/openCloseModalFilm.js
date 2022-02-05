@@ -7,6 +7,8 @@ const filmDetailsKey = 'DetailsFilmsCurrentPage';
 const filmIDsKey = 'FilmIDs';
 const bodyEl = document.querySelector('body');
 
+
+
 refs.galleryEl.addEventListener('click', onOpenModal);
 
 function onOpenModal(e) {
