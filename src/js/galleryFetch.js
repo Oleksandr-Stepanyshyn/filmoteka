@@ -37,6 +37,7 @@ function fetchIDFilms() {
       genresList = genres;
       return genresList;
     })
+    .then((genresList) => localeStorageServices.save('FilmIDs', genresList))
     .catch(console.log);
 }
 
@@ -165,4 +166,4 @@ function onErrors(error) {
   }, 3000);
 }
 
-export { renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset };
+export { renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset, parsGenres };

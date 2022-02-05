@@ -1,4 +1,5 @@
 import { refs } from './refs';
+import Swiper, { Navigation, Pagination } from 'swiper';
 
 refs.btnOpenModalTeam.addEventListener('click', openModalTeam);
 refs.btnCloseModalTeam.addEventListener('click', closeModalTeam);
@@ -29,3 +30,24 @@ function closeModalTeam(fn) {
     refs.bodyEl.classList.remove('modal-open');
     document.removeEventListener('keydown', fn);
 }
+
+const swiper = new Swiper('.swiper', {
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+    },
+    loop: true,
+    // slidesPerView: 1,
+    // centeredSlides: true,
+  });
