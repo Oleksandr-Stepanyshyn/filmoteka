@@ -2,7 +2,6 @@ import modalMarkup from '../templates/modalMarkup';
 import lsData from './localeStorageServices';
 import { refs } from './refs';
 import { parsGenres } from './galleryFetch';
-import ls from './ls';
 
 const filmDetailsKey = 'DetailsFilmsCurrentPage';
 const filmIDsKey = 'FilmIDs';
@@ -39,14 +38,9 @@ function onOpenModal(e) {
   });
   queueBtn.addEventListener('click', e => {
     lsData.addToQueue(e);
+
   });
-// =====================================================
-
-  watchedBtn.addEventListener('click', ls.addFilmsInWatched);
-  queueBtn.addEventListener('click', ls.addFilmsInQueue);
-
-
-// =====================================================
+  
   //-------------------------------------------------------------------
   if (!backdropModalFilm) {
     return;
