@@ -2,6 +2,7 @@ import 'animate.css';
 import { refs } from './refs';
 import { galleryReset } from './galleryFetch';
 import { onLoadSite } from './togglerDayOrWeek';
+import { onWatchedClick } from './library';
 
 refs.home.addEventListener('click', onHomeBtnClick);
 refs.library.addEventListener('click', onLibraryBtnClick);
@@ -21,6 +22,7 @@ function onHomeBtnClick() {
 }
 
 function onLibraryBtnClick() {
+  onWatchedClick();
   refs.home.classList.remove('nav__btn--currently');
   refs.library.classList.add('nav__btn--currently');
   refs.header.classList.add('header--library');

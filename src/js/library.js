@@ -25,3 +25,4 @@ function onQueueClick(e) {
     Notiflix.Loading.remove();
 }
 
+export { onWatchedClick };
