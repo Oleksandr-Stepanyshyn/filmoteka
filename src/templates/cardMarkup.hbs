@@ -12,7 +12,7 @@
         <img data-id="{{id}}" src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{filmName}}" loading="lazy" class="poster"/>
     </picture>
     {{else}}
-        <img data-id="{{id}}"  src="https://cdn.pixabay.com/photo/2014/03/25/16/27/movie-297135_960_720.png" alt="{{filmName}}" loading="lazy" class="poster"/>
+        <img data-id="{{id}}"  src="https://cdn.pixabay.com/photo/2014/03/25/16/27/movie-297135_960_720.png" alt="{{filmName}}" loading="lazy" class="poster" style="object-fit: contain;"/>
     {{/if}}
     <h2 data-id="{{id}}" class="film-card__title">{{filmName}}</h2>
         <div class="info">
