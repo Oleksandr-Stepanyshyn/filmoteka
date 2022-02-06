@@ -2,6 +2,7 @@ import modalMarkup from '../templates/modalMarkup';
 import lsData from './localeStorageServices';
 import { refs } from './refs';
 import { parsGenres } from './galleryFetch';
+import { onWatchedClick, onQueueClick } from './library';
 
 const filmDetailsKey = 'DetailsFilmsCurrentPage';
 const filmIDsKey = 'FilmIDs';
@@ -35,10 +36,11 @@ function onOpenModal(e) {
   const queueBtn = document.querySelector('.modal-film__button-queue');
   watchedBtn.addEventListener('click', e => {
     lsData.addToWatched(e);
+    // if(!refs.librarySection.classList.contains('visually-hidden')) onWatchedClick();
   });
   queueBtn.addEventListener('click', e => {
     lsData.addToQueue(e);
-
+    // if(!refs.librarySection.classList.contains('visually-hidden')) onQueueClick();
   });
   
   //-------------------------------------------------------------------
