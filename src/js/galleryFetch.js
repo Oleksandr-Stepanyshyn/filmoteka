@@ -1,20 +1,25 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
-import { renderNewSearchPage, makePagination } from './pagination';
+import { renderNewSearchPage, makePagination, renderNewGenrePage } from './pagination';
 import { options } from '../templates/options';
 import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
+import genresListTemplate from '../templates/genresList';
 
 const newFilmsBandle = new FilmsApiService();
 let genresList = [];
 
 refs.formEl.addEventListener('submit', onFormElSubmit);
+refs.formSelectGenreEl.addEventListener('change', onSelectChange);
 
 // Функция для отрисовки главной страницы, возвращает популярные фильмы дня
 function renderDaylyTopFilms() {
   Notiflix.Loading.init({ svgColor: '#ff6b08' });
   Notiflix.Loading.dots('Loading...');
+  
+  galleryReset();
+
   return newFilmsBandle
     .onFetchTopDayFilms()
     .then(films => {
@@ -29,12 +34,13 @@ function renderDaylyTopFilms() {
     .catch(console.log);
 }
 
-// Функция, которая запрашивает жанры
+// Функция, которая запрашивает жанры и возвращет их в выпадающем списке
 function fetchIDFilms() {
   return newFilmsBandle
     .onFetchId()
     .then(genres => {
       genresList = genres;
+      renderGenresList(genres);
       return genresList;
     })
     .then((genresList) => localeStorageServices.save('FilmIDs', genresList))
@@ -44,13 +50,18 @@ function fetchIDFilms() {
 fetchIDFilms();
 renderDaylyTopFilms();
 
-// Функция для отрисовки страницы с фильмами по запросу из формы
+// Функция для отрисовки списка жанров
+function renderGenresList(genres) {
+  refs.formSelectGenreEl.insertAdjacentHTML('beforeend', genresListTemplate(genres))
+}
+
+// Функция для отрисовки страницы с фильмами по запросу названия из формы
 function onFormElSubmit(e) {
   e.preventDefault();
   Notiflix.Loading.init({ svgColor: '#ff6b08' });
   Notiflix.Loading.dots('Loading...');
+  
   const name = e.target.elements.searchQuery.value.trim();
-
   newFilmsBandle.query = name;
 
   if (!newFilmsBandle.query) {
@@ -74,12 +85,42 @@ function onFormElSubmit(e) {
     .catch(console.log);
 }
 
+// Функция для отрисовки страницы с фильмами по запросу из списка жанров
+function onSelectChange(e) {
+  Notiflix.Loading.init({ svgColor: '#ff6b08' });
+  Notiflix.Loading.dots('Loading...');
+
+  const genreId = e.currentTarget.value;
+  newFilmsBandle.genre = genreId;
+
+  if (!newFilmsBandle.genre) {
+    return renderDaylyTopFilms();
+  };
+
+  galleryReset();
+
+  newFilmsBandle
+    .onFetchGenresFilms()
+    .then(films => {
+      newFilmsBandle.incrementPageNumber();
+      renderMarkup(films);
+      Notiflix.Loading.remove(350);
+      makePagination(options, renderNewGenrePage);
+      localeStorageServices.save('DetailsFilmsCurrentPage', films);
+    })
+    .catch(console.log);
+}
+
 //рендер разметки галлереи фильмов
 function renderMarkup(films) {
   const markup = films.map(
     ({ poster_path, original_title, genre_ids, release_date, vote_average, original_name, id }) => {
       const date = new Date(Date.parse(release_date));
-      const year = date.getFullYear();
+      let year = date.getFullYear();
+      if (!release_date) { 
+        year = 'unknown';
+      };
+
       const vote = Number(vote_average).toFixed(1);
 
       let filmName = original_title;
@@ -116,7 +157,7 @@ function renderMarkup(films) {
 function parsGenres(genresId, genresList) {
   const nameGenres = [];
   for (let i = 0; i <= genresId.length; i += 1) {
-    const genresFilm = genresList.map(({ id, name }) => {
+    genresList.map(({ id, name }) => {
       if (id === genresId[i]) {
         nameGenres.push(name);
       }
@@ -152,6 +193,7 @@ function onEmptySearchError() {
   onErrors(error);
 }
 
+// рендер ошибки
 function onErrors(error) {
   galleryReset();
   Notiflix.Loading.remove(250);

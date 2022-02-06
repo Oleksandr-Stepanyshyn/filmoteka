@@ -224,6 +224,41 @@
   transform: scale(1.15);
 }
 
+.form__select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: calc(16 / 14);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    transition: transform linear 200ms;
+  }
+}
+
+.form__select-text {
+  position: absolute;
+}
+
+.form__select-genre {
+  background-color: #ffffff00;
+  color: $accent-text-color;
+  z-index: 1;
+  width: 170px;
+  border-radius: 5px;
+}
+
+.form__select-option {
+  background-color: #ffffff00;
+  border-radius: 5px;
+}
+
 // ======================== message erorr ======================
 
 .search-error {
