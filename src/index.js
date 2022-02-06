@@ -8,7 +8,11 @@ import './js/filter';
 import './js/pagination';
 import './js/teamModal';
 import './js/scrollToTop';
+import './js/togglerDayOrWeek';
 import './js/checkFilmLibrary';
+import './js/library';
+
+// import './js/ls';
 // import { FilmsApiService } from './js/apiService'; Импорт класса.
 
 // const filmsApiService = new FilmsApiService(); Создание экземпляра класса.
