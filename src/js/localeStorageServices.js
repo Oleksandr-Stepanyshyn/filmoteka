@@ -18,43 +18,34 @@ const remove = key => {
   return localStorage.removeItem(key);
 };
 // Перевіряє чи є фільм в черзі чи в переглянутих коли відкрили модалку і міняє текс кнопки
-function btnTextChange(currentFilmId) {
-  // console.log(currentFilmId);
-  //-----шукаємо кнопки--------------------------------------------------
-  const watchedBtn = document.querySelector('.modal-film__button-watched');
-  const queueBtn = document.querySelector('.modal-film__button-queue');
-  //---Перевіряємо чи є цей фільм в ЛС в масиві Watched------------------
-  // load('watchedKey').forEach(element => {
-  //   console.log(element.id);
-  //   if (element.id === currentFilmId) {
-  //     console.log('Такий фільм є');
-  //     watchedBtn.textContent = 'Remove from watched';
-  //   }
-  // });
-}
+// function btnTextChange(currentFilmId) {
+//   // console.log(currentFilmId);
+//   //-----шукаємо кнопки--------------------------------------------------
+//   const watchedBtn = document.querySelector('.modal-film__button-watched');
+//   const queueBtn = document.querySelector('.modal-film__button-queue');
+//   //---Перевіряємо чи є цей фільм в ЛС в масиві Watched------------------
+//   // load('watchedKey').forEach(element => {
+//   //   console.log(element.id);
+//   //   if (element.id === currentFilmId) {
+//   //     console.log('Такий фільм є');
+//   //     watchedBtn.textContent = 'Remove from watched';
+//   //   }
+//   // });
+// }
 //______________Для роботи з ЛС_____________________________________________________
 let watchedKey = [];
 let queueKey = [];
 
-if (localStorage.getItem('Watched') !== null) {
-  watchedKey = load('Watched');
-  // watchedKey = JSON.parse('Watched');
-}
-
-if (localStorage.getItem('Queue') !== null) {
-  queueKey = load('Queue');
-  // queueKey = JSON.parse('Queue');
-}
-
 // Функция адд в переглянуті
 
 function addToWatched(e) {
+  if (localStorage.getItem('watchedKey') !== null) {
+    watchedKey = load('watchedKey');
+    // watchedKey = JSON.parse('Watched');
+  }
   const clickedFilm = load('DetailsFilmsCurrentPage').find(
     film => film.id === Number(e.target.dataset.id),
   );
-  // console.log(watchedKey);
-  // console.log(clickedFilm);
-
   if (watchedKey.find(film => film.id === clickedFilm.id)) {
     watchedKey = watchedKey.filter(film => film.id !== clickedFilm.id);
     save('watchedKey', watchedKey);
@@ -71,6 +62,10 @@ function addToWatched(e) {
 
 // Функция адд в чергу
 function addToQueue(e) {
+  if (localStorage.getItem('queueKey') !== null) {
+    queueKey = load('queueKey');
+    // queueKey = JSON.parse('Queue');
+  }
   const clickedFilm = load('DetailsFilmsCurrentPage').find(
     film => film.id === Number(e.target.dataset.id),
   );
@@ -95,5 +90,5 @@ export default {
   remove,
   addToQueue,
   addToWatched,
-  btnTextChange,
+  // btnTextChange,
 };
