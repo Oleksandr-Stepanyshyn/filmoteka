@@ -26,11 +26,11 @@
     color: #ffffff;
 
     @media screen and (min-width: 768px) {
-        width: 640px;
+        width: 720px;
     }
 
     @media screen and (min-width: 1024px) {
-        width: 860px;
+        width: 1000px;
     }
 
     top: 50%;
@@ -65,6 +65,8 @@
 }
 
 .modal-team__btn-icon {
+    padding: 0;
+    margin: 0;
 
 }
 
@@ -72,22 +74,25 @@
     box-sizing: border-box;
     // display: flex;
     // flex-wrap: wrap;
-    margin: -10px;
+    // margin: -10px;
     padding: 10px;
 }
 .modal-team__item {
     display: flex;
     flex-direction: column;
     flex-basis: calc((100% - 2*20px)/2);
-    min-width: 0;
+    // height: 35vh;
+    // min-width: 0;
+    overflow: hidden;
 
     margin: 10px;
     border: 1px solid $accent-color;
     border-radius: 10px;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.5);
 
     @media screen and (min-width: 768px) {
         flex-basis: calc((100% - 3 * 20px) / 3);
+        
     }
     @media screen and (min-width: 1024px) {
         flex-basis: calc((100% - 4 * 20px) / 4);
@@ -97,17 +102,19 @@
 .modal-team__img {
     flex-grow: 1;
     // width: 100%;
+    // min-height: 100%;
     // object-fit: cover;
 
 }
 
 .modal-team__img img {
-    height: 100%;
+    // min-height: 100%;
     object-fit: cover;
 }
 
 .modal-team__text {
     padding: 7px;
+    flex-shrink: 1;
 }
 
 .modal-team__text--name {
@@ -124,3 +131,7 @@
 .modal-team__contact-mail {
 
 }
+
+// .swiper-btn {
+//     color: $accent-color;
+// }

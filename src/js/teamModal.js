@@ -5,33 +5,37 @@ refs.btnOpenModalTeam.addEventListener('click', openModalTeam);
 refs.btnCloseModalTeam.addEventListener('click', closeModalTeam);
 
 function openModalTeam() {
-    console.log('hello');
     refs.modalTeam.classList.remove('is-hidden')
     refs.bodyEl.classList.add('modal-open');
 
     document.addEventListener('keydown', onKeyboardPush);
-    document.addEventListener('click', cliskIntoVoid);
+    refs.modalTeam.addEventListener('click', cliskIntoVoid);
 
     function onKeyboardPush(e) {
+        console.log(e.code);
         if (e.code === "Escape") {
-            closeModalTeam(this);
+            closeModalTeam();
+            document.removeEventListener('keydown', onKeyboardPush);
         }
-    };
+    }
 
     function cliskIntoVoid(e) {
+        console.log(e.code);
+        console.log(e.target);
         if (e.target === refs.modalTeam) {
-            closeModalTeam(this);
+            closeModalTeam();
+            document.removeEventListener('keydown', onKeyboardPush);
         }
     }
 }
 
-function closeModalTeam(fn) {
+function closeModalTeam() {
     refs.modalTeam.classList.add('is-hidden');
     refs.bodyEl.classList.remove('modal-open');
-    document.removeEventListener('keydown', fn);
 }
 
 const swiper = new Swiper('.swiper', {
+    modules: [Navigation, Pagination],
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
@@ -44,10 +48,24 @@ const swiper = new Swiper('.swiper', {
       el: '.swiper-scrollbar',
     },
     autoplay: {
-        delay: 2500,
+        delay: '2500',
         disableOnInteraction: false,
     },
+    keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+        pageUpDown: true,
+    },
+    speed: 500,
     loop: true,
-    // slidesPerView: 1,
-    // centeredSlides: true,
+    observer: true,
+    observeParents: true,
+    observeSlideChildren: true,
+    grabCursor: true,
+    slideToClickedSlide: true,
+    slidesPerView: 'auto',
+    slidesPerGroup: 1,
+    centeredSlides: true,
+    initialSlide: 0,
+    freeMode: true,
   });
