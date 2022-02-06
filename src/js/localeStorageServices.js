@@ -42,17 +42,17 @@ if (localStorage.getItem('Queue') !== null) {
 
 // Перевіряє чи є фільм в черзі чи в переглянутих коли відкрили модалку і міняє текс кнопки
 function btnTextChange(filmId) {
-  console.log(watchedKey);
-  console.log(queueKey);
+  // console.log(watchedKey);
+  // console.log(queueKey);
   //-----шукаємо кнопки--------------------------------------------------
   const watchedBtn = document.querySelector('.modal-film__button-watched');
   const queueBtn = document.querySelector('.modal-film__button-queue');
   //---Перевіряємо чи є цей фільм в ЛС в масиві Watched------------------
   if (watchedKey.includes(filmId)) {
-    console.log('Такий фільм є');
+    // console.log('Такий фільм є');
     watchedBtn.textContent = 'Remove from watched';
   } else {
-    console.log('Такого фільму немає');
+    // console.log('Такого фільму немає');
     watchedBtn.textContent = 'Add to watched';
   }
 
@@ -60,7 +60,7 @@ function btnTextChange(filmId) {
     console.log('Такий фільм є в черзі');
     queueBtn.textContent = 'Remove from queue';
   } else {
-    console.log('Такого фільму немає в черзі');
+    // console.log('Такого фільму немає в черзі');
     queueBtn.textContent = 'Add to queue';
   }
 }
