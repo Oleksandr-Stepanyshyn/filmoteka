@@ -1,36 +1,31 @@
 import modalMarkup from '../templates/modalMarkup';
 import lsData from './localeStorageServices';
 import { refs } from './refs';
+import { parsGenres } from './galleryFetch';
 
-const key = 'DetailsFilmsCurrentPage';
+const filmDetailsKey = 'DetailsFilmsCurrentPage';
+const filmIDsKey = 'FilmIDs';
+
 const bodyEl = document.querySelector('body');
-
-const films = lsData.load(key);
-console.log(films);
 
 refs.galleryEl.addEventListener('click', onOpenModal);
 
 function onOpenModal(e) {
+  const films = lsData.load(filmDetailsKey);
+  const genres = lsData.load(filmIDsKey);
+  
   if (e.target.classList.contains('gallery__container')) return;
-
   const currentFilmId = Number(e.target.dataset.id);
   const clickedFilm = films.find(film => film.id === currentFilmId);
 
-  // const clickedFilmParams = {
-  //   popularity: Math.round(clickedFilm.popularity),
-  //   poster_path: clickedFilm.poster_path,
-  //   original_title: clickedFilm.original_title,
-  //   vote_average: clickedFilm.vote_average,
-  //   vote_count: clickedFilm.vote_count,
-  //   original_title: clickedFilm.original_title,
-  //   genre_ids: clickedFilm.genre_ids,
-  //   overview: clickedFilm.overview,
+  const clickedFilmParams = {
+    ...clickedFilm,
+    popularity: Math.round(clickedFilm.popularity),
+    genre_ids: (parsGenres(clickedFilm.genre_ids, genres)).join(', '),
+  }
 
-  // }
-
-  bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilm));
+  bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilmParams));
   bodyEl.classList.add('modal-open');
-
   const btnCloseModalFilm = document.querySelector('.modal-film__button-close');
   const backdropModalFilm = document.querySelector('.backdrop-modal-film');
   //---------------для роботи з локал сторедж------------------------
@@ -51,6 +46,7 @@ function onOpenModal(e) {
     const clearModal = () => {
       backdropModalFilm.remove();
       bodyEl.classList.remove('modal-open');
+      document.removeEventListener('keydown', onEscClose);
     };
 
     btnCloseModalFilm.addEventListener('click', () => {
@@ -62,10 +58,11 @@ function onOpenModal(e) {
       clearModal();
     });
 
-    window.addEventListener('keydown', e => {
-      if (e.code === 'Escape') {
-        clearModal();
-      }
-    });
-  }
+    document.addEventListener('keydown', onEscClose);
+  
+    function onEscClose(e) {
+        if (e.code === 'Escape') 
+          clearModal();
+      };
+  };
 }

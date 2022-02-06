@@ -1,10 +1,7 @@
 import 'animate.css';
 import { refs } from './refs';
-import { renderDaylyTopFilms, newFilmsBandle, galleryReset } from './galleryFetch';
-
+import { galleryReset } from './galleryFetch';
 import { onLoadSite } from './togglerDayOrWeek';
-
-const header = document.querySelector('.header');
 
 refs.home.addEventListener('click', onHomeBtnClick);
 refs.library.addEventListener('click', onLibraryBtnClick);
@@ -26,7 +23,7 @@ function onHomeBtnClick() {
 function onLibraryBtnClick() {
   refs.home.classList.remove('nav__btn--currently');
   refs.library.classList.add('nav__btn--currently');
-  header.classList.add('header--library');
+  refs.header.classList.add('header--library');
   refs.librarySection.classList.remove('visually-hidden');
   refs.form.classList.add('visually-hidden');
   refs.watched.classList.add('library__btn--currenly');

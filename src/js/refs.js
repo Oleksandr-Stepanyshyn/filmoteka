@@ -1,4 +1,5 @@
 export const refs = {
+  bodyEl: document.querySelector('body'),
   home: document.querySelector('.js-nav-home-btn'),
   library: document.querySelector('.js-nav-library-btn'),
   logo: document.querySelector('.js-logo-btn'),
@@ -11,6 +12,7 @@ export const refs = {
   modalTeam: document.querySelector('.js-modal-team'),
   btnCloseModalTeam: document.querySelector('.js-close-modal-team'),
   formEl: document.querySelector('.form'),
+  formSelectGenreEl: document.querySelector('.form__select-genre'),
   galleryEl: document.querySelector('.gallery__container'),
   errorEl: document.querySelector('.search-error'),
   errorImgEl: document.querySelector('.errorImg__container'),

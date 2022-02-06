@@ -33,7 +33,7 @@ function ascendingSortFilms() {
     return filmsApiServise.onFetchTopDayFilms()
         .then(response => {
             const ascendingSort = [...response].sort((firstFilm, secondFilm) => firstFilm.vote_average - secondFilm.vote_average);
-            console.log(ascendingSort);
+            // console.log(ascendingSort);
         })
         .catch(err => {
             console.log(err);
@@ -44,7 +44,7 @@ function descendingSortFilms() {
     return filmsApiServise.onFetchTopDayFilms()
         .then(response => {
           const descendingSort = [...response].sort((firstFilm, secondFilm) => secondFilm.vote_average - firstFilm.vote_average);
-            console.log(descendingSort);
+            // console.log(descendingSort);
         })
         .catch(err => {
             console.log(err);
