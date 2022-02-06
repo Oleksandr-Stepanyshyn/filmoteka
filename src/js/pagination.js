@@ -2,6 +2,8 @@ import {renderMarkup,newFilmsBandle} from './galleryFetch';
 import Pagination from 'tui-pagination';
 import { refs } from './refs';
 
+import lsData from './localeStorageServices';
+
 function makePagination(options,func) {
     options.totalPages = newFilmsBandle.totalPage;
     options.totalItems = newFilmsBandle.totalItems;
@@ -18,6 +20,7 @@ function renderNewSearchPage(){
     return newFilmsBandle.onFetchKeyWordFilms()
     .then((films) => {
         renderMarkup(films);
+        lsData.save('DetailsFilmsCurrentPage', films)
     })
     .catch(console.log);
 }
@@ -26,6 +29,7 @@ function renderNewGenrePage(){
     return newFilmsBandle.onFetchGenresFilms()
     .then((films) => {
         renderMarkup(films);
+        lsData.save('DetailsFilmsCurrentPage', films)
     })
     .catch(console.log);
 }
@@ -35,6 +39,7 @@ function renderNewDayPage(){
     return newFilmsBandle.onFetchTopDayFilms()
     .then((films) => {
         renderMarkup(films);
+        lsData.save('DetailsFilmsCurrentPage', films)
     })
     .catch(console.log);
 }
