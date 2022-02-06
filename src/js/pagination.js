@@ -30,6 +30,14 @@ function renderNewGenrePage(){
     .catch(console.log);
 }
 
+
+function renderNewDayPage(){
+    return newFilmsBandle.onFetchTopDayFilms()
+    .then((films) => {
+        renderMarkup(films);
+    })
+    .catch(console.log);
+}
 function hidefirstAndLastPages(instance) {
     document.querySelector('.tui-first').classList.remove('visually-hidden')
     document.querySelector('.tui-last').classList.remove('visually-hidden')
@@ -39,5 +47,10 @@ function hidefirstAndLastPages(instance) {
     if(instance.page>instance.totalPage-3){
         document.querySelector('.tui-last').classList.add('visually-hidden')
     }
-}
-export {renderNewSearchPage,makePagination,renderNewGenrePage}
+};
+export default{
+    renderNewSearchPage,
+    makePagination,
+    renderNewGenrePage,
+    renderNewDayPage
+};
