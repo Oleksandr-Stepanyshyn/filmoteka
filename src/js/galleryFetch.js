@@ -1,7 +1,8 @@
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
-import { renderNewSearchPage, makePagination, renderNewGenrePage } from './pagination';
+import pag from './pagination';
+// { renderNewSearchPage, makePagination, renderNewGenrePage, renderNewDayPage}
 import { options } from '../templates/options';
 import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
@@ -9,7 +10,6 @@ import genresListTemplate from '../templates/genresList';
 
 const newFilmsBandle = new FilmsApiService();
 let genresList = [];
-
 refs.formEl.addEventListener('submit', onFormElSubmit);
 refs.formSelectGenreEl.addEventListener('change', onSelectChange);
 
@@ -26,9 +26,7 @@ function renderDaylyTopFilms() {
       renderMarkup(films);
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
       Notiflix.Loading.remove();
-      if (newFilmsBandle.page === 1) {
-        makePagination(options, renderDaylyTopFilms);
-      }
+      pag.makePagination(options, pag.renderNewDayPage);
       newFilmsBandle.incrementPageNumber();
     })
     .catch(console.log);
@@ -76,10 +74,11 @@ function onFormElSubmit(e) {
       if (films.length === 0) {
         return onFilmsSearchError(name);
       }
-      newFilmsBandle.incrementPageNumber();
+     
       renderMarkup(films);
       Notiflix.Loading.remove(350);
-      makePagination(options, renderNewSearchPage);
+      pag.makePagination(options, pag.renderNewSearchPage);
+      newFilmsBandle.incrementPageNumber();
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
     })
     .catch(console.log);
@@ -102,10 +101,10 @@ function onSelectChange(e) {
   newFilmsBandle
     .onFetchGenresFilms()
     .then(films => {
-      newFilmsBandle.incrementPageNumber();
       renderMarkup(films);
       Notiflix.Loading.remove(350);
-      makePagination(options, renderNewGenrePage);
+      pag.makePagination(options, pag.renderNewGenrePage);
+      newFilmsBandle.incrementPageNumber();
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
     })
     .catch(console.log);
