@@ -43,6 +43,16 @@ function renderNewDayPage(){
     })
     .catch(console.log);
 }
+
+function renderNewWeekPage(){
+    return newFilmsBandle.onFetchTopWeekFilms()
+    .then((films) => {
+        renderMarkup(films);
+        lsData.save('DetailsFilmsCurrentPage', films)
+    })
+    .catch(console.log);
+}
+
 function hidefirstAndLastPages(instance) {
     document.querySelector('.tui-first').classList.remove('visually-hidden')
     document.querySelector('.tui-last').classList.remove('visually-hidden')
@@ -76,5 +86,6 @@ export default{
     makePagination,
     renderNewGenrePage,
     renderNewDayPage,
-    libraryPagination
+    renderNewWeekPage,
+    libraryPagination,
 };

@@ -8,6 +8,7 @@ import './js/filter';
 import './js/pagination';
 import './js/teamModal';
 import './js/scrollToTop';
+import './js/togglerDayOrWeek';
 import './js/checkFilmLibrary';
 import './js/library';
 

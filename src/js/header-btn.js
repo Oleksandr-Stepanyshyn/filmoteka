@@ -1,8 +1,7 @@
 import 'animate.css';
 import { refs } from './refs';
-import { renderDaylyTopFilms, newFilmsBandle, galleryReset } from './galleryFetch';
-
-const header = document.querySelector('.header');
+import { galleryReset } from './galleryFetch';
+import { onLoadSite } from './togglerDayOrWeek';
 
 refs.home.addEventListener('click', onHomeBtnClick);
 refs.library.addEventListener('click', onLibraryBtnClick);
@@ -11,7 +10,8 @@ refs.logo.addEventListener('click', onHomeBtnClick);
 function onHomeBtnClick() {
   galleryReset();
   refs.formEl.reset();
-  renderDaylyTopFilms();
+  refs.toggler.classList.remove('visually-hidden');
+  onLoadSite();
 
   refs.home.classList.add('nav__btn--currently');
   refs.library.classList.remove('nav__btn--currently');
@@ -23,11 +23,12 @@ function onHomeBtnClick() {
 function onLibraryBtnClick() {
   refs.home.classList.remove('nav__btn--currently');
   refs.library.classList.add('nav__btn--currently');
-  header.classList.add('header--library');
+  refs.header.classList.add('header--library');
   refs.librarySection.classList.remove('visually-hidden');
   refs.form.classList.add('visually-hidden');
   refs.watched.classList.add('library__btn--currenly');
   refs.queue.classList.remove('library__btn--currenly');
+  refs.toggler.classList.add('visually-hidden');
 }
 
 refs.watched.addEventListener('click', toggleClassWatched);
