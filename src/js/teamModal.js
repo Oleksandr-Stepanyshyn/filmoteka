@@ -9,29 +9,25 @@ function openModalTeam() {
     refs.bodyEl.classList.add('modal-open');
 
     document.addEventListener('keydown', onKeyboardPush);
-    refs.modalTeam.addEventListener('click', cliskIntoVoid);
+    document.addEventListener('click', cliskIntoVoid);
+}
 
-    function onKeyboardPush(e) {
-        console.log(e.code);
-        if (e.code === "Escape") {
-            closeModalTeam();
-            document.removeEventListener('keydown', onKeyboardPush);
-        }
+function onKeyboardPush(e) {
+    if (e.code === "Escape") {
+        closeModalTeam();
     }
+}
 
-    function cliskIntoVoid(e) {
-        console.log(e.code);
-        console.log(e.target);
-        if (e.target === refs.modalTeam) {
-            closeModalTeam();
-            document.removeEventListener('keydown', onKeyboardPush);
-        }
+function cliskIntoVoid(e) {
+    if (e.target === refs.modalTeam) {
+        closeModalTeam();
     }
 }
 
 function closeModalTeam() {
     refs.modalTeam.classList.add('is-hidden');
     refs.bodyEl.classList.remove('modal-open');
+    document.removeEventListener('keydown', onKeyboardPush);
 }
 
 const swiper = new Swiper('.swiper', {
