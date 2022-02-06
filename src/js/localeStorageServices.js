@@ -18,20 +18,30 @@ const remove = key => {
   return localStorage.removeItem(key);
 };
 // Перевіряє чи є фільм в черзі чи в переглянутих коли відкрили модалку і міняє текс кнопки
-// function btnTextChange(currentFilmId) {
-//   // console.log(currentFilmId);
-//   //-----шукаємо кнопки--------------------------------------------------
-//   const watchedBtn = document.querySelector('.modal-film__button-watched');
-//   const queueBtn = document.querySelector('.modal-film__button-queue');
-//   //---Перевіряємо чи є цей фільм в ЛС в масиві Watched------------------
-//   // load('watchedKey').forEach(element => {
-//   //   console.log(element.id);
-//   //   if (element.id === currentFilmId) {
-//   //     console.log('Такий фільм є');
-//   //     watchedBtn.textContent = 'Remove from watched';
-//   //   }
-//   // });
-// }
+function btnTextChange(currentFilmId) {
+  //-----шукаємо кнопки--------------------------------------------------
+  const watchedBtn = document.querySelector('.modal-film__button-watched');
+  const queueBtn = document.querySelector('.modal-film__button-queue');
+  //---Перевіряємо чи є цей фільм в ЛС в масиві Watched------------------
+  if (!load('watchedKey')) {
+    return;
+  } else {
+    load('watchedKey').forEach(element => {
+      if (element.id === currentFilmId) {
+        watchedBtn.textContent = 'Remove from watched';
+      }
+    });
+  }
+  if (!load('queueKey')) {
+    return;
+  } else {
+    load('queueKey').forEach(element => {
+      if (element.id === currentFilmId) {
+        queueBtn.textContent = 'Remove from queue';
+      }
+    });
+  }
+}
 //______________Для роботи з ЛС_____________________________________________________
 let watchedKey = [];
 let queueKey = [];
@@ -90,5 +100,5 @@ export default {
   remove,
   addToQueue,
   addToWatched,
-  // btnTextChange,
+  btnTextChange,
 };

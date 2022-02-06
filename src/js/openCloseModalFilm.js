@@ -30,7 +30,7 @@ function onOpenModal(e) {
   const backdropModalFilm = document.querySelector('.backdrop-modal-film');
   //---------------для роботи з локал сторедж------------------------
 
-  // lsData.btnTextChange(currentFilmId);
+  lsData.btnTextChange(currentFilmId);
   const watchedBtn = document.querySelector('.modal-film__button-watched');
   const queueBtn = document.querySelector('.modal-film__button-queue');
   watchedBtn.addEventListener('click', e => {
