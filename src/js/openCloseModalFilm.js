@@ -13,7 +13,7 @@ refs.galleryEl.addEventListener('click', onOpenModal);
 function onOpenModal(e) {
   const films = lsData.load(filmDetailsKey);
   const genres = lsData.load(filmIDsKey);
-  
+
   if (e.target.classList.contains('gallery__container')) return;
   const currentFilmId = Number(e.target.dataset.id);
   const clickedFilm = films.find(film => film.id === currentFilmId);
@@ -21,16 +21,16 @@ function onOpenModal(e) {
   const clickedFilmParams = {
     ...clickedFilm,
     popularity: Math.round(clickedFilm.popularity),
-    genre_ids: (parsGenres(clickedFilm.genre_ids, genres)).join(', '),
-  }
+    genre_ids: parsGenres(clickedFilm.genre_ids, genres).join(', '),
+  };
 
   bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilmParams));
   bodyEl.classList.add('modal-open');
   const btnCloseModalFilm = document.querySelector('.modal-film__button-close');
   const backdropModalFilm = document.querySelector('.backdrop-modal-film');
   //---------------для роботи з локал сторедж------------------------
-  let filmId = e.target.dataset.id;
-  lsData.btnTextChange(filmId);
+
+  lsData.btnTextChange(currentFilmId);
   const watchedBtn = document.querySelector('.modal-film__button-watched');
   const queueBtn = document.querySelector('.modal-film__button-queue');
   watchedBtn.addEventListener('click', e => {
@@ -59,10 +59,9 @@ function onOpenModal(e) {
     });
 
     document.addEventListener('keydown', onEscClose);
-  
+
     function onEscClose(e) {
-        if (e.code === 'Escape') 
-          clearModal();
-      };
-  };
+      if (e.code === 'Escape') clearModal();
+    }
+  }
 }
