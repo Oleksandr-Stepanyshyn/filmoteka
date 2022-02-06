@@ -22,6 +22,7 @@ function onOpenModal(e) {
     original_title: clickedFilm.original_title,
     genre_ids: (parsGenres(clickedFilm.genre_ids, genres)).join(', '),
     overview: clickedFilm.overview,
+    id: clickedFilm.id,
   }
   bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilmParams));
   bodyEl.classList.add('modal-open');
