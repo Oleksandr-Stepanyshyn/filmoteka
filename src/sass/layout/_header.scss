@@ -4,6 +4,9 @@
 }
 
 // ===================== header =======================
+.header__container {
+  position: relative;
+}
 
 .header {
   min-height: 230px;
@@ -335,7 +338,16 @@
 
 .toggler {
   position: absolute;
-  top: 200px;
+  bottom: -40px;
+  right: 25px;
+
+  @media screen and (min-width: 768px) {
+    right: 80px;
+  }
+  @media screen and (min-width: 1024px) {
+    right: 75px;
+  }
+  
 
   display: inline-block;
 }
@@ -355,7 +367,7 @@
   position: relative;
 
   display: inline-block;
-  margin-right: 7px;
+  margin-left: 10px;
   height: 22px;
   width: 40px;
 
