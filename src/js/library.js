@@ -14,9 +14,10 @@ refs.queue.addEventListener("click", onQueueClick)
 
 function onWatchedClick(e) {
     galleryReset();
-    renderMarkup(localeStorageServices.load("WatchedFilms"));
+    const watchedFilms = localeStorageServices.load("WatchedFilms")
+    renderMarkup(watchedFilms);
     console.log(localeStorageServices.load("WatchedFilms"))
-   localeStorageServices.save('DetailsFilmsCurrentPage', films);
+   localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
       Notiflix.Loading.remove();
       pag.makePagination(options, pag.renderNewDayPage);
       newFilmsBandle.incrementPageNumber();
