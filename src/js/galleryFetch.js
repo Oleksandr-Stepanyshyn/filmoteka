@@ -43,7 +43,7 @@ function renderWeeklyTopFilms() {
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
       Notiflix.Loading.remove();
       if (newFilmsBandle.page === 1) {
-        makePagination(options, renderWeeklyTopFilms);
+        pag.makePagination(options, pag.renderNewWeekPage);
       }
       newFilmsBandle.incrementPageNumber();
     })
