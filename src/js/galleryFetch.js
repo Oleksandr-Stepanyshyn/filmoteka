@@ -85,6 +85,7 @@ function onFormElSubmit(e) {
   }
 
   galleryReset();
+  refs.formSelectGenreEl.value = "";
 
   newFilmsBandle
     .onFetchKeyWordFilms()
@@ -114,6 +115,7 @@ function onSelectChange(e) {
   };
 
   galleryReset();
+  refs.formEl.elements.searchQuery.value = "";
 
   newFilmsBandle
     .onFetchGenresFilms()
