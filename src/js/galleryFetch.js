@@ -2,10 +2,10 @@ import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
 import pag from './pagination';
-// { renderNewSearchPage, makePagination, renderNewGenrePage, renderNewDayPage}
 import { options } from '../templates/options';
 import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
+import { onLoadSite } from './togglerDayOrWeek';
 import genresListTemplate from '../templates/genresList';
 
 const newFilmsBandle = new FilmsApiService();
@@ -13,7 +13,7 @@ let genresList = [];
 refs.formEl.addEventListener('submit', onFormElSubmit);
 refs.formSelectGenreEl.addEventListener('change', onSelectChange);
 
-// Функция для отрисовки главной страницы, возвращает популярные фильмы дня
+// Функция для отрисовки главной страницы, возвращает популярные фильмы дня.
 function renderDaylyTopFilms() {
   Notiflix.Loading.init({ svgColor: '#ff6b08' });
   Notiflix.Loading.dots('Loading...');
@@ -27,6 +27,24 @@ function renderDaylyTopFilms() {
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
       Notiflix.Loading.remove();
       pag.makePagination(options, pag.renderNewDayPage);
+      newFilmsBandle.incrementPageNumber();
+    })
+    .catch(console.log);
+}
+
+// Функция для отрисовки главной страницы, возвращает популярные фильмы недели.
+function renderWeeklyTopFilms() {
+  Notiflix.Loading.init({ svgColor: '#ff6b08' });
+  Notiflix.Loading.dots('Loading...');
+  return newFilmsBandle
+    .onFetchTopWeekFilms()
+    .then(films => {
+      renderMarkup(films);
+      localeStorageServices.save('DetailsFilmsCurrentPage', films);
+      Notiflix.Loading.remove();
+      if (newFilmsBandle.page === 1) {
+        pag.makePagination(options, pag.renderNewWeekPage);
+      }
       newFilmsBandle.incrementPageNumber();
     })
     .catch(console.log);
@@ -46,7 +64,7 @@ function fetchIDFilms() {
 }
 
 fetchIDFilms();
-renderDaylyTopFilms();
+onLoadSite();
 
 // Функция для отрисовки списка жанров
 function renderGenresList(genres) {
@@ -67,6 +85,7 @@ function onFormElSubmit(e) {
   }
 
   galleryReset();
+  refs.formSelectGenreEl.value = "";
 
   newFilmsBandle
     .onFetchKeyWordFilms()
@@ -96,6 +115,7 @@ function onSelectChange(e) {
   };
 
   galleryReset();
+  refs.formEl.elements.searchQuery.value = "";
 
   newFilmsBandle
     .onFetchGenresFilms()
@@ -206,4 +226,4 @@ function onErrors(error) {
   }, 3000);
 }
 
-export { renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset, parsGenres };
+export { renderMarkup, renderDaylyTopFilms, renderWeeklyTopFilms, newFilmsBandle, galleryReset, parsGenres };

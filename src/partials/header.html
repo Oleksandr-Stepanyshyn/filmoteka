@@ -1,5 +1,5 @@
 <header class="header">
-  <div class="container">
+  <div class="container header__container">
     <nav class="nav">
       <button class="logo-btn btn js-logo-btn animate__animated animate__tada animate__delay-2s">
         <svg width="24" height="24">
@@ -17,7 +17,7 @@
       </ul>
     </nav>
 
-    <form class="form">
+    <form class="form" autocomplete="off">
       <div class="form__inner">
         <input class="form__input" type="text" name="searchQuery" placeholder="Search movies" />
         <button class="form__btn btn js-form-btn" type="submit">
@@ -38,6 +38,16 @@
     <div class="library visually-hidden">
       <button class="library__btn btn js-btn-watched">Watched</button>
       <button class="library__btn btn js-btn-queue">Queue</button>
+    </div>
+
+    <!-- Переключатель Day or Week -->
+
+    <div class="toggler">
+      <label class="label">
+        <span class="text"></span>
+        <input id="switch" name="switch" type="checkbox" />
+        <span class="toggler__box"></span>
+      </label>
     </div>
   </div>
 

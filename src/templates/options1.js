@@ -1,13 +1,12 @@
 
-export const options =  { 
+export const options1 =  { 
     totalItems: '',
     itemsPerPage: 20,
-    visiblePages: 5,
+    // visiblePages: 5,
     centerAlign: true,
     totalPages:"",
     firstItemClassName: 'tui-first-child',
     lastItemClassName: 'tui-last-child',
-    usageStatistics: false,
     template: {
         page: '<a href="#" class="tui-page-btn">{{page}}</a>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
@@ -20,6 +19,14 @@ export const options =  {
               '<span class="tui-ico-first">1</span>' +
           '</a>';
             }
+
+            if (type.type === 'first'&&options1.totalItems<5) {
+              template =
+              '<a href="#" class="visually-hidden tui-page-btn tui-first custom-class-first">' +
+              '<span class="tui-ico-first">1</span>' +
+          '</a>';
+            }
+
             if (type.type === 'prev') {
                 template =
                 '<a href="#" class="arrow tui-page-btn tui-prev custom-class-prev tui-first-child">' +'<span class="material-icons">arrow_back</span>' 
@@ -36,11 +43,18 @@ export const options =  {
 
               if (type.type === 'last') {
                 template =
-                '<a href="#" class=" tui-page-btn tui-last custom-class-last">' +
-                '<span class="tui-ico-last">'+ options.totalPages +'</span>' +
+                '<a href="#" class="tui-page-btn tui-last custom-class-last">' +
+                '<span class="tui-ico-last">'+ options1.totalPages +'</span>' +
             '</a>';
               }
-        
+
+              if (type.type === 'last'&&options1.totalItems<6) {
+                template =
+                '<a href="#" class="visually-hidden tui-page-btn tui-last custom-class-last">' +
+                '<span class="tui-ico-last">'+ options1.totalPages +'</span>' +
+            '</a>';
+              }
+
             return template;
           },
         disabledMoveButton:
