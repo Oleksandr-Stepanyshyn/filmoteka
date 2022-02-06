@@ -16,9 +16,24 @@ export default class FilmsApiService {
     const searchParams = new URLSearchParams({
       page: this.page,
     });
-  
+
     const response = await axios.get(
       `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&${searchParams}`,
+    );
+    const data = await response.data;
+    this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
+    return data.results;
+  }
+
+  // Метод для получения популярных фильмов недели.
+  async onFetchTopWeekFilms() {
+    const searchParams = new URLSearchParams({
+      page: this.page,
+    });
+
+    const response = await axios.get(
+      `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&${searchParams}`,
     );
     const data = await response.data;
     this.totalPage = data.total_pages;
@@ -41,6 +56,28 @@ export default class FilmsApiService {
     this.totalPage = data.total_pages;
     this.totalItems = data.total_results;
     return data.results;
+  }
+
+  // Метод для получения id жанров фильмов.
+  async onFetchId() {
+    const response = await axios.get(
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+    );
+    const data = await response.data;
+    const genres = await data.genres;
+    return genres;
+  }
+
+  // Витянує дані для фільма по айдішці.
+  async onfetchMoviesDetails(id) {
+    try {
+      const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
+      const response = await fetch(url);
+      const data = response.json();
+      return data;
+    } catch (error) {
+      console.error('Get state error: ', error.message);
+    }
   }
 
   // Метод Геттер для получения текущего значения строки поиска (нам не нужен:)).
@@ -84,7 +121,7 @@ export default class FilmsApiService {
     this.page = 1;
   }
 
-  resetTotalItems(){
+  resetTotalItems() {
     this.totalItems = 0;
   }
 
@@ -97,27 +134,4 @@ export default class FilmsApiService {
   errorFilmSearch() {
     console.log('Search result not successful. Enter the correct movie name and try again');
   }
-
-  // витянує дані для фільма по айдішці
-  async onfetchMoviesDetails(id) {
-    try {
-      const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
-      const response = await fetch(url);
-      const data = response.json();
-      return data;
-    } catch (error) {
-      console.error('Get state error: ', error.message);
-    }
-  }
-
-// метод для получения id жанров фильмов
-  async onFetchId() { 
-    const response = await axios.get(
-      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
-    );
-  const data = await response.data;
-    const genres = await data.genres;
-  return  genres;
-  }
-
 }

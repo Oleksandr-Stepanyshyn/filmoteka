@@ -5,13 +5,14 @@ import { renderNewSearchPage, makePagination } from './pagination';
 import { options } from '../templates/options';
 import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
+import { onLoadSite } from './togglerDayOrWeek';
 
 const newFilmsBandle = new FilmsApiService();
 let genresList = [];
 
 refs.formEl.addEventListener('submit', onFormElSubmit);
 
-// Функция для отрисовки главной страницы, возвращает популярные фильмы дня
+// Функция для отрисовки главной страницы, возвращает популярные фильмы дня.
 function renderDaylyTopFilms() {
   Notiflix.Loading.init({ svgColor: '#ff6b08' });
   Notiflix.Loading.dots('Loading...');
@@ -29,7 +30,25 @@ function renderDaylyTopFilms() {
     .catch(console.log);
 }
 
-// Функция, которая запрашивает жанры
+// Функция для отрисовки главной страницы, возвращает популярные фильмы недели.
+function renderWeeklyTopFilms() {
+  Notiflix.Loading.init({ svgColor: '#ff6b08' });
+  Notiflix.Loading.dots('Loading...');
+  return newFilmsBandle
+    .onFetchTopWeekFilms()
+    .then(films => {
+      renderMarkup(films);
+      localeStorageServices.save('DetailsFilmsCurrentPage', films);
+      Notiflix.Loading.remove();
+      if (newFilmsBandle.page === 1) {
+        makePagination(options, renderWeeklyTopFilms);
+      }
+      newFilmsBandle.incrementPageNumber();
+    })
+    .catch(console.log);
+}
+
+// Функция, которая запрашивает жанры.
 function fetchIDFilms() {
   return newFilmsBandle
     .onFetchId()
@@ -41,7 +60,7 @@ function fetchIDFilms() {
 }
 
 fetchIDFilms();
-renderDaylyTopFilms();
+onLoadSite();
 
 // Функция для отрисовки страницы с фильмами по запросу из формы
 function onFormElSubmit(e) {
@@ -165,4 +184,4 @@ function onErrors(error) {
   }, 3000);
 }
 
-export { renderMarkup, renderDaylyTopFilms, newFilmsBandle, galleryReset };
+export { renderMarkup, renderDaylyTopFilms, renderWeeklyTopFilms, newFilmsBandle, galleryReset };
