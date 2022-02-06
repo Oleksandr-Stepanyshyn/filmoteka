@@ -10,7 +10,7 @@ refs.queue.addEventListener("click", onQueueClick)
 
 function onWatchedClick(e) {
     galleryReset();
-    const watchedFilms = localeStorageServices.load("WatchedFilms")
+    const watchedFilms = localeStorageServices.load("watchedKey")
     pag.libraryPagination(watchedFilms)
     localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
     Notiflix.Loading.remove();
@@ -19,10 +19,10 @@ function onWatchedClick(e) {
 
 function onQueueClick(e) {
     galleryReset();
-    const watchedFilms = localeStorageServices.load("QueueFilms")
-    pag.libraryPagination(watchedFilms)
-    localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
+    const queueFilms = localeStorageServices.load("queueKey")
+    pag.libraryPagination(queueFilms)
+    localeStorageServices.save('DetailsFilmsCurrentPage', queueFilms);
     Notiflix.Loading.remove();
 }
 
-export { onWatchedClick };
+export { onWatchedClick, onQueueClick };
