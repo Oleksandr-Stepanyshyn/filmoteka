@@ -11,12 +11,6 @@ refs.queue.addEventListener("click", onQueueClick)
 function onWatchedClick(e) {
     galleryReset();
     const watchedFilms = localeStorageServices.load("WatchedFilms")
-
-    renderMarkup(watchedFilms);
-   localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
-      Notiflix.Loading.remove();
-      pag.makePagination(options, pag.renderNewDayPage);
-
     pag.libraryPagination(watchedFilms)
     localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
     Notiflix.Loading.remove();
