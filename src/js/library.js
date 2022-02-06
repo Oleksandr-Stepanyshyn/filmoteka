@@ -1,13 +1,9 @@
 import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
-import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
 import pag from './pagination';
-import { options } from '../templates/options';
-import { renderMarkup, galleryReset } from './galleryFetch';
+import {  galleryReset } from './galleryFetch';
 
-const filmsBandle = new FilmsApiService();
-let filmsList = [];
 
 refs.watched.addEventListener("click", onWatchedClick);
 refs.queue.addEventListener("click", onQueueClick)
@@ -15,20 +11,23 @@ refs.queue.addEventListener("click", onQueueClick)
 function onWatchedClick(e) {
     galleryReset();
     const watchedFilms = localeStorageServices.load("WatchedFilms")
+
     renderMarkup(watchedFilms);
-    console.log(localeStorageServices.load("WatchedFilms"))
    localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
       Notiflix.Loading.remove();
       pag.makePagination(options, pag.renderNewDayPage);
-      newFilmsBandle.incrementPageNumber();
+
+    pag.libraryPagination(watchedFilms)
+    localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
+    Notiflix.Loading.remove();
+
 }
 
 function onQueueClick(e) {
     galleryReset();
-    renderMarkup(localeStorageServices.load("QueueFilms"));
-    localeStorageServices.save('DetailsFilmsCurrentPage', films);
-      Notiflix.Loading.remove();
-      pag.makePagination(options, pag.renderNewDayPage);
-      newFilmsBandle.incrementPageNumber();
+    const watchedFilms = localeStorageServices.load("QueueFilms")
+    pag.libraryPagination(watchedFilms)
+    localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
+    Notiflix.Loading.remove();
 }
 
