@@ -1,4 +1,5 @@
 export const refs = {
+  bodyEl: document.querySelector('body'),
   home: document.querySelector('.js-nav-home-btn'),
   library: document.querySelector('.js-nav-library-btn'),
   logo: document.querySelector('.js-logo-btn'),
