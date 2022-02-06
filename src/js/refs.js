@@ -20,6 +20,7 @@ export const refs = {
   scrollToTopEl: document.querySelector('.scroll-to-top'),
   checkbox: document.querySelector('#switch'),
   toggler: document.querySelector('.toggler'),
+  textToggler: document.querySelector('.text'),
   // filmCard: document.querySelector('.film-card'),
   // btnCloseModalFilm: document.querySelector('.modal-film__button-close'),
 };
