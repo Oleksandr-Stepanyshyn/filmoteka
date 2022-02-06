@@ -74,7 +74,6 @@ function onFormElSubmit(e) {
       if (films.length === 0) {
         return onFilmsSearchError(name);
       }
-     
       renderMarkup(films);
       Notiflix.Loading.remove(350);
       pag.makePagination(options, pag.renderNewSearchPage);
