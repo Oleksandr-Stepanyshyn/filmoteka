@@ -17,6 +17,8 @@ export const refs = {
   errorImgEl: document.querySelector('.errorImg__container'),
   paginationContainer: document.getElementById('tui-pagination-container'),
   scrollToTopEl: document.querySelector('.scroll-to-top'),
+  btnSwitch: document.querySelector('.theme-switch-bg'),
+  footerSwitch: document.querySelector('.footer'),
   // filmCard: document.querySelector('.film-card'),
   // btnCloseModalFilm: document.querySelector('.modal-film__button-close'),
 };

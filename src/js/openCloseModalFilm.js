@@ -40,6 +40,7 @@ function onOpenModal(e) {
   });
   //-------------------------------------------------------------------
   if (!backdropModalFilm) {
+
     return;
   } else {
     const clearModal = () => {
@@ -50,12 +51,13 @@ function onOpenModal(e) {
       clearModal();
     });
     backdropModalFilm.addEventListener('click', e => {
-      if (!e.target.classList.contains('backdrop-modal-film')) return;
+      if (!e.target.classList.contains('backdrop-modal-film')) { return};
       clearModal();
     });
     window.addEventListener('keydown', e => {
       if (e.code === 'Escape') {
         clearModal();
+        console.log("bhhj")
       }
     });
   }
