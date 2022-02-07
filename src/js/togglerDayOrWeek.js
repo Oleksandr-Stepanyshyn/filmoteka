@@ -35,6 +35,7 @@ function onTogglerRenderDayFilms() {
   refs.textToggler.style.color = '#f46a0d';
   refs.textToggler.style.background = '#dddddd';
   renderDaylyTopFilms();
+  resetForm();
 }
 
 function onTogglerRenderWeekFilms() {
@@ -42,6 +43,12 @@ function onTogglerRenderWeekFilms() {
   refs.textToggler.style.color = '#ffffff';
   refs.textToggler.style.background = '#f46a0d';
   renderWeeklyTopFilms();
+  resetForm();
+}
+
+function resetForm() {
+  refs.formSelectGenreEl.value = '';
+  refs.formEl.elements.searchQuery.value = "";
 }
 
 export { onLoadSite };
