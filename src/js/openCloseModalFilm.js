@@ -49,7 +49,6 @@ function onOpenModal(e) {
     // };
   });
   
-  //-------------------------------------------------------------------
   if (!backdropModalFilm) {
     return;
   } else {
