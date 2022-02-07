@@ -2,7 +2,7 @@ import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
 import Notiflix from 'notiflix';
 import pag from './pagination';
-import {  galleryReset } from './galleryFetch';
+import { galleryReset } from './galleryFetch';
 
 
 refs.watched.addEventListener("click", onWatchedClick);

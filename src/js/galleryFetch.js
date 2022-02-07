@@ -2,7 +2,6 @@ import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
 import Notiflix from 'notiflix';
 import pag from './pagination';
-import { options } from '../templates/options';
 import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
 import { onLoadSite } from './togglerDayOrWeek';
@@ -26,7 +25,7 @@ function renderDaylyTopFilms() {
       renderMarkup(films);
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
       Notiflix.Loading.remove();
-      pag.makePagination(options, pag.renderNewDayPage);
+      pag.makePagination(pag.renderNewDayPage);
       newFilmsBandle.incrementPageNumber();
     })
     .catch(console.log);
@@ -43,7 +42,7 @@ function renderWeeklyTopFilms() {
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
       Notiflix.Loading.remove();
       if (newFilmsBandle.page === 1) {
-        pag.makePagination(options, pag.renderNewWeekPage);
+        pag.makePagination(pag.renderNewWeekPage);
       }
       newFilmsBandle.incrementPageNumber();
     })
@@ -95,7 +94,7 @@ function onFormElSubmit(e) {
       }
       renderMarkup(films);
       Notiflix.Loading.remove(350);
-      pag.makePagination(options, pag.renderNewSearchPage);
+      pag.makePagination(pag.renderNewSearchPage);
       newFilmsBandle.incrementPageNumber();
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
     })
@@ -123,10 +122,10 @@ function onSelectChange(e) {
       renderMarkup(films);
       Notiflix.Loading.remove(350);
       if(newFilmsBandle.totalPage>500){
-        pag.makePaginationGenre(options, pag.renderNewGenrePage);
+        pag.makePaginationGenre(pag.renderNewGenrePage);
       }
       else{
-        pag.makePagination(options, pag.renderNewGenrePage);
+        pag.makePagination(pag.renderNewGenrePage);
       }
       newFilmsBandle.incrementPageNumber();
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
