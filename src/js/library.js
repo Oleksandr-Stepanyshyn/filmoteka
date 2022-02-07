@@ -10,7 +10,10 @@ refs.queue.addEventListener("click", onQueueClick)
 
 function onWatchedClick(e) {
     galleryReset();
-    const watchedFilms = localeStorageServices.load("watchedKey")
+    if(localStorage.getItem("watchedKey") === null){
+        return
+    }
+    const watchedFilms = localeStorageServices.load("watchedKey");
     pag.libraryPagination(watchedFilms)
     localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
     Notiflix.Loading.remove();
@@ -19,6 +22,9 @@ function onWatchedClick(e) {
 
 function onQueueClick(e) {
     galleryReset();
+    if(localStorage.getItem("queueKey") === null){
+        return
+    }
     const queueFilms = localeStorageServices.load("queueKey")
     pag.libraryPagination(queueFilms)
     localeStorageServices.save('DetailsFilmsCurrentPage', queueFilms);

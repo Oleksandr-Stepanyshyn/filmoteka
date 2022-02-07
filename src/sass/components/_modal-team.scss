@@ -25,11 +25,11 @@
   color: #ffffff;
 
   @media screen and (min-width: 768px) {
-    width: 720px;
+    width: 570px;
   }
 
   @media screen and (min-width: 1024px) {
-    width: 1000px;
+    width: 840px;
   }
 
   top: 50%;
@@ -56,8 +56,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
   border-radius: 50%;
   margin: 0;
   padding: 0;
