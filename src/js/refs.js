@@ -21,4 +21,6 @@ export const refs = {
   checkbox: document.querySelector('#switch'),
   toggler: document.querySelector('.toggler'),
   textToggler: document.querySelector('.text'),
+  btnSwitch: document.querySelector('.theme-switch-bg'),
+  switchFooter: document.querySelector('.footer'),
 };

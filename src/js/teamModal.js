@@ -65,3 +65,4 @@ const swiper = new Swiper('.swiper', {
     initialSlide: 0,
     freeMode: true,
   });
+
