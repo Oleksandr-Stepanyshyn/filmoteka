@@ -2,7 +2,6 @@
 const save = (key, value) => {
   const data = JSON.stringify(value);
   localStorage.setItem(key, data);
-  // console.log(data);
 };
 //---функція яка грузить з локалстореджу-----------------------//
 const load = key => {
@@ -51,7 +50,6 @@ let queueKey = [];
 function addToWatched(e) {
   if (localStorage.getItem('watchedKey') !== null) {
     watchedKey = load('watchedKey');
-    // watchedKey = JSON.parse('Watched');
   }
   const clickedFilm = load('DetailsFilmsCurrentPage').find(
     film => film.id === Number(e.target.dataset.id),
@@ -74,7 +72,6 @@ function addToWatched(e) {
 function addToQueue(e) {
   if (localStorage.getItem('queueKey') !== null) {
     queueKey = load('queueKey');
-    // queueKey = JSON.parse('Queue');
   }
   const clickedFilm = load('DetailsFilmsCurrentPage').find(
     film => film.id === Number(e.target.dataset.id),
@@ -84,7 +81,6 @@ function addToQueue(e) {
 
     save('queueKey', queueKey);
     const btNwatch = e.target;
-    // console.log(queueKey);
     btNwatch.textContent = 'Add to queue';
   } else {
     queueKey.push(clickedFilm);
