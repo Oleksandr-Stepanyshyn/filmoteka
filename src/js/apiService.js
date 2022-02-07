@@ -69,18 +69,6 @@ export default class FilmsApiService {
     return genres;
   }
 
-  // Витянує дані для фільма по айдішці.
-  async onfetchMoviesDetails(id) {
-    try {
-      const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
-      const response = await fetch(url);
-      const data = response.json();
-      return data;
-    } catch (error) {
-      console.error('Get state error: ', error.message);
-    }
-  }
-
   // Метод Геттер для получения текущего значения строки поиска (нам не нужен:)).
   get query() {
     return this.searchQueryFilms;

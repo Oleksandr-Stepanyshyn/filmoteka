@@ -33,7 +33,6 @@ function onTogglerClick(e) {
 function onTogglerRenderDayFilms() {
   refs.textToggler.textContent = 'Day';
   refs.textToggler.style.color = '#f46a0d';
-  refs.textToggler.style.background = '#dddddd';
   renderDaylyTopFilms();
   resetForm();
 }
@@ -41,7 +40,6 @@ function onTogglerRenderDayFilms() {
 function onTogglerRenderWeekFilms() {
   refs.textToggler.textContent = 'Week';
   refs.textToggler.style.color = '#ffffff';
-  refs.textToggler.style.background = '#f46a0d';
   renderWeeklyTopFilms();
   resetForm();
 }
