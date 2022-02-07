@@ -18,6 +18,14 @@ function onWatchedClick(e) {
     localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
     Notiflix.Loading.remove();
 
+    const alert = `<div class="alert"><p class="alert_greet">
+       Hello lover movie!<p/>
+       <p>You haven't added a movie yet. Please make your choise.
+       </p><div/>`;
+    if (refs.galleryEl.firstChild === null) {
+        refs.galleryEl.innerHTML = alert;
+    }
+
 }
 
 function onQueueClick(e) {
@@ -29,6 +37,15 @@ function onQueueClick(e) {
     pag.libraryPagination(queueFilms)
     localeStorageServices.save('DetailsFilmsCurrentPage', queueFilms);
     Notiflix.Loading.remove();
+
+    const alert = `<div class="alert"><p class="alert_greet">
+       Hello lover movie!<p/>
+       <p>You haven't added a movie yet. Please make your choise.
+       </p><div/>`;
+    if (refs.galleryEl.firstChild === null) {
+        refs.galleryEl.innerHTML = alert;
+    }
+    
 }
 
 export { onWatchedClick, onQueueClick };
