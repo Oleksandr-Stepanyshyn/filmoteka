@@ -2,9 +2,11 @@ import {renderMarkup,newFilmsBandle} from './galleryFetch';
 import Pagination from 'tui-pagination';
 import { refs } from './refs';
 import lsData from './localeStorageServices';
-import { options1 } from '../templates/options1';
+import { options1 } from './options/options1';
+import { options } from './options/options';
 
-function makePagination(options,func) {
+
+function makePagination(func) {
     if (newFilmsBandle.totalItems < 20){
         return
     }
@@ -96,7 +98,7 @@ function libraryPagination(films){
     })
     }
     
-    function makePaginationGenre(options,func) {
+    function makePaginationGenre(func) {
     if (newFilmsBandle.totalItems < 20){
         return
     }
