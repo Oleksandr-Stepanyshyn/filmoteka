@@ -122,7 +122,12 @@ function onSelectChange(e) {
     .then(films => {
       renderMarkup(films);
       Notiflix.Loading.remove(350);
-      pag.makePagination(options, pag.renderNewGenrePage);
+      if(newFilmsBandle.totalPage>500){
+        pag.makePaginationGenre(options, pag.renderNewGenrePage);
+      }
+      else{
+        pag.makePagination(options, pag.renderNewGenrePage);
+      }
       newFilmsBandle.incrementPageNumber();
       localeStorageServices.save('DetailsFilmsCurrentPage', films);
     })
