@@ -36,17 +36,9 @@ function onOpenModal(e) {
   const queueBtn = document.querySelector('.modal-film__button-queue');
   watchedBtn.addEventListener('click', e => {
     lsData.addToWatched(e);
-    // if(!refs.librarySection.classList.contains('visually-hidden')) {
-    //   onWatchedClick();
-    //   watchedBtn.setAttribute('disabled', true);
-    // };
   });
   queueBtn.addEventListener('click', e => {
     lsData.addToQueue(e);
-    // if(!refs.librarySection.classList.contains('visually-hidden')) {
-    //   onQueueClick();
-    //   queueBtn.setAttribute('disabled', true);
-    // };
   });
   
   if (!backdropModalFilm) {

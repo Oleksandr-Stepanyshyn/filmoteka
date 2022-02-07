@@ -10,10 +10,12 @@
 }
 
 .footer__container {
+    @include flexcenter;
+    flex-wrap: wrap;
     text-align: center;
     font-weight: 400;
     font-size: 14px;
-    line-height: 1.57;
+    line-height: 1.14;
     
     padding: 28px 35px;
     
@@ -21,6 +23,12 @@
         padding: 30px 0;
         font-size: 16px;
         line-height: 1.17;
+    }
+}
+
+.footer__text-btn {
+    @media screen and (max-width: 767px) {
+        margin-top: 10px;
     }
 }
 
