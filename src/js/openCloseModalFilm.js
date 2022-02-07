@@ -48,6 +48,13 @@ function onOpenModal(e) {
       backdropModalFilm.remove();
       bodyEl.classList.remove('modal-open');
       document.removeEventListener('keydown', onEscClose);
+      if (!refs.librarySection.classList.contains('visually-hidden')) {
+        if(refs.watched.classList.contains('library__btn--currenly')) {
+          onWatchedClick();
+          return;
+        }
+        onQueueClick();
+      }
     };
 
     btnCloseModalFilm.addEventListener('click', () => {
