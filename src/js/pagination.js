@@ -2,7 +2,6 @@ import {renderMarkup,newFilmsBandle} from './galleryFetch';
 import Pagination from 'tui-pagination';
 import { refs } from './refs';
 import lsData from './localeStorageServices';
-import { options1 } from './options/options1';
 import { options } from './options/options';
 
 
@@ -80,25 +79,25 @@ function hidefirstAndLastPages(page,totalPage) {
 function libraryPagination(films){
 
     let page=1;
-    options1.totalItems = films.length;
-    let filmsOnPage=films.slice(0,options1.itemsPerPage);
-    options1.totalPages = Math.ceil(options1.totalItems/options1.itemsPerPage);
+    options.totalItems = films.length;
+    let filmsOnPage=films.slice(0,options.itemsPerPage);
+    options.totalPages = Math.ceil(options.totalItems/options.itemsPerPage);
     renderMarkup(filmsOnPage);   
 
-    if(options1.totalItems<=options1.itemsPerPage){return}
-    const pagination = new Pagination(refs.paginationContainer,options1)
-    hidefirstAndLastPages(page, options1.totalPages);
+    if(options.totalItems<=options.itemsPerPage){return}
+    const pagination = new Pagination(refs.paginationContainer,options)
+    hidefirstAndLastPages(page, options.totalPages);
 
     pagination.on('afterMove', (event) => {
         page = event.page;
         refs.galleryEl.innerHTML = "";
-        filmsOnPage=films.slice((page-1)*options1.itemsPerPage, page*options1.itemsPerPage)
+        filmsOnPage=films.slice((page-1)*options.itemsPerPage, page*options.itemsPerPage)
         renderMarkup(filmsOnPage);
-        hidefirstAndLastPages(page, options1.totalPages);
+        hidefirstAndLastPages(page, options.totalPages);
     })
-    }
+}
     
-    function makePaginationGenre(func) {
+function makePaginationGenre(func) {
     if (newFilmsBandle.totalItems <= 20){
         return
     }
