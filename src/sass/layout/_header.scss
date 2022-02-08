@@ -256,6 +256,7 @@
   line-height: calc(16 / 14);
   color: $accent-text-color;
 
+  &:hover,
   &:focus {
     cursor: pointer;
   }
