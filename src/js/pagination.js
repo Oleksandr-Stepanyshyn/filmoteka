@@ -7,7 +7,7 @@ import { options } from './options/options';
 
 
 function makePagination(func) {
-    if (newFilmsBandle.totalItems < 20){
+    if (newFilmsBandle.totalItems <= 20){
         return
     }
 
@@ -85,7 +85,7 @@ function libraryPagination(films){
     options1.totalPages = Math.ceil(options1.totalItems/options1.itemsPerPage);
     renderMarkup(filmsOnPage);   
 
-    if(options1.totalItems<options1.itemsPerPage){return}
+    if(options1.totalItems<=options1.itemsPerPage){return}
     const pagination = new Pagination(refs.paginationContainer,options1)
     hidefirstAndLastPages(page, options1.totalPages);
 
@@ -99,7 +99,7 @@ function libraryPagination(films){
     }
     
     function makePaginationGenre(func) {
-    if (newFilmsBandle.totalItems < 20){
+    if (newFilmsBandle.totalItems <= 20){
         return
     }
     options.totalPages=500;
