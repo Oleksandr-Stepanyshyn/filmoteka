@@ -13,7 +13,7 @@ document.body.className=localStorage.theme;
 switchFooter.className =localStorage.themeFooter;
 function onSwitch(){
   document.body.classList.toggle("dark");
-  refs.footerSwitch.classList.toggle("dark");
+  refs.footerSwitch.classList.toggle("dark-footer");
   localStorage.theme=document.body.className || light;
   localStorage.themeFooter=switchFooter.className || light;
 }
