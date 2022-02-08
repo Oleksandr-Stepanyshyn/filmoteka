@@ -185,7 +185,6 @@
 .form__inner {
   position: relative;
 
-  max-width: 280px;
   margin-left: auto;
   margin-right: auto;
 
@@ -269,16 +268,20 @@
 // ======================== message erorr ======================
 
 .search-error {
-  margin-top: 22px;
+  margin-top: 5px;
 
   color: #ff001b;
   font-weight: 400;
   font-size: 14px;
-  line-height: calc(16 / 14);
+  line-height: calc(16 / 15);
   text-align: center;
 
   opacity: 1;
   visibility: visible;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 10px;
+  }
 }
 
 .search-error--hidden {
@@ -338,16 +341,15 @@
 
 .toggler {
   position: absolute;
-  top: 145px;
-  right: 25px;
+  top: 158px;
+  right: 20px;
 
   @media screen and (min-width: 768px) {
     right: 80px;
   }
   @media screen and (min-width: 1024px) {
-    right: 75px;
+    right: 70px;
   }
-  
 
   display: inline-block;
 }
@@ -367,11 +369,12 @@
   position: relative;
 
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 5px;
   height: 22px;
-  width: 40px;
+  width: 37px;
 
-  background: #dddddd;
+  background: transparent;
+  border: 1px solid #ffffff;
   border-radius: 50px;
   transition: background 200ms ease;
   cursor: pointer;
@@ -380,7 +383,7 @@
 .toggler__box::before {
   content: '';
   position: absolute;
-  top: 2px;
+  top: 1px;
   left: 2px;
 
   display: flex;
@@ -395,8 +398,6 @@
 }
 
 .text {
-  padding: 1px 4px;
-
   font-size: 14px;
   text-align: center;
 
@@ -404,10 +405,11 @@
 }
 
 input:checked + .toggler__box {
-  background: #f46a0d;
+  background: transparent;
+  border: 1px solid #f46a0d;
 }
 
 input:checked + .toggler__box::before {
-  transform: translateX(17px);
+  transform: translateX(13px);
   background: #ffffff;
 }
