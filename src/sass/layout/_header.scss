@@ -233,11 +233,11 @@
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  transition: transform linear 200ms;
 
   &:hover,
   &:focus {
     transform: scale(1.05);
-    transition: transform linear 200ms;
   }
 }
 
@@ -347,7 +347,6 @@
   @media screen and (min-width: 1024px) {
     right: 75px;
   }
-  
 
   display: inline-block;
 }
