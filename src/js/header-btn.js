@@ -17,7 +17,7 @@ function onHomeBtnClick() {
   refs.home.classList.add('nav__btn--currently');
   refs.library.classList.remove('nav__btn--currently');
   refs.header.classList.remove('header--library');
-  refs.form.classList.remove('visually-hidden');
+  refs.formEl.classList.remove('visually-hidden');
   refs.librarySection.classList.add('visually-hidden');
 }
 
@@ -27,7 +27,7 @@ function onLibraryBtnClick() {
   refs.library.classList.add('nav__btn--currently');
   refs.header.classList.add('header--library');
   refs.librarySection.classList.remove('visually-hidden');
-  refs.form.classList.add('visually-hidden');
+  refs.formEl.classList.add('visually-hidden');
   refs.watched.classList.add('library__btn--currenly');
   refs.queue.classList.remove('library__btn--currenly');
   refs.toggler.classList.add('visually-hidden');
