@@ -93,6 +93,9 @@ function libraryPagination(films){
         refs.galleryEl.innerHTML = "";
         filmsOnPage=films.slice((page-1)*options.itemsPerPage, page*options.itemsPerPage)
         renderMarkup(filmsOnPage);
+        window.scrollTo({
+            top: 0
+          });
         hidefirstAndLastPages(page, options.totalPages);
     })
 }

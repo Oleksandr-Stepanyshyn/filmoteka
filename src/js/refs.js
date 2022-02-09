@@ -16,11 +16,13 @@ export const refs = {
   galleryEl: document.querySelector('.gallery__container'),
   errorEl: document.querySelector('.search-error'),
   errorImgEl: document.querySelector('.errorImg__container'),
+  emptyLibEl: document.querySelector('.errorImg__container--Library'),
   paginationContainer: document.getElementById('tui-pagination-container'),
   scrollToTopEl: document.querySelector('.scroll-to-top'),
   checkbox: document.querySelector('#switch'),
   toggler: document.querySelector('.toggler'),
   textToggler: document.querySelector('.text'),
+
   switchBtn: document.querySelector('.checkbox-label'),
   day: document.querySelector('.checkbox-icon'),
   night: document.querySelector('.night'),
