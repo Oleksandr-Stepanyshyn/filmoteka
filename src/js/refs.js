@@ -23,4 +23,6 @@ export const refs = {
   textToggler: document.querySelector('.text'),
   switchTheme: document.querySelector('#switchTheme'),
   iconTheme: document.querySelector('.checkbox__text'),
+  iconGitHub: document.querySelector('.footer__icon-github'),
+  footer: document.querySelector('.footer'),
 };

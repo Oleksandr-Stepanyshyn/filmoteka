@@ -26,7 +26,7 @@
 
 .checkbox__icon-night {
     // fill: $light-grey-text-color;
-    // fill: $accent-color;
+    fill: $accent-color;
 }
 
 .checkbox__icon-day {
@@ -37,7 +37,6 @@
     position: absolute;
     top: 3px;
     left: -3px;
-    fill: #ffffff;
 }
 
 .night-theme {
