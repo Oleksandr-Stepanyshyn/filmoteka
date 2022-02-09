@@ -25,9 +25,15 @@ function trailerRender(data) {
     {
       onShow: instance => {
         instance.element().onclick = instance.close;
+        document.addEventListener('keydown', onEscClose);
       },
     },
   );
+  function onEscClose(event) {
+    if (event.code === 'Escape') {
+      instance.close();
+    }
+  }
   btnModalTrailer.addEventListener('click', () => {
     instance.show();
   });
