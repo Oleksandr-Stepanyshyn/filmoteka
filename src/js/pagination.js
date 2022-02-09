@@ -5,10 +5,9 @@ import lsData from './localeStorageServices';
 import { options } from './options/options';
 import Notiflix from 'notiflix';
 
-
 function makePagination(func) {
     if (newFilmsBandle.totalItems <= 20){
-        return
+        return;
     }
     options.totalPages = newFilmsBandle.totalPage;
     options.totalItems = newFilmsBandle.totalItems;
@@ -82,22 +81,26 @@ function hidefirstAndLastPages(page,totalPage) {
 }
 };
 
-function libraryPagination(films) {
+function libraryPagination(films){
+
     let page=1;
     options.totalItems = films.length;
     let filmsOnPage=films.slice(0,options.itemsPerPage);
-    options.totalPages = Math.ceil(options.totalItems / options.itemsPerPage);
+    options.totalPages = Math.ceil(options.totalItems/options.itemsPerPage);
     renderMarkup(filmsOnPage);   
-    
+
     if(options.totalItems<=options.itemsPerPage){return}
     const pagination = new Pagination(refs.paginationContainer,options)
     hidefirstAndLastPages(page, options.totalPages);
-   
+
     pagination.on('afterMove', (event) => {
         page = event.page;
         refs.galleryEl.innerHTML = "";
         filmsOnPage=films.slice((page-1)*options.itemsPerPage, page*options.itemsPerPage)
         renderMarkup(filmsOnPage);
+        window.scrollTo({
+            top: 0
+          });
         hidefirstAndLastPages(page, options.totalPages);
     })
 }
@@ -110,13 +113,13 @@ function makePaginationGenre(func) {
     options.totalItems = 10000;
     const pagination = new Pagination(refs.paginationContainer,options);
     hidefirstAndLastPages(newFilmsBandle.page, newFilmsBandle.totalPage);
+
     pagination.on('afterMove', (event) => {
     newFilmsBandle.page = event.page;
     refs.galleryEl.innerHTML = "";
     hidefirstAndLastPages(newFilmsBandle.page, options.totalPages);
     func()})
 }
-    
     
 export default{
     makePaginationGenre,
