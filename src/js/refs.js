@@ -6,7 +6,6 @@ export const refs = {
   watched: document.querySelector('.js-btn-watched'),
   queue: document.querySelector('.js-btn-queue'),
   librarySection: document.querySelector('.library'),
-  form: document.querySelector('.form'),
   header: document.querySelector('.header'),
   btnOpenModalTeam: document.querySelector('.js-open-modal-team'),
   modalTeam: document.querySelector('.js-modal-team'),
@@ -31,4 +30,5 @@ export const refs = {
   paginationBtnNext:document.querySelector('.tui-next'),
   switchHeader: document.querySelector('.header'),
   iconFooter: document.querySelector('.footer__icon-github'),
+  formInputEl: document.querySelector('.form__input'),
 };

@@ -21,10 +21,6 @@ function onWatchedClick(e) {
     Notiflix.Loading.dots('Loading...');
     const watchedFilms = localeStorageServices.load("watchedKey");
     pag.libraryPagination(watchedFilms);
-    let voteEl = document.querySelectorAll('.vote');
-    for (let i = 0; i < voteEl.length;i+=1) {
-        voteEl[i].classList.remove("visually-hidden")
-    };
     localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
     Notiflix.Loading.remove(350);
 }
