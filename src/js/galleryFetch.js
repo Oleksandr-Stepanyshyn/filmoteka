@@ -217,6 +217,13 @@ function onFilmsSearchError(name) {
   onErrors(error);
 }
 
+// функция-ошибка, если поисковый запрос пустой
+function onEmptySearchError() {
+  Notiflix.Loading.remove(350);
+  const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`;
+  onErrors(error);
+}
+
 // рендер ошибки
 function onErrors(error) {
   galleryReset();

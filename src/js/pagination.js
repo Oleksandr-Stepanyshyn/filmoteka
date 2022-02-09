@@ -3,23 +3,25 @@ import Pagination from 'tui-pagination';
 import { refs } from './refs';
 import lsData from './localeStorageServices';
 import { options } from './options/options';
-
+import Notiflix from 'notiflix';
 
 function makePagination(func) {
     if (newFilmsBandle.totalItems <= 20){
-        return
+        return;
     }
-
     options.totalPages = newFilmsBandle.totalPage;
     options.totalItems = newFilmsBandle.totalItems;
     const pagination = new Pagination(refs.paginationContainer,options);
     hidefirstAndLastPages(newFilmsBandle.page, newFilmsBandle.totalPage);
-
     pagination.on('afterMove', (event) => {
-    newFilmsBandle.page = event.page;
-    refs.galleryEl.innerHTML = "";
-    hidefirstAndLastPages(newFilmsBandle.page, newFilmsBandle.totalPage);
-    func()})
+        Notiflix.Loading.init({ svgColor: '#ff6b08' });
+        Notiflix.Loading.dots('Loading...');
+        newFilmsBandle.page = event.page;
+        refs.galleryEl.innerHTML = "";
+        Notiflix.Loading.remove(350);
+        hidefirstAndLastPages(newFilmsBandle.page, newFilmsBandle.totalPage);
+        func()
+    })
 }
 
 
@@ -34,9 +36,12 @@ function renderNewSearchPage(){
 }
 
 function renderNewGenrePage(){
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
     return newFilmsBandle.onFetchGenresFilms()
     .then((films) => {
         renderMarkup(films);
+        Notiflix.Loading.remove(350);
         lsData.save('DetailsFilmsCurrentPage', films)
     })
     .catch(console.log);
@@ -115,7 +120,6 @@ function makePaginationGenre(func) {
     hidefirstAndLastPages(newFilmsBandle.page, options.totalPages);
     func()})
 }
-    
     
 export default{
     makePaginationGenre,

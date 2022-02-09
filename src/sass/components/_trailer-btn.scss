@@ -1,0 +1,88 @@
+.modal-film__play-btn {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  background: radial-gradient(rgba(242, 122, 9, 0.8) 60%, rgba(255, 255, 255, 1) 62%);
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0px 0px 25px 3px rgba(242, 122, 9, 0.8);
+}
+
+/* трикутник*/
+.modal-film__play-btn::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-40%) translateY(-50%);
+  transform-origin: center;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 13px solid #fff;
+  z-index: 100;
+  transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+/* пульс */
+.modal-film__play-btn:before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  animation: pulsate1 2s;
+  animation-iteration-count: infinite;
+  opacity: 1;
+  border-radius: 100%;
+  border: 5px solid rgba(194, 123, 17, 0.75);
+  top: -25%;
+  left: -25%;
+  background: rgba(198, 86, 0, 0);
+}
+
+@keyframes pulsate1 {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+    box-shadow: inset 0px 0px 25px 3px rgba(224, 132, 13, 0.75),
+      0px 0px 25px 10px rgba(255, 255, 255, 0.919);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+.modal-trailer-close-btn {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  cursor: pointer;
+  & svg {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+  }
+}
+.iframe {
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-trailer__backdrop {
+  z-index: 5;
+  position: fixed;
+  padding: 40px 5px 30px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  overflow-y: scroll;
+  background-color: rgb(0, 0, 0);
+}
