@@ -35,7 +35,6 @@ function onOpenModal(e) {
     modalFilmWindow.classList.add('is-open');
   }, 0);
   //-----------------------------------------------------------
-
   const btnCloseModalFilm = document.querySelector('.modal-film__button-close');
   const backdropModalFilm = document.querySelector('.backdrop-modal-film');
   //---------------для роботи з локал сторедж------------------------
@@ -49,7 +48,6 @@ function onOpenModal(e) {
   queueBtn.addEventListener('click', e => {
     lsData.addToQueue(e);
   });
-
   if (!backdropModalFilm) {
     return;
   } else {
