@@ -68,7 +68,11 @@
           </tr>
           <tr class='modal-film__details-table--row'>
             <td class='modal-film__details-table--heading'>Genre</td>
+        {{#if genre_ids}}
             <td class='modal-film__details-table--genre'>{{genre_ids}}</td>
+          {{else}}
+            <td class='modal-film__details-table--genre' style="color: #8c8c8c">No information</td>
+        {{/if}}
           </tr>
           <tr class='modal-film__details-table--row'>
             <td

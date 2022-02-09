@@ -2,25 +2,26 @@ import {renderMarkup,newFilmsBandle} from './galleryFetch';
 import Pagination from 'tui-pagination';
 import { refs } from './refs';
 import lsData from './localeStorageServices';
-import { options1 } from './options/options1';
 import { options } from './options/options';
-
+import Notiflix from 'notiflix';
 
 function makePagination(func) {
-    if (newFilmsBandle.totalItems < 20){
-        return
+    if (newFilmsBandle.totalItems <= 20){
+        return;
     }
-
     options.totalPages = newFilmsBandle.totalPage;
     options.totalItems = newFilmsBandle.totalItems;
     const pagination = new Pagination(refs.paginationContainer,options);
     hidefirstAndLastPages(newFilmsBandle.page, newFilmsBandle.totalPage);
-
     pagination.on('afterMove', (event) => {
-    newFilmsBandle.page = event.page;
-    refs.galleryEl.innerHTML = "";
-    hidefirstAndLastPages(newFilmsBandle.page, newFilmsBandle.totalPage);
-    func()})
+        Notiflix.Loading.init({ svgColor: '#ff6b08' });
+        Notiflix.Loading.dots('Loading...');
+        newFilmsBandle.page = event.page;
+        refs.galleryEl.innerHTML = "";
+        Notiflix.Loading.remove(350);
+        hidefirstAndLastPages(newFilmsBandle.page, newFilmsBandle.totalPage);
+        func()
+    })
 }
 
 
@@ -35,9 +36,12 @@ function renderNewSearchPage(){
 }
 
 function renderNewGenrePage(){
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
     return newFilmsBandle.onFetchGenresFilms()
     .then((films) => {
         renderMarkup(films);
+        Notiflix.Loading.remove(350);
         lsData.save('DetailsFilmsCurrentPage', films)
     })
     .catch(console.log);
@@ -80,26 +84,29 @@ function hidefirstAndLastPages(page,totalPage) {
 function libraryPagination(films){
 
     let page=1;
-    options1.totalItems = films.length;
-    let filmsOnPage=films.slice(0,options1.itemsPerPage);
-    options1.totalPages = Math.ceil(options1.totalItems/options1.itemsPerPage);
+    options.totalItems = films.length;
+    let filmsOnPage=films.slice(0,options.itemsPerPage);
+    options.totalPages = Math.ceil(options.totalItems/options.itemsPerPage);
     renderMarkup(filmsOnPage);   
 
-    if(options1.totalItems<options1.itemsPerPage){return}
-    const pagination = new Pagination(refs.paginationContainer,options1)
-    hidefirstAndLastPages(page, options1.totalPages);
+    if(options.totalItems<=options.itemsPerPage){return}
+    const pagination = new Pagination(refs.paginationContainer,options)
+    hidefirstAndLastPages(page, options.totalPages);
 
     pagination.on('afterMove', (event) => {
         page = event.page;
         refs.galleryEl.innerHTML = "";
-        filmsOnPage=films.slice((page-1)*options1.itemsPerPage, page*options1.itemsPerPage)
+        filmsOnPage=films.slice((page-1)*options.itemsPerPage, page*options.itemsPerPage)
         renderMarkup(filmsOnPage);
-        hidefirstAndLastPages(page, options1.totalPages);
+        window.scrollTo({
+            top: 0
+          });
+        hidefirstAndLastPages(page, options.totalPages);
     })
-    }
+}
     
-    function makePaginationGenre(func) {
-    if (newFilmsBandle.totalItems < 20){
+function makePaginationGenre(func) {
+    if (newFilmsBandle.totalItems <= 20){
         return
     }
     options.totalPages=500;
@@ -113,7 +120,6 @@ function libraryPagination(films){
     hidefirstAndLastPages(newFilmsBandle.page, options.totalPages);
     func()})
 }
-    
     
 export default{
     makePaginationGenre,
