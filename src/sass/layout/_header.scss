@@ -220,10 +220,10 @@
   height: 100%;
 
   transition: transform linear 200ms;
-}
 
-.form__btn:hover {
-  transform: scale(1.15);
+  &:hover {
+    transform: scale(1.15);
+  }
 }
 
 .form__select {
@@ -232,13 +232,6 @@
   align-items: center;
   justify-content: center;
   margin-top: 10px;
-
-  transition: transform linear 200ms;
-
-  &:hover,
-  &:focus {
-    transform: scale(1.05);
-  }
 }
 
 .form__select-text {
@@ -256,9 +249,12 @@
   line-height: calc(16 / 14);
   color: $accent-text-color;
 
+  cursor: pointer;
+  transition: transform linear 200ms;
+
   &:hover,
   &:focus {
-    cursor: pointer;
+    transform: scale(1.05);
   }
 }
 
@@ -317,6 +313,10 @@
 
   transition: transform linear 250ms;
 
+  &:hover {
+    transform: scale(1.025);
+  }
+
   @media screen and (min-width: 768px) {
     width: 136px;
   }
@@ -324,10 +324,6 @@
 
 .library__btn:last-child {
   margin-left: 20px;
-}
-
-.library__btn:hover {
-  transform: scale(1.025);
 }
 
 .library__btn--currenly {
