@@ -6,40 +6,51 @@ import { galleryReset } from './galleryFetch';
 
 
 refs.watched.addEventListener("click", onWatchedClick);
-refs.queue.addEventListener("click", onQueueClick)
-
-const alert = `<div class="alert">
-                    <p class="alert_greet">Hello movie lover!</p>
-                    <p class="alert_text">You haven't added a movie yet. Please make your choice.</p>
-                </div>`;
+refs.queue.addEventListener("click", onQueueClick);
 
 function onWatchedClick(e) {
     galleryReset();
     if(localStorage.getItem("watchedKey") === null){
-        refs.paginationContainer.innerHTML = alert;
+        onEmptyLibraryError();
         return
     }
+
     const lengthArrWatchedLS = JSON.parse(localStorage.getItem("watchedKey")).length
-    if (lengthArrWatchedLS === 0) refs.paginationContainer.innerHTML = alert;
+    if (lengthArrWatchedLS === 0) onEmptyLibraryError();
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
     const watchedFilms = localeStorageServices.load("watchedKey");
-    pag.libraryPagination(watchedFilms)
+    pag.libraryPagination(watchedFilms);
     localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
-    Notiflix.Loading.remove();
+    Notiflix.Loading.remove(350);
 }
 
 function onQueueClick(e) {
     galleryReset();
     if(localStorage.getItem("queueKey") === null){
-        refs.paginationContainer.innerHTML = alert;
+        onEmptyLibraryError();
         return
     }
     const lengthArrQueueLS = JSON.parse(localStorage.getItem("queueKey")).length
-    if (lengthArrQueueLS === 0) refs.paginationContainer.innerHTML = alert;
+    if (lengthArrQueueLS === 0) onEmptyLibraryError();
+    Notiflix.Loading.init({ svgColor: '#ff6b08' });
+    Notiflix.Loading.dots('Loading...');
     const queueFilms = localeStorageServices.load("queueKey")
     pag.libraryPagination(queueFilms)
+    let voteEl = document.querySelectorAll('.vote');
+    for (let i = 0; i < voteEl.length;i+=1) {
+        voteEl[i].classList.remove("visually-hidden")
+    };
     localeStorageServices.save('DetailsFilmsCurrentPage', queueFilms);
-    Notiflix.Loading.remove();
+    Notiflix.Loading.remove(350);
     
+}
+
+function onEmptyLibraryError() {
+  Notiflix.Loading.remove(350);
+  refs.emptyLibEl.classList.remove('visually-hidden');
+  refs.galleryEl.classList.add('visually-hidden');
+  refs.paginationContainer.classList.add('visually-hidden');
 }
 
 export { onWatchedClick, onQueueClick };
