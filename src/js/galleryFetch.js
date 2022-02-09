@@ -159,7 +159,7 @@ function renderMarkup(films) {
       if (genre_ids.length > 3) {
         genresFilm = `${genresFilm[0]}, ${genresFilm[1]}, other`;
       } else if (genre_ids.length === 0) {
-        genresFilm = 'other';
+        genresFilm = 'No information';
       } else {
         genresFilm = genresFilm.join(', ');
       }
