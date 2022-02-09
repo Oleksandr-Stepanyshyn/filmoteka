@@ -22,4 +22,5 @@ export const refs = {
   checkbox: document.querySelector('#switch'),
   toggler: document.querySelector('.toggler'),
   textToggler: document.querySelector('.text'),
+  formInputEl: document.querySelector('.form__input'),
 };
