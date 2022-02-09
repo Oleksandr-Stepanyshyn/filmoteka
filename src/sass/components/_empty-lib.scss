@@ -8,10 +8,10 @@
   font-size: 20px;
   text-align: center;
 
-  @media screen and (min-width: 768px) {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
+  // @media screen and (min-width: 768px) {
+  //   padding-top: 50px;
+  //   padding-bottom: 50px;
+  // }
 }
 
 .alert_greet {
@@ -22,4 +22,12 @@
 
 .alert_text {
   margin-bottom: 20px;
+}
+.emptyImg {
+  display: block;
+  max-width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+  }
 }
