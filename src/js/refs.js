@@ -26,7 +26,8 @@ export const refs = {
   night: document.querySelector('.night'),
   switchFooter: document.querySelector('.footer'),
   switchMain: document.querySelector('.main'),
-  paginationBtn:document.querySelector('.tui-page-btn'),
+  paginationBtnPrev:document.querySelector('.tui-prev'),
+  paginationBtnNext:document.querySelector('.tui-next'),
   switchHeader: document.querySelector('.header'),
   iconFooter: document.querySelector('.footer__icon-github'),
 };

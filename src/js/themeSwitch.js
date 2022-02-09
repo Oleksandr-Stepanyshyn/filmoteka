@@ -23,8 +23,12 @@ function onSwitch(){
   refs.switchFooter.classList.toggle('shadow-footer');
   refs.paginationBtn.classList.toggle('pagination-switcn');
   refs.iconFooter.classList.toggle('icon-footer');
+  refs.paginationBtnPrev.style.color='#ffffff';
+  refs.paginationBtnNext.style.color='#ffffff';
+  refs.paginationBtnPrev.style.backgroundColor='#ff6b08';
+  refs.paginationBtnNext.style.backgroundColor='#ff6b08';
+  refs.iconFooter.style.fill='#f7f7f7';
   localStorage.theme=document.body.className || light;
   localStorage.themeFooter=refs.switchFooter.className || light;
-  
 }
 
