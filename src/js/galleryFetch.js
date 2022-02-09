@@ -200,6 +200,7 @@ function galleryReset() {
   refs.errorImgEl.classList.add('visually-hidden');
   refs.galleryEl.classList.remove('visually-hidden');
   refs.paginationContainer.classList.remove('visually-hidden');
+  refs.emptyLibEl.classList.add('visually-hidden');
 }
 
 // функция-ошибка, если фильма с таким названием не найдено

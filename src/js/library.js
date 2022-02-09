@@ -6,21 +6,18 @@ import { galleryReset } from './galleryFetch';
 
 
 refs.watched.addEventListener("click", onWatchedClick);
-refs.queue.addEventListener("click", onQueueClick)
-
-const alert = `<div class="alert">
-                    <p class="alert_greet">Hello movie lover!</p>
-                    <p class="alert_text">You haven't added a movie yet. Please make your choice.</p>
-                </div>`;
+refs.queue.addEventListener("click", onQueueClick);
 
 function onWatchedClick(e) {
     galleryReset();
     if(localStorage.getItem("watchedKey") === null){
-        refs.paginationContainer.innerHTML = alert;
+        onEmptyLibraryError();
         return
     }
-    const lengthArrWatchedLS = JSON.parse(localStorage.getItem("watchedKey")).length;
-    if (lengthArrWatchedLS === 0) refs.paginationContainer.innerHTML = alert;
+
+    const lengthArrWatchedLS = JSON.parse(localStorage.getItem("watchedKey")).length
+    if (lengthArrWatchedLS === 0) onEmptyLibraryError();
+
     const watchedFilms = localeStorageServices.load("watchedKey");
     pag.libraryPagination(watchedFilms);
     let voteEl = document.querySelectorAll('.vote');
@@ -34,11 +31,11 @@ function onWatchedClick(e) {
 function onQueueClick(e) {
     galleryReset();
     if(localStorage.getItem("queueKey") === null){
-        refs.paginationContainer.innerHTML = alert;
+        onEmptyLibraryError();
         return
     }
     const lengthArrQueueLS = JSON.parse(localStorage.getItem("queueKey")).length
-    if (lengthArrQueueLS === 0) refs.paginationContainer.innerHTML = alert;
+    if (lengthArrQueueLS === 0) onEmptyLibraryError();
     const queueFilms = localeStorageServices.load("queueKey")
     pag.libraryPagination(queueFilms)
     let voteEl = document.querySelectorAll('.vote');
@@ -49,5 +46,14 @@ function onQueueClick(e) {
     Notiflix.Loading.remove();
     
 }
+
+function onEmptyLibraryError() {
+  Notiflix.Loading.remove(350);
+  refs.emptyLibEl.classList.remove('visually-hidden');
+  refs.galleryEl.classList.add('visually-hidden');
+    refs.paginationContainer.classList.add('visually-hidden');
+}
+
+
 
 export { onWatchedClick, onQueueClick };
