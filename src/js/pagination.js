@@ -92,6 +92,7 @@ function libraryPagination(films){
     if(options.totalItems<=options.itemsPerPage){return}
     const pagination = new Pagination(refs.paginationContainer,options)
     hidefirstAndLastPages(page, options.totalPages);
+    showRating()
 
     pagination.on('afterMove', (event) => {
         page = event.page;
@@ -102,6 +103,7 @@ function libraryPagination(films){
             top: 0
           });
         hidefirstAndLastPages(page, options.totalPages);
+        showRating()
     })
 }
     
@@ -120,7 +122,13 @@ function makePaginationGenre(func) {
     hidefirstAndLastPages(newFilmsBandle.page, options.totalPages);
     func()})
 }
-    
+  
+function showRating(){
+    let voteEl = document.querySelectorAll('.vote');
+    for (let i = 0; i < voteEl.length;i+=1) {
+        voteEl[i].classList.remove("visually-hidden")
+    };
+}
 export default{
     makePaginationGenre,
     renderNewSearchPage,
