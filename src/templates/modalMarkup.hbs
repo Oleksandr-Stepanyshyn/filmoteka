@@ -13,6 +13,7 @@
         ></path>
       </svg>
     </button>
+
     <div class='modal-film__content-wrapper'>
       {{#if poster_path}}
         <picture class='modal-film__poster'>
@@ -46,7 +47,6 @@
           class='modal-film__poster'
         />
       {{/if}}
-
       <div class='modal-film__info-wrapper'>
         <h1 class='modal-film__film-title'>{{original_title}}</h1>
         <table class='modal-film__details-table'>
@@ -73,6 +73,14 @@
           {{else}}
             <td class='modal-film__details-table--genre' style="color: #8c8c8c">No information</td>
         {{/if}}
+          </tr>
+          <tr class='modal-film__details-table--row'>
+            <td
+              class='modal-film__details-table--heading'
+              style='text-transform:uppercase; display:flex; align-items:center'
+            >Trailer</td>
+            <td class='modal-film__details-table--genre'>
+              <button type='button' class='modal-film__play-btn'></button></td>
           </tr>
         </table>
         <h2 class='modal-film__about-title'>About</h2>

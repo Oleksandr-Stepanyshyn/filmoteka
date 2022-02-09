@@ -3,6 +3,7 @@ import lsData from './localeStorageServices';
 import { refs } from './refs';
 import { parsGenres } from './galleryFetch';
 import { onWatchedClick, onQueueClick } from './library';
+import { trailer } from './trailer';
 
 const filmDetailsKey = 'DetailsFilmsCurrentPage';
 const filmIDsKey = 'FilmIDs';
@@ -37,8 +38,12 @@ function onOpenModal(e) {
   //-----------------------------------------------------------
   const btnCloseModalFilm = document.querySelector('.modal-film__button-close');
   const backdropModalFilm = document.querySelector('.backdrop-modal-film');
-  //---------------для роботи з локал сторедж------------------------
 
+  //--------------для трейлеру--------------------------------------
+  const trailerBtn = document.querySelector('.modal-film__play-btn');
+  trailerBtn.addEventListener('click', trailer(e));
+
+  //---------------для роботи з локал сторедж------------------------
   lsData.btnTextChange(currentFilmId);
   const watchedBtn = document.querySelector('.modal-film__button-watched');
   const queueBtn = document.querySelector('.modal-film__button-queue');
@@ -48,6 +53,7 @@ function onOpenModal(e) {
   queueBtn.addEventListener('click', e => {
     lsData.addToQueue(e);
   });
+
   if (!backdropModalFilm) {
     return;
   } else {
