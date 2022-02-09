@@ -6,6 +6,7 @@ import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
 import { onLoadSite } from './togglerDayOrWeek';
 import genresListTemplate from '../templates/genresList';
+import throttle from 'lodash.throttle';
 
 const newFilmsBandle = new FilmsApiService();
 let genresList = [];
@@ -80,7 +81,7 @@ function onFormElSubmit(e) {
   newFilmsBandle.query = name;
 
   if (!newFilmsBandle.query) {
-    return onEmptySearchError();
+    return onLoadSite();
   }
 
   galleryReset();
@@ -199,6 +200,7 @@ function galleryReset() {
   refs.errorImgEl.classList.add('visually-hidden');
   refs.galleryEl.classList.remove('visually-hidden');
   refs.paginationContainer.classList.remove('visually-hidden');
+  refs.emptyLibEl.classList.add('visually-hidden');
 }
 
 // функция-ошибка, если фильма с таким названием не найдено
