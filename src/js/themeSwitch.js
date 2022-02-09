@@ -1,19 +1,28 @@
 import { refs } from './refs';
-const switchFooter = document.querySelector('.footer');
 
-refs.btnSwitch.addEventListener('click', onSwitch);
+
+refs.switchBtn.addEventListener('click', onSwitch)
+
 
 if(!localStorage.theme )
   localStorage.theme ="light";
   
   if(!localStorage.themeFooter)
   localStorage.themeFooter ="light";
+
+  if(!localStorage.icon )
+  localStorage.icon ="day";
   
 document.body.className=localStorage.theme;
-switchFooter.className =localStorage.themeFooter;
+refs.switchFooter.className =localStorage.themeFooter;
 function onSwitch(){
   document.body.classList.toggle("dark");
-  refs.footerSwitch.classList.toggle("dark");
-  localStorage.theme=document.body.className || light;
-  localStorage.themeFooter=switchFooter.className || light;
+  refs.switchFooter.classList.toggle("dark-footer");
+  refs.day.classList.toggle('is-hidden');
+  refs.night.classList.toggle('is-hidden')
+  refs.switchMain.classList.toggle('main-shadow');
+  refs.paginationBtn.classList.toggle('pagination-switcn');
+  localStorage.theme=document.body.className;
+  localStorage.themeFooter=refs.switchFooter.className || light;
+  localStorage.icon=refs.day.className || day;
 }

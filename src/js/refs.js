@@ -21,4 +21,10 @@ export const refs = {
   checkbox: document.querySelector('#switch'),
   toggler: document.querySelector('.toggler'),
   textToggler: document.querySelector('.text'),
+  switchBtn: document.querySelector('.checkbox-label'),
+  day: document.querySelector('.checkbox-icon'),
+  night: document.querySelector('.night'),
+  switchFooter: document.querySelector('.footer'),
+  switchMain: document.querySelector('.main'),
+  paginationBtn:document.querySelector('.tui-page-btn')
 };
