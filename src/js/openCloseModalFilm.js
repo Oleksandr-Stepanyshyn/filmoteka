@@ -8,8 +8,6 @@ import { trailer } from './trailer';
 const filmDetailsKey = 'DetailsFilmsCurrentPage';
 const filmIDsKey = 'FilmIDs';
 
-const bodyEl = document.querySelector('body');
-
 refs.galleryEl.addEventListener('click', onOpenModal);
 
 function onOpenModal(e) {
@@ -26,8 +24,8 @@ function onOpenModal(e) {
     genre_ids: parsGenres(clickedFilm.genre_ids, genres).join(', '),
   };
 
-  bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilmParams));
-  bodyEl.classList.add('modal-open');
+  refs.bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilmParams));
+  refs.bodyEl.classList.add('modal-open');
 
   //---------------Для анимации модалки------------------------
   const modalFilmWindow = document.querySelector('.modal-film');
@@ -59,7 +57,7 @@ function onOpenModal(e) {
   } else {
     const clearModal = () => {
       backdropModalFilm.remove();
-      bodyEl.classList.remove('modal-open');
+      refs.bodyEl.classList.remove('modal-open');
 
       document.removeEventListener('keydown', onEscClose);
       if (!refs.librarySection.classList.contains('visually-hidden')) {
