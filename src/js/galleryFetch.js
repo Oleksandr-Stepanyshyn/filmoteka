@@ -6,6 +6,7 @@ import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
 import { onLoadSite } from './togglerDayOrWeek';
 import genresListTemplate from '../templates/genresList';
+import throttle from 'lodash.throttle';
 
 const newFilmsBandle = new FilmsApiService();
 let genresList = [];
@@ -80,7 +81,7 @@ function onFormElSubmit(e) {
   newFilmsBandle.query = name;
 
   if (!newFilmsBandle.query) {
-    return onEmptySearchError();
+    return onLoadSite();
   }
 
   galleryReset();
@@ -205,13 +206,6 @@ function galleryReset() {
 function onFilmsSearchError(name) {
   Notiflix.Loading.remove(350);
   const error = `<p>Search result <span class="film-name">"${name}"</span> not successful. Enter the correct movie name</p>`;
-  onErrors(error);
-}
-
-// функция-ошибка, если поисковый запрос пустой
-function onEmptySearchError() {
-  Notiflix.Loading.remove(350);
-  const error = `<p>Field of search is empty, enter please keyword or words for begin search</p>`;
   onErrors(error);
 }
 

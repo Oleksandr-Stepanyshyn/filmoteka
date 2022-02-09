@@ -19,10 +19,14 @@ function onWatchedClick(e) {
         refs.paginationContainer.innerHTML = alert;
         return
     }
-    const lengthArrWatchedLS = JSON.parse(localStorage.getItem("watchedKey")).length
+    const lengthArrWatchedLS = JSON.parse(localStorage.getItem("watchedKey")).length;
     if (lengthArrWatchedLS === 0) refs.paginationContainer.innerHTML = alert;
     const watchedFilms = localeStorageServices.load("watchedKey");
-    pag.libraryPagination(watchedFilms)
+    pag.libraryPagination(watchedFilms);
+    let voteEl = document.querySelectorAll('.vote');
+    for (let i = 0; i < voteEl.length;i+=1) {
+        voteEl[i].classList.remove("visually-hidden")
+    };
     localeStorageServices.save('DetailsFilmsCurrentPage', watchedFilms);
     Notiflix.Loading.remove();
 }
@@ -37,6 +41,10 @@ function onQueueClick(e) {
     if (lengthArrQueueLS === 0) refs.paginationContainer.innerHTML = alert;
     const queueFilms = localeStorageServices.load("queueKey")
     pag.libraryPagination(queueFilms)
+    let voteEl = document.querySelectorAll('.vote');
+    for (let i = 0; i < voteEl.length;i+=1) {
+        voteEl[i].classList.remove("visually-hidden")
+    };
     localeStorageServices.save('DetailsFilmsCurrentPage', queueFilms);
     Notiflix.Loading.remove();
     
