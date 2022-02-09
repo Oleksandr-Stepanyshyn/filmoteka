@@ -55,23 +55,14 @@
   }
 }
 
-.modal-trailer-close-btn {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  cursor: pointer;
-  & svg {
-    position: absolute;
-    top: -2px;
-    left: -2px;
-  }
-}
 .iframe {
   max-width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 3%;
 }
 
 .modal-trailer__backdrop {

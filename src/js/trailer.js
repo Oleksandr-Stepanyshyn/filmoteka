@@ -7,7 +7,6 @@ export async function trailer(e) {
   filmTrailers
     .onfetchTrailers(Number(e.target.dataset.id))
     .then(data => {
-      console.log(data.results[0].key);
       trailerRender(data);
     })
     .catch(console.log);
@@ -25,9 +24,21 @@ function trailerRender(data) {
     {
       onShow: instance => {
         instance.element().onclick = instance.close;
+        document.addEventListener('keydown', onEscClose);
+      },
+    },
+    {
+      onClose: instance => {
+        document.removeEventListener('keydown', onEscClose);
+        console.log(instance);
       },
     },
   );
+  function onEscClose(event) {
+    if (event.code === 'Escape') {
+      instance.close();
+    }
+  }
   btnModalTrailer.addEventListener('click', () => {
     instance.show();
   });
