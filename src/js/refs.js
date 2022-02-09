@@ -16,6 +16,7 @@ export const refs = {
   galleryEl: document.querySelector('.gallery__container'),
   errorEl: document.querySelector('.search-error'),
   errorImgEl: document.querySelector('.errorImg__container'),
+  emptyLibEl: document.querySelector('.errorImg__container--Library'),
   paginationContainer: document.getElementById('tui-pagination-container'),
   scrollToTopEl: document.querySelector('.scroll-to-top'),
   checkbox: document.querySelector('#switch'),

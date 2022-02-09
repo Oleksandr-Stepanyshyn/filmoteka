@@ -124,10 +124,10 @@ export default class FilmsApiService {
     console.log('Search result not successful. Enter the correct movie name and try again');
   }
 
-  // витянує дані для фільма по айдішці
-  async onfetchMoviesDetails(id) {
+  // витянує трейлери для фільма по айдішці
+  async onfetchTrailers(id) {
     try {
-      const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
+      const url = `${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
       const response = await fetch(url);
       const data = response.json();
       return data;
@@ -136,14 +136,14 @@ export default class FilmsApiService {
     }
   }
 
-// метод для получения id жанров фильмов
-  async onFetchId() { 
+  // метод для получения id жанров фильмов
+  async onFetchId() {
     const response = await axios.get(
       `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
     );
     const data = await response.data;
     const genres = await data.genres;
-    return  genres;
+    return genres;
   }
 
   // Метод для получения фильма/фильмов по жанру запроса (через метод Сеттер).
@@ -155,7 +155,7 @@ export default class FilmsApiService {
     });
 
     const response = await axios.get(
-      `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&${searchParams}`
+      `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&${searchParams}`,
     );
 
     const data = await response.data;

@@ -3,6 +3,7 @@ import lsData from './localeStorageServices';
 import { refs } from './refs';
 import { parsGenres } from './galleryFetch';
 import { onWatchedClick, onQueueClick } from './library';
+import { trailer } from './trailer';
 
 const filmDetailsKey = 'DetailsFilmsCurrentPage';
 const filmIDsKey = 'FilmIDs';
@@ -27,10 +28,22 @@ function onOpenModal(e) {
 
   bodyEl.insertAdjacentHTML('beforeend', modalMarkup(clickedFilmParams));
   bodyEl.classList.add('modal-open');
+
+  //---------------Для анимации модалки------------------------
+  const modalFilmWindow = document.querySelector('.modal-film');
+
+  setTimeout(() => {
+    modalFilmWindow.classList.add('is-open');
+  }, 0);
+  //-----------------------------------------------------------
   const btnCloseModalFilm = document.querySelector('.modal-film__button-close');
   const backdropModalFilm = document.querySelector('.backdrop-modal-film');
-  //---------------для роботи з локал сторедж------------------------
 
+  //--------------для трейлеру--------------------------------------
+  const trailerBtn = document.querySelector('.modal-film__play-btn');
+  trailerBtn.addEventListener('click', trailer(e));
+
+  //---------------для роботи з локал сторедж------------------------
   lsData.btnTextChange(currentFilmId);
   const watchedBtn = document.querySelector('.modal-film__button-watched');
   const queueBtn = document.querySelector('.modal-film__button-queue');
@@ -40,16 +53,17 @@ function onOpenModal(e) {
   queueBtn.addEventListener('click', e => {
     lsData.addToQueue(e);
   });
-  
+
   if (!backdropModalFilm) {
     return;
   } else {
     const clearModal = () => {
       backdropModalFilm.remove();
       bodyEl.classList.remove('modal-open');
+
       document.removeEventListener('keydown', onEscClose);
       if (!refs.librarySection.classList.contains('visually-hidden')) {
-        if(refs.watched.classList.contains('library__btn--currenly')) {
+        if (refs.watched.classList.contains('library__btn--currenly')) {
           onWatchedClick();
           return;
         }
@@ -58,18 +72,32 @@ function onOpenModal(e) {
     };
 
     btnCloseModalFilm.addEventListener('click', () => {
-      clearModal();
+      modalFilmWindow.classList.remove('is-open');
+
+      setTimeout(() => {
+        clearModal();
+      }, 250);
     });
 
     backdropModalFilm.addEventListener('click', e => {
       if (!e.target.classList.contains('backdrop-modal-film')) return;
-      clearModal();
+      modalFilmWindow.classList.remove('is-open');
+
+      setTimeout(() => {
+        clearModal();
+      }, 250);
     });
 
     document.addEventListener('keydown', onEscClose);
 
     function onEscClose(e) {
-      if (e.code === 'Escape') clearModal();
+      if (e.code === 'Escape') {
+        modalFilmWindow.classList.remove('is-open');
+
+        setTimeout(() => {
+          clearModal();
+        }, 250);
+      }
     }
   }
 }
