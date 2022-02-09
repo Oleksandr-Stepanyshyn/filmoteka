@@ -1,4 +1,5 @@
 export const refs = {
+  bodyEl: document.querySelector('body'),
   home: document.querySelector('.js-nav-home-btn'),
   library: document.querySelector('.js-nav-library-btn'),
   logo: document.querySelector('.js-logo-btn'),
@@ -11,11 +12,13 @@ export const refs = {
   modalTeam: document.querySelector('.js-modal-team'),
   btnCloseModalTeam: document.querySelector('.js-close-modal-team'),
   formEl: document.querySelector('.form'),
+  formSelectGenreEl: document.querySelector('.form__select-genre'),
   galleryEl: document.querySelector('.gallery__container'),
   errorEl: document.querySelector('.search-error'),
   errorImgEl: document.querySelector('.errorImg__container'),
   paginationContainer: document.getElementById('tui-pagination-container'),
   scrollToTopEl: document.querySelector('.scroll-to-top'),
-  // filmCard: document.querySelector('.film-card'),
-  // btnCloseModalFilm: document.querySelector('.modal-film__button-close'),
+  checkbox: document.querySelector('#switch'),
+  toggler: document.querySelector('.toggler'),
+  textToggler: document.querySelector('.text'),
 };

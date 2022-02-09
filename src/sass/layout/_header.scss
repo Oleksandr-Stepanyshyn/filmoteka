@@ -4,6 +4,9 @@
 }
 
 // ===================== header =======================
+.header__container {
+  position: relative;
+}
 
 .header {
   min-height: 230px;
@@ -224,6 +227,45 @@
   transform: scale(1.15);
 }
 
+.form__select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    transition: transform linear 200ms;
+  }
+}
+
+.form__select-text {
+  position: absolute;
+}
+
+.form__select-genre {
+  background-color: #ffffff00;
+  z-index: 1;
+  width: 170px;
+  border-radius: 5px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  color: $accent-text-color;
+
+  &:focus {
+    cursor: pointer;
+  }
+}
+
+.form__select-option {
+  background-color: #ffffff00;
+  border-radius: 5px;
+}
+
 // ======================== message erorr ======================
 
 .search-error {
@@ -290,4 +332,82 @@
   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
 
   transition: background-color linear 250ms, box-shadow linear 250ms, transform linear 250ms;
+}
+
+// ====================== toggler-day/week =====================
+
+.toggler {
+  position: absolute;
+  top: 145px;
+  right: 25px;
+
+  @media screen and (min-width: 768px) {
+    right: 80px;
+  }
+  @media screen and (min-width: 1024px) {
+    right: 75px;
+  }
+  
+
+  display: inline-block;
+}
+
+.toggler input {
+  position: fixed;
+  transform: scale(0);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggler__box {
+  position: relative;
+
+  display: inline-block;
+  margin-left: 10px;
+  height: 22px;
+  width: 40px;
+
+  background: #dddddd;
+  border-radius: 50px;
+  transition: background 200ms ease;
+  cursor: pointer;
+}
+
+.toggler__box::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+
+  background: #f46a0d;
+  border-radius: 50%;
+  transition: transform 200ms ease;
+}
+
+.text {
+  padding: 1px 4px;
+
+  font-size: 14px;
+  text-align: center;
+
+  border-radius: 5px;
+}
+
+input:checked + .toggler__box {
+  background: #f46a0d;
+}
+
+input:checked + .toggler__box::before {
+  transform: translateX(17px);
+  background: #ffffff;
 }

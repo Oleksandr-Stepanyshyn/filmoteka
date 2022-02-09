@@ -20,6 +20,7 @@
   &:focus {
     transform: scale(1.05);
     box-shadow: $box-shadow-film-card;
+    cursor: pointer;
   }
 }
 

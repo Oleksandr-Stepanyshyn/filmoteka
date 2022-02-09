@@ -1,127 +1,123 @@
 .backdrop {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.2);
 
-    opacity: 1;
-    transform: scale(1);
+  opacity: 1;
+  transform: scale(1);
 
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: scale(1.5);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.5);
 }
 
 .modal-team {
-    position: absolute;
-    width: 90%;
-    // overflow: auto;
-    color: #ffffff;
+  position: absolute;
+  width: 90%;
+  color: #ffffff;
 
-    @media screen and (min-width: 768px) {
-        width: 640px;
-    }
+  @media screen and (min-width: 768px) {
+    width: 570px;
+  }
 
-    @media screen and (min-width: 1024px) {
-        width: 860px;
-    }
+  @media screen and (min-width: 1024px) {
+    width: 840px;
+  }
 
-    top: 50%;
-    left:50%;
-    transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-        0px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    border: 5px solid $accent-color;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  border: 5px solid $accent-color;
 }
 .modal-team__title {
-    text-align: center;
-    font-size: 30px;
-    line-height: 1.17;
-    // color: #fff;
-    // padding: 10px 0;
-    padding-top: 15px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.17;
+  padding-top: 15px;
 }
 
 .modal-team__btn {
-    position: absolute;
-    top: 10px;
-    right: 7px;
-    border-radius: 50%;
-    margin: 0;
-    padding: 0;
-    background-color: $accent-color;
-    fill: #000000;
-    border: 1px solid #000000
+  position: absolute;
+  top: 10px;
+  right: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  background-color: $accent-color;
+  fill: #000000;
+  border: 1px solid #000000;
 }
 
 .modal-team__btn-icon {
-
+  padding: 0;
+  margin: 0;
 }
 
 .modal-team__list {
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    margin: -10px;
-    padding: 10px;
+  box-sizing: border-box;
+  padding: 10px;
 }
 .modal-team__item {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    flex-basis: calc((100% - 2*20px)/2);
+  display: flex;
+  flex-direction: column;
+  flex-basis: calc((100% - 2 * 20px) / 2);
+  height: auto;
+  overflow: hidden;
 
-    margin: 10px;
-    border: 1px solid $accent-color;
-    border-radius: 10px;
-    background-color: #000;
+  margin: 10px;
+  border: 1px solid $accent-color;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
 
-    @media screen and (min-width: 768px) {
-        flex-basis: calc((100% - 3 * 20px) / 3);
-    }
-    @media screen and (min-width: 1024px) {
-        flex-basis: calc((100% - 4 * 20px) / 4);
-    }
+  @media screen and (min-width: 768px) {
+    flex-basis: calc((100% - 3 * 20px) / 3);
+  }
+  @media screen and (min-width: 1024px) {
+    flex-basis: calc((100% - 4 * 20px) / 4);
+  }
 }
 
 .modal-team__img {
-    flex-grow: 1;
-    // width: 100%;
-    // object-fit: cover;
-
+  flex-grow: 1;
 }
 
 .modal-team__img img {
-    height: 100%;
-    object-fit: cover;
+  height: 100%;
+  object-fit: cover;
 }
 
 .modal-team__text {
-    padding: 7px;
+  padding: 7px;
 }
 
 .modal-team__text--name {
-    font-size: 14px;
-    line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.5;
 }
 .modal-team__text--position {
-    color: $accent-text-color;
-    font-size: 12px;
+  color: $accent-text-color;
+  font-size: 12px;
 }
-.modal-team__contact {
 
-}
-.modal-team__contact-mail {
-
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 3px;
 }

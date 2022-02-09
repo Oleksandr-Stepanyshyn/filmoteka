@@ -9,6 +9,7 @@ export default class FilmsApiService {
     this.page = 1;
     this.pages = 0;
     this.totalItems = 0;
+    this.with_genres = 0;
   }
 
   // Метод для получения популярных фильмов дня.
@@ -16,9 +17,24 @@ export default class FilmsApiService {
     const searchParams = new URLSearchParams({
       page: this.page,
     });
-  
+
     const response = await axios.get(
       `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&${searchParams}`,
+    );
+    const data = await response.data;
+    this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
+    return data.results;
+  }
+
+  // Метод для получения популярных фильмов недели.
+  async onFetchTopWeekFilms() {
+    const searchParams = new URLSearchParams({
+      page: this.page,
+    });
+
+    const response = await axios.get(
+      `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&${searchParams}`,
     );
     const data = await response.data;
     this.totalPage = data.total_pages;
@@ -41,6 +57,16 @@ export default class FilmsApiService {
     this.totalPage = data.total_pages;
     this.totalItems = data.total_results;
     return data.results;
+  }
+
+  // Метод для получения id жанров фильмов.
+  async onFetchId() {
+    const response = await axios.get(
+      `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+    );
+    const data = await response.data;
+    const genres = await data.genres;
+    return genres;
   }
 
   // Метод Геттер для получения текущего значения строки поиска (нам не нужен:)).
@@ -84,7 +110,7 @@ export default class FilmsApiService {
     this.page = 1;
   }
 
-  resetTotalItems(){
+  resetTotalItems() {
     this.totalItems = 0;
   }
 
@@ -115,9 +141,36 @@ export default class FilmsApiService {
     const response = await axios.get(
       `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`,
     );
-  const data = await response.data;
+    const data = await response.data;
     const genres = await data.genres;
-  return  genres;
+    return  genres;
   }
 
+  // Метод для получения фильма/фильмов по жанру запроса (через метод Сеттер).
+  async onFetchGenresFilms() {
+    const searchParams = new URLSearchParams({
+      with_genres: this.with_genres,
+      include_adult: false,
+      page: this.page,
+    });
+
+    const response = await axios.get(
+      `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&${searchParams}`
+    );
+
+    const data = await response.data;
+    this.totalPage = data.total_pages;
+    this.totalItems = data.total_results;
+    return data.results;
+  }
+
+  // Метод Геттер для получения текущего значения жанра.
+  get genre() {
+    return this.with_genres;
+  }
+
+  // Метод Сеттер для поиска фильмов по жанру.
+  set genre(genreId) {
+    this.with_genres = genreId;
+  }
 }

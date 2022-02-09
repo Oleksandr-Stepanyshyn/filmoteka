@@ -51,15 +51,17 @@
     margin: 0 8px;
 }
 
-@media screen and (max-width: 768px) {
     .tui-next-is-ellip,
     .tui-prev-is-ellip,
     .tui-first,
     .tui-last{
         display: none;
+
+        @media screen and (min-width: 768px){
+            display: flex
+        }
     }
 
-}
 
 .material-icons{
     font-size: 16px;
