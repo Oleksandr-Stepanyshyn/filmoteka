@@ -10,19 +10,21 @@ if(!localStorage.theme )
   if(!localStorage.themeFooter)
   localStorage.themeFooter ="light";
 
-  if(!localStorage.icon )
-  localStorage.icon ="day";
   
 document.body.className=localStorage.theme;
 refs.switchFooter.className =localStorage.themeFooter;
+
 function onSwitch(){
   document.body.classList.toggle("dark");
   refs.switchFooter.classList.toggle("dark-footer");
   refs.day.classList.toggle('is-hidden');
   refs.night.classList.toggle('is-hidden')
-  refs.switchMain.classList.toggle('main-shadow');
+  refs.switchHeader.classList.toggle('shadow-header');
+  refs.switchFooter.classList.toggle('shadow-footer');
   refs.paginationBtn.classList.toggle('pagination-switcn');
-  localStorage.theme=document.body.className;
+  refs.iconFooter.classList.toggle('icon-footer');
+  localStorage.theme=document.body.className || light;
   localStorage.themeFooter=refs.switchFooter.className || light;
-  localStorage.icon=refs.day.className || day;
+  
 }
+

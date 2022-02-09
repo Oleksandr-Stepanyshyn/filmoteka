@@ -1,11 +1,19 @@
 
 body.dark{
-  background-color: #201f1f; 
+  background-color: #272121; 
   color: #ffffff;
 }
+.light{
+  background-color: #ffffff; 
+  color: #000000;
+}
+
 .dark-footer{
   background-color: #000000;
   color: #ffffff;
+}
+.icon-footer{
+  fill:#ffffff;
 }
 
 .checkbox-container{
@@ -31,11 +39,19 @@ is-hidden{
   display: none;
 }
 
-.main-shadow{
-  box-shadow: 15px 17px 14px 0px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 15px 17px 14px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 15px 17px 14px 0px rgba(0,0,0,0.75);
+.shadow-header{
+  box-shadow:0px 10px 10px 0px rgba(255, 107, 1, 0.425);
 }
+  
+.shadow-footer{
+  box-shadow: 0px 0px 14px 13px rgba(255, 107, 1, 0.425);
+
+}
+
 .pagination-switch{
   background-color: #000000;
+}
+
+.icon-footer {
+  fill: #ffffff;
 }
