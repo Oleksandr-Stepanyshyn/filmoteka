@@ -1,15 +1,16 @@
+import debounce from 'lodash.debounce';
+import Notiflix from 'notiflix';
 import cardMarkup from '../templates/cardMarkup';
 import FilmsApiService from './apiService';
-import Notiflix from 'notiflix';
 import pag from './pagination';
 import { refs } from './refs';
 import localeStorageServices from './localeStorageServices';
 import { onLoadSite } from './togglerDayOrWeek';
 import genresListTemplate from '../templates/genresList';
-import debounce from 'lodash.debounce';
 
 const newFilmsBandle = new FilmsApiService();
 let genresList = [];
+
 refs.formEl.addEventListener('submit', onFormElSubmit);
 refs.formSelectGenreEl.addEventListener('change', onSelectChange);
 refs.formInputEl.addEventListener('input', debounce(OnFormInput, 900));
