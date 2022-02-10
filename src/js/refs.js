@@ -11,6 +11,7 @@ export const refs = {
   modalTeam: document.querySelector('.js-modal-team'),
   btnCloseModalTeam: document.querySelector('.js-close-modal-team'),
   formEl: document.querySelector('.form'),
+  formInputEl: document.querySelector('.form__input'),
   formSelectGenreEl: document.querySelector('.form__select-genre'),
   galleryEl: document.querySelector('.gallery__container'),
   errorEl: document.querySelector('.search-error'),
@@ -21,21 +22,8 @@ export const refs = {
   checkbox: document.querySelector('#switch'),
   toggler: document.querySelector('.toggler'),
   textToggler: document.querySelector('.text'),
-// <<<<<<< HEAD
   switchTheme: document.querySelector('#switchTheme'),
   iconTheme: document.querySelector('.checkbox__text'),
   iconGitHub: document.querySelector('.footer__icon-github'),
   footer: document.querySelector('.footer'),
-// =======
-  switchBtn: document.querySelector('.checkbox-label'),
-  day: document.querySelector('.checkbox-icon'),
-  night: document.querySelector('.night'),
-  switchFooter: document.querySelector('.footer'),
-  switchMain: document.querySelector('.main'),
-  paginationBtnPrev:document.querySelector('.tui-prev'),
-  paginationBtnNext:document.querySelector('.tui-next'),
-  switchHeader: document.querySelector('.header'),
-  iconFooter: document.querySelector('.footer__icon-github'),
-  formInputEl: document.querySelector('.form__input'),
-// >>>>>>> dev
 };

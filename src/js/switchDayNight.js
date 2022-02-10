@@ -7,7 +7,6 @@ refs.switchTheme.addEventListener('change', onSwitchThemeClick);
 
 const iconNight = refs.iconTheme.firstElementChild;
 const iconDay = refs.iconTheme.lastElementChild;
-
 switchTest();
 
 function onSwitchThemeClick (e) {
@@ -32,67 +31,25 @@ function switchTest () {
 }
 
 function nightTheme() {
-    console.log('ночная тема');
     iconDay.classList.remove('is-hidden');
     iconNight.classList.add('is-hidden');
-    document.body.style.backgroundColor = '#000000';
-    // document.body.style.color = '#ffffff';
+    document.body.style.backgroundColor = '#212121';
     refs.galleryEl.style.color = '#ffffff';
     refs.iconGitHub.style.fill = '#F7F7F7';
-    // refs.header.style.borderBottom = '2px solid $accent-color';
-    // refs.footer.style.borderTop = '2px solid $accent-color';
-    console.log(refs.header)
+    refs.header.classList.add('dark-header');
+    refs.footer.classList.add('dark-footer');
+    refs.paginationContainer.classList.add('dark-theme');
+    refs.emptyLibEl.classList.add('dark-theme-error');
 }
 
 function lightTheme () {
-    console.log('дневная тема');
     iconDay.classList.add('is-hidden');
     iconNight.classList.remove('is-hidden');
     document.body.style.backgroundColor = '#ffffff';
-    // document.body.style.color = '#000000'; 
     refs.galleryEl.style.color = '#000000';
     refs.iconGitHub.style.fill = '#000000';
-    refs.header.style.borderBottom = 'none';
-    refs.footer.style.borderTop = 'none';
+    refs.header.classList.remove('dark-header');
+    refs.footer.classList.remove('dark-footer');
+    refs.paginationContainer.classList.remove('dark-theme');
+    refs.emptyLibEl.classList.remove('dark-theme-error');
 }
-
-// class Switch {
-//     // constructor({key, id}) {
-//     //     this.LOCALSTORAGE_KEY = key,
-//     //     this.switch = document.querySelector(id),
-//     // }
-
-//     // get switch () {
-//     //     return this.switch;
-//     // }
-
-//     // set switch (newId) {
-//     //     this.switch = document.querySelector(newId);
-//     // }
-
-//     switchTest() {
-//         if(localStorage.load(LOCALSTORAGE_KEY)) {
-//             console.log('ночная тема');
-//             iconDay.classList.toggle('is-hidden');
-//             iconNight.classList.toggle('is-hidden');
-//         }
-//         console.log('дневная тема');
-//     }
-
-//     click(e) {
-//         if(e.target.checked) {
-//             console.log('ночная тема');
-//             iconDay.classList.toggle('is-hidden');
-//             iconNight.classList.toggle('is-hidden');
-//             nightThemeOn = e.target.checked;
-//             localStorage.save(LOCALSTORAGE_KEY, nightThemeOn)
-//             return;
-//         }
-//         console.log('дневная тема');
-//         iconDay.classList.toggle('is-hidden');
-//         iconNight.classList.toggle('is-hidden');
-//         nightThemeOn = e.target.checked;
-//         localStorage.save(LOCALSTORAGE_KEY, nightThemeOn)
-//     }
-    
-// }
