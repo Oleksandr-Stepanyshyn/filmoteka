@@ -1,9 +1,12 @@
 .errorImg__container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  font-size: 20px;
+  text-align: center;
 
   @media screen and (min-width: 768px) {
     padding-top: 50px;
