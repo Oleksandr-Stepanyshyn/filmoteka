@@ -40,7 +40,7 @@
       <button class="library__btn btn js-btn-queue">Queue</button>
     </div>
 
-    <!-- Переключатель Day or Week -->
+<!-- Переключатель Day or Week -->
 
     <div class="toggler">
       <label class="label">
@@ -49,8 +49,26 @@
         <span class="toggler__box"></span>
       </label>
     </div>
+
+<!-- Переключатель Day/Night -->
+
+    <div class="checkbox-container">
+      <label class="checkbox-label">
+        <span class="checkbox__text">
+          <svg class="checkbox__icon checkbox__icon-night is-hidden" width="20" height="20">
+            <use href="./images/sprite.svg#icon-night"></use>
+          </svg>
+          <svg class="checkbox__icon checkbox__icon-day" width="20" height="20">
+            <use href="./images/sprite.svg#icon-day"></use>
+          </svg>
+        </span>
+        <input class="is-hidden" id="switchTheme" name="day-night theme" type="checkbox" />
+      </label>
+    </div>
+
   </div>
 
+<!-- <<<<<<< HEAD -->
     <!-- перемикач тем -->
   <div class="checkbox-container">
     <label class="checkbox-label">
@@ -64,12 +82,16 @@
       </span>
     </label>
   </div>
+<!-- >>>>>>> dev -->
 
+<!-- Кнопка для скролла вверх -->
   <button class="scroll-to-top scroll-to-top--hidden">
     <svg height="14" width="14">
       <use href="./images/sprite.svg#icon-scroll"></use>
     </svg>
   </button>
+
+  
 </header>
 
 

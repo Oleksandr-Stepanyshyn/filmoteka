@@ -267,6 +267,7 @@
 
 .search-error {
   margin-top: 5px;
+  padding-right: 75px;
 
   color: #ff001b;
   font-weight: 400;
@@ -279,6 +280,7 @@
 
   @media screen and (min-width: 768px) {
     margin-top: 10px;
+    padding: 0 75px;
   }
 }
 
@@ -339,7 +341,7 @@
 
 .toggler {
   position: absolute;
-  top: 158px;
+  top: 145px;
   right: 25px;
 
   @media screen and (min-width: 768px) {

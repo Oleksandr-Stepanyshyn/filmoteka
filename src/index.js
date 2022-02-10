@@ -9,4 +9,5 @@ import './js/teamModal';
 import './js/scrollToTop';
 import './js/togglerDayOrWeek';
 import './js/library';
-import './js/themeSwitch'
+import './js/switchDayNight';
+// import './js/themeSwitch'
