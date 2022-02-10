@@ -40,6 +40,7 @@ function nightTheme() {
     refs.footer.classList.add('dark-footer');
     refs.paginationContainer.classList.add('dark-theme');
     refs.emptyLibEl.classList.add('dark-theme-error');
+    refs.errorImgEl.classList.add('dark-theme-error');
 }
 
 function lightTheme () {
@@ -52,4 +53,5 @@ function lightTheme () {
     refs.footer.classList.remove('dark-footer');
     refs.paginationContainer.classList.remove('dark-theme');
     refs.emptyLibEl.classList.remove('dark-theme-error');
+    refs.errorImgEl.classList.remove('dark-theme-error');
 }
